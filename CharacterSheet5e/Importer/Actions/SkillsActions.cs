@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CharacterSheet5e.Importer.Maps;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

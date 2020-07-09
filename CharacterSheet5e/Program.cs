@@ -17,13 +17,10 @@ namespace CharacterSheet5e
         [STAThread]
         static void Main()
         {
-            // Application.EnableVisualStyles();
-            // Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new StartForm());
-
-            // This will need to get moved to the import button on StartForm
-            var scraper = new ScraperBase();
-            scraper.Scrape(CharacterName.Cloron);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new CharacterForm(CharacterName.Cloron));
+            // Application.Run(new StartForm()); commented while debugging in CharacterForm
         }
     }
 }
