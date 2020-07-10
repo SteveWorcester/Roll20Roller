@@ -35,6 +35,8 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.BtnImport = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label3
@@ -92,7 +94,7 @@
             // 
             // BtnImport
             // 
-            this.BtnImport.Location = new System.Drawing.Point(12, 150);
+            this.BtnImport.Location = new System.Drawing.Point(12, 190);
             this.BtnImport.Name = "BtnImport";
             this.BtnImport.Size = new System.Drawing.Size(75, 23);
             this.BtnImport.TabIndex = 8;
@@ -110,11 +112,31 @@
             this.radioButton1.Text = "radioButton1";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(12, 140);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(85, 17);
+            this.radioButton5.TabIndex = 10;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "radioButton5";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 164);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 11;
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 208);
+            this.ClientSize = new System.Drawing.Size(156, 244);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.radioButton5);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.BtnImport);
             this.Controls.Add(this.radioButton4);
@@ -137,5 +159,7 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Button BtnImport;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

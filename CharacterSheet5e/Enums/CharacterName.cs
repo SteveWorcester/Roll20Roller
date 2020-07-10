@@ -8,6 +8,7 @@ namespace CharacterSheet5e.Enums
 {
     public enum CharacterName
     {
+        None,
         Cloron,
         Gil,
         Zag,

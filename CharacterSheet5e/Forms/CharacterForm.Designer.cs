@@ -40,7 +40,7 @@
             // RbAdvantage
             // 
             this.RbAdvantage.AutoSize = true;
-            this.RbAdvantage.Location = new System.Drawing.Point(31, 25);
+            this.RbAdvantage.Location = new System.Drawing.Point(17, 25);
             this.RbAdvantage.Name = "RbAdvantage";
             this.RbAdvantage.Size = new System.Drawing.Size(77, 17);
             this.RbAdvantage.TabIndex = 0;
@@ -51,7 +51,7 @@
             // RbNormal
             // 
             this.RbNormal.AutoSize = true;
-            this.RbNormal.Location = new System.Drawing.Point(31, 48);
+            this.RbNormal.Location = new System.Drawing.Point(17, 48);
             this.RbNormal.Name = "RbNormal";
             this.RbNormal.Size = new System.Drawing.Size(58, 17);
             this.RbNormal.TabIndex = 1;
@@ -62,7 +62,7 @@
             // RbDisadvantage
             // 
             this.RbDisadvantage.AutoSize = true;
-            this.RbDisadvantage.Location = new System.Drawing.Point(31, 71);
+            this.RbDisadvantage.Location = new System.Drawing.Point(17, 71);
             this.RbDisadvantage.Name = "RbDisadvantage";
             this.RbDisadvantage.Size = new System.Drawing.Size(91, 17);
             this.RbDisadvantage.TabIndex = 2;
@@ -72,17 +72,17 @@
             // 
             // LblCharacterName
             // 
-            this.LblCharacterName.AutoSize = true;
-            this.LblCharacterName.Location = new System.Drawing.Point(54, 9);
+            this.LblCharacterName.Location = new System.Drawing.Point(0, 0);
             this.LblCharacterName.Name = "LblCharacterName";
-            this.LblCharacterName.Size = new System.Drawing.Size(35, 13);
-            this.LblCharacterName.TabIndex = 3;
-            this.LblCharacterName.Text = "label1";
+            this.LblCharacterName.Size = new System.Drawing.Size(158, 23);
+            this.LblCharacterName.TabIndex = 7;
+            this.LblCharacterName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DdlSkills
             // 
+            this.DdlSkills.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DdlSkills.FormattingEnabled = true;
-            this.DdlSkills.Location = new System.Drawing.Point(12, 107);
+            this.DdlSkills.Location = new System.Drawing.Point(12, 118);
             this.DdlSkills.Name = "DdlSkills";
             this.DdlSkills.Size = new System.Drawing.Size(121, 21);
             this.DdlSkills.TabIndex = 4;
@@ -91,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 91);
+            this.label1.Location = new System.Drawing.Point(35, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 5;
@@ -99,7 +99,7 @@
             // 
             // BtnSkillRoll
             // 
-            this.BtnSkillRoll.Location = new System.Drawing.Point(12, 134);
+            this.BtnSkillRoll.Location = new System.Drawing.Point(12, 145);
             this.BtnSkillRoll.Name = "BtnSkillRoll";
             this.BtnSkillRoll.Size = new System.Drawing.Size(132, 23);
             this.BtnSkillRoll.TabIndex = 6;
@@ -111,7 +111,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 170);
+            this.ClientSize = new System.Drawing.Size(159, 180);
             this.Controls.Add(this.BtnSkillRoll);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DdlSkills);
@@ -120,7 +120,7 @@
             this.Controls.Add(this.RbNormal);
             this.Controls.Add(this.RbAdvantage);
             this.Name = "CharacterForm";
-            this.Text = "Character";
+            this.Text = "Skills";
             this.ResumeLayout(false);
             this.PerformLayout();
 
