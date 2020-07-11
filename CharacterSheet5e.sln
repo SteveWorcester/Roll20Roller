@@ -9,6 +9,7 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Description = Rolling assistant to pull data from DnDBeyond and generate roll commands for Roll20
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9E92548D-9319-4ED6-9859-198096696631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
