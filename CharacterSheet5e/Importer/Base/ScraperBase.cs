@@ -15,8 +15,7 @@ namespace CharacterSheet5e.Importer.Base
             
             options = new ChromeOptions();
             options.AddArguments(new List<string>() { "Headless" });
-            service = ChromeDriverService.CreateDefaultService(ConfigurationManager.AppSettings["ChromeDriverLocation"]);
-            SaveDataDirectory = Directory.CreateDirectory(ConfigurationManager.AppSettings["SaveDataLocation"]);
+            service = ChromeDriverService.CreateDefaultService();
         }
 
         private static ChromeOptions options;
