@@ -66,18 +66,12 @@
     <Compile Include="Forms\StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Importer\Actions\AbilityScoreActions.cs" />
-    <Compile Include="Importer\Actions\CombatActions.cs" />
-    <Compile Include="Importer\Actions\DescriptionActions.cs" />
-    <Compile Include="Importer\Actions\EquipmentActions.cs" />
-    <Compile Include="Importer\Actions\SavingThrowsActions.cs" />
+    <Compile Include="Importer\Actions\MainPageActions.cs" />
     <Compile Include="Importer\Actions\SkillsActions.cs" />
-    <Compile Include="Importer\Actions\SpellsActions.cs" />
     <Compile Include="Importer\Base\ScraperBase.cs" />
-    <Compile Include="Importer\Maps\Actions.cs" />
-    <Compile Include="Importer\Maps\MainPage.cs" />
-    <Compile Include="Importer\Maps\Skills.cs" />
-    <Compile Include="Importer\Maps\Spells.cs" />
+    <Compile Include="Importer\Base\Wait.cs" />
+    <Compile Include="Importer\Maps\MainPageObjects.cs" />
+    <Compile Include="Importer\Maps\SkillsObjects.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\CharacterForm.resx">

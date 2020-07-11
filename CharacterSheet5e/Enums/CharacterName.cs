@@ -9,9 +9,9 @@ namespace CharacterSheet5e.Enums
     public enum CharacterName
     {
         None,
-        Cloron,
-        Gil,
-        Zag,
+        Cloron = 14820937,
+        Gil = 15567444,
+        Zaag = 14820702,
         Komazur
     }
 }

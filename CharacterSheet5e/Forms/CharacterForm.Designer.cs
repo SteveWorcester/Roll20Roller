@@ -121,6 +121,7 @@
             this.Controls.Add(this.RbAdvantage);
             this.Name = "CharacterForm";
             this.Text = "Skills";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

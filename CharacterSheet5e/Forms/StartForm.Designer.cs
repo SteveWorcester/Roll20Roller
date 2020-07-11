@@ -28,30 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label3 = new System.Windows.Forms.Label();
             this.RbCloron = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.RbGil = new System.Windows.Forms.RadioButton();
+            this.RbZaag = new System.Windows.Forms.RadioButton();
+            this.RbKomazur = new System.Windows.Forms.RadioButton();
             this.BtnImport = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtOther = new System.Windows.Forms.TextBox();
+            this.RbOther = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Select a character to import: ";
             // 
             // RbCloron
             // 
             this.RbCloron.AutoSize = true;
-            this.RbCloron.Location = new System.Drawing.Point(13, 25);
+            this.RbCloron.Location = new System.Drawing.Point(12, 12);
             this.RbCloron.Name = "RbCloron";
             this.RbCloron.Size = new System.Drawing.Size(81, 17);
             this.RbCloron.TabIndex = 3;
@@ -59,91 +52,121 @@
             this.RbCloron.Text = "Cloron Baltri";
             this.RbCloron.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // RbGil
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(12, 48);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.RbGil.AutoSize = true;
+            this.RbGil.Location = new System.Drawing.Point(12, 35);
+            this.RbGil.Name = "RbGil";
+            this.RbGil.Size = new System.Drawing.Size(37, 17);
+            this.RbGil.TabIndex = 4;
+            this.RbGil.TabStop = true;
+            this.RbGil.Text = "Gil";
+            this.RbGil.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // RbZaag
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(12, 71);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.RbZaag.AutoSize = true;
+            this.RbZaag.Location = new System.Drawing.Point(12, 58);
+            this.RbZaag.Name = "RbZaag";
+            this.RbZaag.Size = new System.Drawing.Size(50, 17);
+            this.RbZaag.TabIndex = 5;
+            this.RbZaag.TabStop = true;
+            this.RbZaag.Text = "Zaag";
+            this.RbZaag.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // RbKomazur
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(12, 94);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
-            this.radioButton4.TabIndex = 6;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.RbKomazur.AutoSize = true;
+            this.RbKomazur.Location = new System.Drawing.Point(12, 81);
+            this.RbKomazur.Name = "RbKomazur";
+            this.RbKomazur.Size = new System.Drawing.Size(90, 17);
+            this.RbKomazur.TabIndex = 6;
+            this.RbKomazur.TabStop = true;
+            this.RbKomazur.Text = "Komazur(NYI)";
+            this.RbKomazur.UseVisualStyleBackColor = true;
             // 
             // BtnImport
             // 
-            this.BtnImport.Location = new System.Drawing.Point(12, 190);
+            this.BtnImport.Location = new System.Drawing.Point(12, 200);
             this.BtnImport.Name = "BtnImport";
-            this.BtnImport.Size = new System.Drawing.Size(75, 23);
+            this.BtnImport.Size = new System.Drawing.Size(100, 23);
             this.BtnImport.TabIndex = 8;
-            this.BtnImport.Text = "Import";
+            this.BtnImport.Text = "Import Character";
             this.BtnImport.UseVisualStyleBackColor = true;
+            this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 117);
+            this.radioButton1.Location = new System.Drawing.Point(12, 104);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
+            this.radioButton1.Size = new System.Drawing.Size(135, 17);
             this.radioButton1.TabIndex = 9;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.Text = "Rachel Character (NYI)";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // TxtOther
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(12, 140);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(85, 17);
-            this.radioButton5.TabIndex = 10;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "radioButton5";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.TxtOther.Location = new System.Drawing.Point(91, 151);
+            this.TxtOther.Name = "TxtOther";
+            this.TxtOther.Size = new System.Drawing.Size(100, 20);
+            this.TxtOther.TabIndex = 11;
             // 
-            // textBox1
+            // RbOther
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 164);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 11;
+            this.RbOther.AutoSize = true;
+            this.RbOther.Location = new System.Drawing.Point(12, 127);
+            this.RbOther.Name = "RbOther";
+            this.RbOther.Size = new System.Drawing.Size(51, 17);
+            this.RbOther.TabIndex = 12;
+            this.RbOther.TabStop = true;
+            this.RbOther.Text = "Other";
+            this.RbOther.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label1.Location = new System.Drawing.Point(9, 174);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(155, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "/profile/UserName/characters/";
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(160, 174);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "This Number!";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 154);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Character ID: ";
             // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(156, 244);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.radioButton5);
+            this.ClientSize = new System.Drawing.Size(235, 235);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.RbOther);
+            this.Controls.Add(this.TxtOther);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.BtnImport);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.RbKomazur);
+            this.Controls.Add(this.RbZaag);
+            this.Controls.Add(this.RbGil);
             this.Controls.Add(this.RbCloron);
-            this.Controls.Add(this.label3);
             this.Name = "StartForm";
             this.Text = "StartForm";
             this.ResumeLayout(false);
@@ -152,14 +175,16 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton RbCloron;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton RbGil;
+        private System.Windows.Forms.RadioButton RbZaag;
+        private System.Windows.Forms.RadioButton RbKomazur;
         private System.Windows.Forms.Button BtnImport;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtOther;
+        private System.Windows.Forms.RadioButton RbOther;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
