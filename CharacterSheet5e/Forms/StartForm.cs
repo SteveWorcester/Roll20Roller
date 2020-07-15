@@ -22,11 +22,25 @@ namespace CharacterSheet5e.Forms
 
         private void BtnImport_Click(object sender, EventArgs e)
         {
-            if (RbCloron.Checked)
+
+            foreach (Control control in this.Controls)
             {
-                SelectedCharacterId = (long)CharacterName.Cloron;
+                if (control is RadioButton)
+                {
+                    RadioButton radio = control as RadioButton;
+                    if (radio.Checked)
+                    {
+                        CharacterName selectedCharacterName;
+                        var canParseName = CharacterName.TryParse(radio.Text, out selectedCharacterName);
+                        if (canParseName)
+                        {
+                            SelectedCharacterId = (long)selectedCharacterName;
+                        }
+                    }
+                }
             }
-            else if (RbOther.Checked)
+
+            if (RbOther.Checked)
             {
                 var canParse = long.TryParse(TxtOther.Text, out SelectedCharacterId);
                 if (!canParse)

@@ -12,6 +12,7 @@ namespace CharacterSheet5e.Enums
         Cloron = 14820937,
         Gil = 15567444,
         Zaag = 14820702,
-        Komazur
+        Komazur = 14820665,
+        Kohbee = 31246489
     }
 }

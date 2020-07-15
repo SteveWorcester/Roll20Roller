@@ -46,10 +46,10 @@
             this.RbCloron.AutoSize = true;
             this.RbCloron.Location = new System.Drawing.Point(12, 12);
             this.RbCloron.Name = "RbCloron";
-            this.RbCloron.Size = new System.Drawing.Size(81, 17);
+            this.RbCloron.Size = new System.Drawing.Size(55, 17);
             this.RbCloron.TabIndex = 3;
             this.RbCloron.TabStop = true;
-            this.RbCloron.Text = "Cloron Baltri";
+            this.RbCloron.Text = "Cloron";
             this.RbCloron.UseVisualStyleBackColor = true;
             // 
             // RbGil
@@ -79,10 +79,10 @@
             this.RbKomazur.AutoSize = true;
             this.RbKomazur.Location = new System.Drawing.Point(12, 81);
             this.RbKomazur.Name = "RbKomazur";
-            this.RbKomazur.Size = new System.Drawing.Size(90, 17);
+            this.RbKomazur.Size = new System.Drawing.Size(66, 17);
             this.RbKomazur.TabIndex = 6;
             this.RbKomazur.TabStop = true;
-            this.RbKomazur.Text = "Komazur(NYI)";
+            this.RbKomazur.Text = "Komazur";
             this.RbKomazur.UseVisualStyleBackColor = true;
             // 
             // BtnImport
@@ -100,10 +100,10 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(12, 104);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(135, 17);
+            this.radioButton1.Size = new System.Drawing.Size(62, 17);
             this.radioButton1.TabIndex = 9;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Rachel Character (NYI)";
+            this.radioButton1.Text = "Kohbee";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // TxtOther
@@ -118,10 +118,10 @@
             this.RbOther.AutoSize = true;
             this.RbOther.Location = new System.Drawing.Point(12, 127);
             this.RbOther.Name = "RbOther";
-            this.RbOther.Size = new System.Drawing.Size(51, 17);
+            this.RbOther.Size = new System.Drawing.Size(129, 17);
             this.RbOther.TabIndex = 12;
             this.RbOther.TabStop = true;
-            this.RbOther.Text = "Other";
+            this.RbOther.Text = "Other (enter ID below)";
             this.RbOther.UseVisualStyleBackColor = true;
             // 
             // label1
