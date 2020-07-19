@@ -3,6 +3,7 @@ using CharacterSheet5e.Forms;
 using CharacterSheet5e.Importer.Base;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace CharacterSheet5e
