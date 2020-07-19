@@ -1,4 +1,6 @@
-﻿using CharacterSheet5e.Importer.Actions;
+﻿using CharacterSheet5e.Enums;
+using CharacterSheet5e.Importer.Actions;
+using CharacterSheet5e.Managers;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,22 +11,19 @@ namespace CharacterSheet5e.Forms
     {
         public SkillsActions _Skills;
         public MainPageActions _MainPage;
-
+        public RollGenerator _Roll;
 
         public IList<string> AllSkillNames { get; set; }
 
-
         public string SelectedSkillName;
-        public int SelectedSkillBonus;
-        public int SelectedDieSides;
-        public int AmountOfRolledDice;
-        public int RolledDiceToDrop;
+        private Advantage selectedAdvantage;
 
         public CharacterForm(long charId)
         {
             InitializeComponent();
-            _Skills = new SkillsActions(charId);
             _MainPage = new MainPageActions(charId);
+            _Skills = new SkillsActions(charId);
+            _Roll = new RollGenerator(charId);
 
             LblCharacterName.Text = _MainPage.GetCharacterName();
 
@@ -42,31 +41,25 @@ namespace CharacterSheet5e.Forms
 
         private void DdlSkills_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedSkillBonus = _Skills.GetSkillBonusByName(DdlSkills.SelectedItem.ToString());
+            SelectedSkillName = DdlSkills.SelectedItem.ToString();
         }
 
         private void BtnSkillRoll_Click(object sender, EventArgs e)
         {
-            SelectedDieSides = 20; // All skills use a d20
-
-            if (RbAdvantage.Checked)
+            if (RbDisadvantage.Checked)
             {
-                AmountOfRolledDice = 2;
-                RolledDiceToDrop = 1;
-                Clipboard.SetText($"/roll {AmountOfRolledDice}d{SelectedDieSides}dl{RolledDiceToDrop}+{SelectedSkillBonus}");
+                selectedAdvantage = Advantage.Disadvantage;
             }
             else if (RbNormal.Checked)
             {
-                AmountOfRolledDice = 1;
-                RolledDiceToDrop = 0;
-                Clipboard.SetText($"/roll {AmountOfRolledDice}d{SelectedDieSides}dl{RolledDiceToDrop}+{SelectedSkillBonus}");
+                selectedAdvantage = Advantage.Normal;
             }
-            else if (RbDisadvantage.Checked)
+            else if (RbAdvantage.Checked)
             {
-                AmountOfRolledDice = 2;
-                RolledDiceToDrop = 1;
-                Clipboard.SetText($"/roll {AmountOfRolledDice}d{SelectedDieSides}dh{RolledDiceToDrop}+{SelectedSkillBonus}");
-            }            
+                selectedAdvantage = Advantage.Advantage;
+            }
+
+            _Roll.RollSkill(selectedAdvantage, SelectedSkillName);          
         }
     }
 }

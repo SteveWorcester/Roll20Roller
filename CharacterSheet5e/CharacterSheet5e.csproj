@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Advantage.cs" />
     <Compile Include="Enums\CharacterName.cs" />
     <Compile Include="Forms\CharacterForm.cs">
       <SubType>Form</SubType>
@@ -89,6 +90,7 @@
     <Compile Include="Importer\Maps\ActionsObjects.cs" />
     <Compile Include="Importer\Maps\MainPageObjects.cs" />
     <Compile Include="Importer\Maps\SkillsObjects.cs" />
+    <Compile Include="Managers\RollGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\CharacterForm.resx">
