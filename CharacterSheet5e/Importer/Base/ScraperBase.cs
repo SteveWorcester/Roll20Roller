@@ -16,6 +16,7 @@ namespace CharacterSheet5e.Importer.Base
             options = new ChromeOptions();
             options.AddArguments(new List<string>() { "Headless" });
             service = ChromeDriverService.CreateDefaultService();
+            service.HideCommandPromptWindow = true;
         }
 
         private static ChromeOptions options;
@@ -25,7 +26,6 @@ namespace CharacterSheet5e.Importer.Base
         {
             get
             {
-
                 return _driver.Value;
             }
         }

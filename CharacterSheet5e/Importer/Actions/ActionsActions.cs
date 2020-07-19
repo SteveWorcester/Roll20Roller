@@ -3,12 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CharacterSheet5e.Importer.Actions
 {
     public class ActionsActions : ActionsObjects
     {
+        public ActionsActions(long charId)
+        {
+            SetCharacterAndPullData(charId);
+        }
+
         #region Navigation
 
         public ActionsActions Actions()
@@ -19,10 +25,13 @@ namespace CharacterSheet5e.Importer.Actions
         public ActionsActions Attack()
         {
             Actions()._subnavAttacksTab.Click();
+            Thread.Sleep(250);
             return this;
         }
 
         #endregion
+
+        #region Attack
 
         public List<string> AllAttackNames()
         {
@@ -37,29 +46,22 @@ namespace CharacterSheet5e.Importer.Actions
 
         public int GetToHitBonus(string attackName)
         {
-            var isPositive = Attack()._attackHitBonusPlusMinus(attackName).Text.Equals("+");
             var canParse = int.TryParse(Attack()._attackToHitBonus(attackName).Text, out var bonus);
             if (!canParse)
             {
                 throw new InvalidCastException("Cannot parse the to-hit bonus of the listed ability");
             }
 
-            return isPositive 
+            return IsBonusPositive(attackName)
                 ? bonus 
                 : -bonus;
         }
 
-        // public string GenerateToHitRoll(string attackName, bool hasAdvantage = false, bool hasDisadvantage = false)
-        // {
-        //     var toHitDie = 20;
-        //     var rolledDice = 
-        //     var toHitBonus = GetToHitBonus(attackName);
-        //     return $"/roll {"
-        // }
-        // 
-        // public string GenerateDamageRoll(string attackName)
-        // {
-        // 
-        // }
+        private bool IsBonusPositive(string attackName)
+        {
+            return Attack()._attackHitBonusPlusMinus(attackName).Text.Equals("+");
+        }
+
+        #endregion
     }
 }

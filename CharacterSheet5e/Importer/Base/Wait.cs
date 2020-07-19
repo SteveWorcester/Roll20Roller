@@ -10,7 +10,7 @@ namespace CharacterSheet5e.Importer.Base
 {
     public static class Wait
     {
-        public static IWebElement WaitForElement(this IWebDriver driver, By by, int timeoutInMs = 10000)
+        public static IWebElement WaitForElement(this IWebDriver driver, By by, int timeoutInMs = 30000)
         {
             return new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMs)).Until((drv) => {
                 try

@@ -11,7 +11,9 @@ namespace CharacterSheet5e.Importer.Maps
 {
     public class ActionsObjects : ScraperBase
     {
-        protected IWebElement _navActionsTab => _Driver.WaitForElement(By.CssSelector(".ct-primary-box__tab--actions"));
+        // Research on mapping Flex Containers necessary before use. The Full tab-selection section is a flex container.
+        protected IWebElement _tabsWindow => _Driver.WaitForElement(By.CssSelector("div.ct-subsection:nth-child(6)"));
+        protected IWebElement _navActionsTab => _tabsWindow.FindElement(By.XPath("/div[contains(text(), 'ct-primary-box__tab--actions ddbc-tab-list__nav-item']"));
 
         #region Attack
 
