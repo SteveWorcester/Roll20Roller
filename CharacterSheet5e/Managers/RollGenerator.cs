@@ -15,6 +15,7 @@ namespace CharacterSheet5e.Managers
         public RollGenerator(long charId)
         {
             _Skills = new SkillsActions(charId);
+            _MainPage = new MainPageActions(charId);
         }
 
         public SkillsActions _Skills;
@@ -31,6 +32,7 @@ namespace CharacterSheet5e.Managers
         {
             SetSkillAdvantageDice(adv);
             SelectedSkillBonus = _Skills.GetSkillBonusByName(skillName);
+
             var _rollTemplate = "&{template:default} ";
             var template1 = "{{name=Skill Check}} ";
             var template2 = "{{skill=";
@@ -77,6 +79,51 @@ namespace CharacterSheet5e.Managers
             Clipboard.SetText(roll);
         }
 
+        public void RollInitiative(Advantage adv)
+        {
+            SetSkillAdvantageDice(adv);
+            var initiativeBonus = _MainPage.GetInitiativeBonus();
+
+            var _rollTemplate = "&{template:default}";
+            var template1 = "{{name=Initiative}} ";
+            var template2 = "{{Advantage=";
+            var template3 = $"{adv}";
+            var template4 = "}} ";
+            var template5 = "{{Roll=[[";
+            var template6 = $"{AmountOfRolledDice}d{SelectedDieSides}";
+            var templateDropLowest = $"dl{RolledDiceToDrop}";
+            var templateDropHighest = $"dh{RolledDiceToDrop}";
+            var template8 = $"+{initiativeBonus}";
+            var template9 = "&{tracker:*}]]}}";
+
+            string roll =
+                _rollTemplate
+                + template1
+                + template2
+                + template3
+                + template4
+                + template5
+                + template6;
+
+            if (dropHighest && dropLowest)
+            {
+                throw new Exception("cannot drop both the highest and lowest dice in one roll");
+            }
+            else if (!dropHighest && !dropLowest)
+            {
+                //NOP
+            }
+            else if (dropHighest || dropLowest)
+            {
+                roll += dropLowest
+                    ? templateDropLowest
+                    : templateDropHighest;
+            }
+            roll += template8 + template9;
+
+            Clipboard.SetText(roll);
+        }
+
         private void SetSkillAdvantageDice(Advantage adv)
         {
             SelectedDieSides = 20; // All skills use 20 sided dice
@@ -104,5 +151,7 @@ namespace CharacterSheet5e.Managers
                     throw new Exception("Advantage radio button not selected");
             }
         }
+
+
     }
 }

@@ -15,5 +15,17 @@ namespace CharacterSheet5e.Importer.Actions
         {
             return _characterName.Text;
         }
+
+        public int GetInitiativeBonus()
+        {
+            var isPositive = _initiativePlusMinus.Text.Equals("+");
+            var canParse = int.TryParse(_initiativeBonus.Text, out var bonus);
+            if (!canParse)
+            {
+                throw new Exception("Initiative bonus cannot be parsed");
+            }
+
+            return isPositive ? bonus : -bonus;
+        }
     }
 }

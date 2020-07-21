@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnSkillRoll = new System.Windows.Forms.Button();
             this.BtnExit = new System.Windows.Forms.Button();
+            this.BtnInitiative = new System.Windows.Forms.Button();
+            this.LblSelectToken = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // RbAdvantage
@@ -119,11 +121,32 @@
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
+            // BtnInitiative
+            // 
+            this.BtnInitiative.Location = new System.Drawing.Point(3, 220);
+            this.BtnInitiative.Name = "BtnInitiative";
+            this.BtnInitiative.Size = new System.Drawing.Size(155, 62);
+            this.BtnInitiative.TabIndex = 9;
+            this.BtnInitiative.Text = "Roll Initiative!";
+            this.BtnInitiative.UseVisualStyleBackColor = true;
+            this.BtnInitiative.Click += new System.EventHandler(this.BtnInitiative_Click);
+            // 
+            // LblSelectToken
+            // 
+            this.LblSelectToken.AutoSize = true;
+            this.LblSelectToken.Location = new System.Drawing.Point(32, 204);
+            this.LblSelectToken.Name = "LblSelectToken";
+            this.LblSelectToken.Size = new System.Drawing.Size(93, 13);
+            this.LblSelectToken.TabIndex = 10;
+            this.LblSelectToken.Text = "Select your token!";
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(159, 363);
+            this.Controls.Add(this.LblSelectToken);
+            this.Controls.Add(this.BtnInitiative);
             this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.BtnSkillRoll);
             this.Controls.Add(this.label1);
@@ -150,5 +173,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnSkillRoll;
         private System.Windows.Forms.Button BtnExit;
+        private System.Windows.Forms.Button BtnInitiative;
+        private System.Windows.Forms.Label LblSelectToken;
     }
 }

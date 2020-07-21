@@ -53,6 +53,27 @@ namespace CharacterSheet5e.Forms
 
         private void BtnSkillRoll_Click(object sender, EventArgs e)
         {
+            SetAdvantage();
+            _Roll.RollSkill(selectedAdvantage, SelectedSkillName);          
+        }
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            var chrome = Process.GetProcessesByName("chromeDriver.exe").ToList();
+            var cons = Process.GetProcessesByName("Console Window Host").ToList();
+            chrome.ForEach(c => c.Kill());
+            cons.ForEach(c => c.Kill());
+            Environment.Exit(0);
+        }
+
+        private void BtnInitiative_Click(object sender, EventArgs e)
+        {
+            SetAdvantage();
+            _Roll.RollInitiative(selectedAdvantage);
+        }
+
+        private void SetAdvantage()
+        {
             if (RbDisadvantage.Checked)
             {
                 selectedAdvantage = Advantage.Disadvantage;
@@ -65,17 +86,6 @@ namespace CharacterSheet5e.Forms
             {
                 selectedAdvantage = Advantage.Advantage;
             }
-
-            _Roll.RollSkill(selectedAdvantage, SelectedSkillName);          
-        }
-
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            var chrome = Process.GetProcessesByName("chromeDriver.exe").ToList();
-            var cons = Process.GetProcessesByName("Console Window Host").ToList();
-            chrome.ForEach(c => c.Kill());
-            cons.ForEach(c => c.Kill());
-            Environment.Exit(0);
         }
     }
 }
