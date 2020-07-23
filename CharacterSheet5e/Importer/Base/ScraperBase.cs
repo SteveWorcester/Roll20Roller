@@ -10,11 +10,8 @@ namespace CharacterSheet5e.Importer.Base
     {
         public ScraperBase()
         {
-            // Set flexible default chrome driver install path before sharing.
-            // ConfigurationManager.AppSettings.Add(new KeyValuePair<string, string>("DefaultChromeDriverInstallLocation", Path...FindIt));
-            
             options = new ChromeOptions();
-            options.AddArguments(new List<string>() { "Headless" });
+            options.AddArguments(new List<string>() { "Headless", "--window-size=1920,1080" });
             service = ChromeDriverService.CreateDefaultService();
             service.HideCommandPromptWindow = true;
         }

@@ -12,20 +12,30 @@ namespace CharacterSheet5e.Importer.Maps
     public class ActionsObjects : ScraperBase
     {
         // Research on mapping Flex Containers necessary before use. The Full tab-selection section is a flex container.
-        protected IWebElement _tabsWindow => _Driver.WaitForElement(By.CssSelector("div.ct-subsection:nth-child(6)"));
-        protected IWebElement _navActionsTab => _tabsWindow.FindElement(By.XPath("/div[contains(text(), 'ct-primary-box__tab--actions ddbc-tab-list__nav-item']"));
 
         #region Attack
 
-        protected IWebElement _subnavAttacksTab => _Driver.WaitForElement(By.CssSelector(".ddbc-tab-options__header-heading--is-active"));
-        protected IWebElement _baseAttacksParent => _Driver.WaitForElement(By.CssSelector(".ddbc-attack-table__content"));
-        protected ReadOnlyCollection<IWebElement> _allAttackNames => _baseAttacksParent.FindElements(By.XPath("./div/div[@class='ddbc-combat-attack__name']/span[contains(@class,'ddbc-item-name ddbc-item-name--rarity-')]"));
-        protected IWebElement _attackParent(string attackName) => _allAttackNames.FirstOrDefault(n => n.Text.Equals(attackName)).FindElement(By.XPath(".//parent::div[contains(@class,'ddbc-combat-attack--item ddbc-combat-item-attack--')]"));
-        protected IWebElement _attackName(string attackName) => _allAttackNames.FirstOrDefault(n => n.Text.Equals(attackName)); 
+        protected IWebElement _baseAttacksParent => _Driver.WaitForElement(By.XPath("/html/body/div[1]/div/div[3]/div/section/div/div/div[2]/div/div[3]/div[6]/div/div[2]/div[2]/div/div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]"));
+        protected ReadOnlyCollection<IWebElement> _allAttackRows => _Driver.FindElements(By.XPath("//div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]/div"));
+        protected ReadOnlyCollection<IWebElement> _allAttackNames => _baseAttacksParent.FindElements(By.XPath("//div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]/div/div[2]/div[1]/span"));        
+        protected IWebElement _attackName(string attackName) => _allAttackNames.FirstOrDefault(n => n.Text.Equals(attackName));
+        protected IWebElement _attackParent(string attackName) => FindAttackParent(attackName);
         protected IWebElement _attackDamageRoll(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-damage__value']"));
         protected IWebElement _attackToHitBonus(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-signed-number__number']"));
-        protected IWebElement _attackHitBonusPlusMinus(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-signed-number__sign'"));
+        protected IWebElement _attackHitBonusPlusMinus(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-signed-number__sign']"));
         
+        /// <summary>
+        /// Attack Damage Type is in the "data-original-title" inner text.
+        /// </summary>
+        /// <param name="attackName"></param>
+        /// <returns></returns>
+        protected IWebElement _attackDamageType(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-tooltip  ddbc-damage']"));
+
+        private IWebElement FindAttackParent(string attackName)
+        {
+            var parentIndex = _allAttackNames.IndexOf(_attackName(attackName));
+            return _allAttackRows[parentIndex];
+        }
         #endregion
     }
 }
