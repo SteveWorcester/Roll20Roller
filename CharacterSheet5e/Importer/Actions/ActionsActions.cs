@@ -58,7 +58,7 @@ namespace CharacterSheet5e.Importer.Actions
             return _attackHitBonusPlusMinus(attackName).Text.Equals("+");
         }
 
-        internal object GetDamageType(string attackName)
+        public string GetDamageType(string attackName)
         {
             return _attackDamageType(attackName).GetAttribute("data-original-title");
         }

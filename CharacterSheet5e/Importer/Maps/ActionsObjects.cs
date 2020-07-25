@@ -15,7 +15,7 @@ namespace CharacterSheet5e.Importer.Maps
 
         #region Attack
 
-        protected IWebElement _baseAttacksParent => _Driver.WaitForElement(By.XPath("/html/body/div[1]/div/div[3]/div/section/div/div/div[2]/div/div[3]/div[6]/div/div[2]/div[2]/div/div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]"));
+        protected IWebElement _baseAttacksParent => _Driver.WaitForElement(By.XPath("/html/body/div[2]/div/div[3]/div/section/div/div/div[2]/div/div[3]/div[6]/div/div[2]/div[2]/div/div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]"));
         protected ReadOnlyCollection<IWebElement> _allAttackRows => _Driver.FindElements(By.XPath("//div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]/div"));
         protected ReadOnlyCollection<IWebElement> _allAttackNames => _baseAttacksParent.FindElements(By.XPath("//div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]/div/div[2]/div[1]/span"));        
         protected IWebElement _attackName(string attackName) => _allAttackNames.FirstOrDefault(n => n.Text.Equals(attackName));
