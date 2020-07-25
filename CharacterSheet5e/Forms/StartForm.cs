@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,44 +15,60 @@ namespace CharacterSheet5e.Forms
 {
     public partial class StartForm : Form
     {
+        private long selectedCharacterId;
+        private string characterIdFolder = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.AppSettings["LastCharacterIdFilePath"]);
+        private string lastCharacterIdFileName = ConfigurationManager.AppSettings["FileName"];
+        private string fullFilePath;
+        private string lastCharacterId;
+
         public StartForm()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            if (!Directory.Exists(characterIdFolder))
+            {
+                Directory.CreateDirectory(characterIdFolder);
+            }
+            fullFilePath = Path.Combine(characterIdFolder, lastCharacterIdFileName);
+            if (File.Exists(fullFilePath))
+            {
+                StreamReader read = new StreamReader(fullFilePath);
+                lastCharacterId = read.ReadLine();
+                read.Close();
+            }
+            else
+            {
+                File.Create(fullFilePath);
+            }
+
+            TxtOther.Text = lastCharacterId;
+            LblLoading.Text = "";
         }
 
-        public long SelectedCharacterId;
+
 
         private void BtnImport_Click(object sender, EventArgs e)
         {
-
-            foreach (Control control in this.Controls)
+            BtnImport.Enabled = false;
+            LblLoading.Text = "LOADING...";
+            LblLoading.ForeColor = Color.Black;
+            LblLoading.BackColor = Color.AliceBlue;
+            var canParse = long.TryParse(TxtOther.Text, out selectedCharacterId);
+            if (!canParse)
             {
-                if (control is RadioButton)
-                {
-                    RadioButton radio = control as RadioButton;
-                    if (radio.Checked)
-                    {
-                        CharacterName selectedCharacterName;
-                        var canParseName = CharacterName.TryParse(radio.Text, out selectedCharacterName);
-                        if (canParseName)
-                        {
-                            SelectedCharacterId = (long)selectedCharacterName;
-                        }
-                    }
-                }
+                throw new InvalidOperationException("Character ID must be a number. " +
+                    "Pull the character ID number from the DndBeyond.com URL when viewing your character.");
             }
 
-            if (RbOther.Checked)
+            if (!TxtOther.Text.Equals(lastCharacterId))
             {
-                var canParse = long.TryParse(TxtOther.Text, out SelectedCharacterId);
-                if (!canParse)
-                {
-                    throw new InvalidOperationException("Character ID must be a number");
-                }
+                StreamWriter write = new StreamWriter(fullFilePath);
+                write.WriteLine(TxtOther.Text);
+                write.Close();
             }
-            this.Hide();
-            CharacterForm characterForm = new CharacterForm(SelectedCharacterId);
+
+            CharacterForm characterForm = new CharacterForm(selectedCharacterId);
             characterForm.Show();
+            this.Hide();
         }
     }
 }

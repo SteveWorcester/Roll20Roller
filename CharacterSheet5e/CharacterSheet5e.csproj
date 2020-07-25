@@ -84,11 +84,14 @@
     </Compile>
     <Compile Include="Importer\Actions\ActionsActions.cs" />
     <Compile Include="Importer\Actions\MainPageActions.cs" />
+    <Compile Include="Importer\Actions\SavingThrowsActions.cs" />
     <Compile Include="Importer\Actions\SkillsActions.cs" />
+    <Compile Include="Importer\Base\TemplateFactory.cs" />
     <Compile Include="Importer\Base\ScraperBase.cs" />
     <Compile Include="Importer\Base\Wait.cs" />
     <Compile Include="Importer\Maps\ActionsObjects.cs" />
     <Compile Include="Importer\Maps\MainPageObjects.cs" />
+    <Compile Include="Importer\Maps\SavingThrowsObjects.cs" />
     <Compile Include="Importer\Maps\SkillsObjects.cs" />
     <Compile Include="Managers\RollGenerator.cs" />
     <Compile Include="Program.cs" />
