@@ -1,6 +1,6 @@
 # Roll20Roller
 
-#Summary:  
+# Summary:  
 
 Roll20Roller is a quarantine friendly Dungeons and Dragons helper. It pulls character data from DnDBeyond.com and generates roll templates to be pasted into Roll20.net.
 
@@ -8,7 +8,7 @@ Roll20Roller does not require an API subscription to either/any service.
 
 
 
-#Functionality: 
+# Functionality: 
 Import: 
 1. Navigate to DndBeyond.com and view your character sheet.  
 2. Launch Roll20Roller.
