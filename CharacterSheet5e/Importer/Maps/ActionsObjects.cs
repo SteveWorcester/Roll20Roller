@@ -11,8 +11,6 @@ namespace CharacterSheet5e.Importer.Maps
 {
     public class ActionsObjects : ScraperBase
     {
-        // Research on mapping Flex Containers necessary before use. The Full tab-selection section is a flex container.
-
         #region Attack
 
         protected IWebElement _baseAttacksParent => _Driver.WaitForElement(By.XPath("/html/body/div[2]/div/div[3]/div/section/div/div/div[2]/div/div[3]/div[6]/div/div[2]/div[2]/div/div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]"));
@@ -36,6 +34,7 @@ namespace CharacterSheet5e.Importer.Maps
             var parentIndex = _allAttackNames.IndexOf(_attackName(attackName));
             return _allAttackRows[parentIndex];
         }
+
         #endregion
     }
 }

@@ -14,7 +14,7 @@ namespace CharacterSheet5e.Forms
         public SkillsActions _Skills;
         public MainPageActions _MainPage;
         public RollGenerator _Roll;
-        public ActionsActions _Actions; // Actions are not supported on the main page
+        public ActionsActions _Actions;
 
         public IList<string> AllSkillNames { get; set; }
 

@@ -29,6 +29,7 @@ namespace CharacterSheet5e.Forms
                 Directory.CreateDirectory(characterIdFolder);
             }
             fullFilePath = Path.Combine(characterIdFolder, lastCharacterIdFileName);
+            
             if (File.Exists(fullFilePath))
             {
                 StreamReader read = new StreamReader(fullFilePath);
