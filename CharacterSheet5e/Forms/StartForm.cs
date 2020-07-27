@@ -29,19 +29,20 @@ namespace CharacterSheet5e.Forms
                 Directory.CreateDirectory(characterIdFolder);
             }
             fullFilePath = Path.Combine(characterIdFolder, lastCharacterIdFileName);
-            
-            if (File.Exists(fullFilePath))
+
+            var fileExists = File.Exists(fullFilePath);
+            if (fileExists)
             {
                 StreamReader read = new StreamReader(fullFilePath);
                 lastCharacterId = read.ReadLine();
                 read.Close();
+                TxtOther.Text = lastCharacterId;
             }
-            else
+            else if (!fileExists)
             {
                 File.Create(fullFilePath);
             }
-
-            TxtOther.Text = lastCharacterId;
+            
             LblLoading.Text = "";
         }
 
