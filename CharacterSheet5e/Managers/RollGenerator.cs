@@ -53,7 +53,7 @@ namespace CharacterSheet5e.Managers
         {
             var bonus = _SavingThrows.GetSavingThrowBonus(savingThrow);
 
-            var template = TemplateStartDefaultTemplate($"{savingThrow} Saving Throw")
+            var template = TemplateStartDefaultTemplate($"Saving Throw")
             + TemplateGenerateRow("Save", savingThrow)
             + TemplateGenerateRow("Advantage", adv.ToString())
             + TemplateGenerateD20HiddenRoll(adv, bonus);
