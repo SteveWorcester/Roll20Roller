@@ -18,12 +18,13 @@ namespace CharacterSheet5e.Forms
         public ActionsActions _Actions;
 
         public IList<string> AllSkillNames { get; set; }
-
         public string SelectedSkillName = "Acrobatics";
+        
         private Advantage selectedAdvantage;
 
-        private string attack1Name;
-        private string attack2Name;
+        IList<string> AllAttackNames { get; set; }
+        public string SelectedAttackName;
+        
 
         public CharacterForm(long charId)
         {
@@ -40,19 +41,15 @@ namespace CharacterSheet5e.Forms
             #region Attacks
 
             _Actions = new ActionsActions(charId);
-            attack1Name = _Actions.AllAttackNames().First();
-            BtnAttack1.Text = attack1Name;
+            AllAttackNames = _Actions.AllAttackNames();
 
-            if (_Actions.AllAttackNames().Count > 1)
-            {
-                attack2Name = _Actions.AllAttackNames()[1];
-                BtnAttack2.Text = attack2Name;
-            }
-            else
-            {
-                BtnAttack2.Text = "None";
-                BtnAttack2.Enabled = false;
-            }
+            var attacksBindingSource = new BindingSource();
+            attacksBindingSource.DataSource = AllAttackNames;
+
+            DdlEquippedWeapon.ValueMember = "Name";
+            DdlEquippedWeapon.DisplayMember = "Name";
+            DdlEquippedWeapon.DataSource = attacksBindingSource.DataSource;
+            SelectedAttackName = AllAttackNames.First();
 
             #endregion
 
@@ -60,12 +57,12 @@ namespace CharacterSheet5e.Forms
 
             _Skills = new SkillsActions(charId);
             AllSkillNames = _Skills.GetAllSkillNames();
-            var bindingSource1 = new BindingSource();
-            bindingSource1.DataSource = AllSkillNames;
+            var skillsBindingSource = new BindingSource();
+            skillsBindingSource.DataSource = AllSkillNames;
 
             DdlSkills.ValueMember = "Name";
             DdlSkills.DisplayMember = "Name";
-            DdlSkills.DataSource = bindingSource1.DataSource;
+            DdlSkills.DataSource = skillsBindingSource.DataSource;
 
             #endregion
 
@@ -116,13 +113,12 @@ namespace CharacterSheet5e.Forms
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
             SetAdvantage();
-            _Roll.RollAttack(selectedAdvantage, attack1Name);
+            _Roll.RollAttack(selectedAdvantage, SelectedAttackName);
         }
 
-        private void BtnAttack2_Click(object sender, EventArgs e)
+        private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetAdvantage();
-            _Roll.RollAttack(selectedAdvantage, attack2Name);
+            SelectedAttackName = DdlEquippedWeapon.SelectedItem.ToString();
         }
 
         #endregion
@@ -166,6 +162,13 @@ namespace CharacterSheet5e.Forms
         }
 
         #endregion
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            _Actions._Driver.Quit();
+            Environment.Exit(0);
+        }
+
 
         #region Advantage
 
@@ -257,7 +260,5 @@ namespace CharacterSheet5e.Forms
                 this.TopMost = false;
             }
         }
-
-
     }
 }

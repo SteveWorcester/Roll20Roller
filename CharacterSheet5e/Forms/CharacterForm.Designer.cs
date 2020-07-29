@@ -345,7 +345,6 @@
         private System.Windows.Forms.Button BtnInitiative;
         private System.Windows.Forms.Label LblSelectToken;
         private System.Windows.Forms.GroupBox GrpAttacks;
-        private System.Windows.Forms.Button BtnAttack2;
         private System.Windows.Forms.Button BtnAttack1;
         private System.Windows.Forms.GroupBox GrpSavingThrows;
         private System.Windows.Forms.GroupBox GrpSkills;
@@ -358,5 +357,6 @@
         private System.Windows.Forms.Button BtnSavingThrowStr;
         private System.Windows.Forms.CheckBox CbTopmost;
         private System.Windows.Forms.Label LblTopmost;
+        private System.Windows.Forms.ComboBox DdlEquippedWeapon;
     }
 }
