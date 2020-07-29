@@ -40,7 +40,8 @@ namespace CharacterSheet5e.Forms
             }
             else if (!fileExists)
             {
-                File.Create(fullFilePath);
+                var newFile = File.Create(fullFilePath);
+                newFile.Close();
             }
             
             LblLoading.Text = "";
