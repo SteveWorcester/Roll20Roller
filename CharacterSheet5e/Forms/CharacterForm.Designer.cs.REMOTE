@@ -38,7 +38,6 @@
             this.BtnInitiative = new System.Windows.Forms.Button();
             this.LblSelectToken = new System.Windows.Forms.Label();
             this.GrpAttacks = new System.Windows.Forms.GroupBox();
-            this.DdlEquippedWeapon = new System.Windows.Forms.ComboBox();
             this.BtnAttack1 = new System.Windows.Forms.Button();
             this.GrpSavingThrows = new System.Windows.Forms.GroupBox();
             this.BtnSavingThrowCha = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.GrpInitiative = new System.Windows.Forms.GroupBox();
             this.CbTopmost = new System.Windows.Forms.CheckBox();
             this.LblTopmost = new System.Windows.Forms.Label();
+            this.DdlEquippedWeapon = new System.Windows.Forms.ComboBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -67,7 +67,6 @@
             this.RbAdvantage.TabStop = true;
             this.RbAdvantage.Text = "Advantage";
             this.RbAdvantage.UseVisualStyleBackColor = true;
-            this.RbAdvantage.CheckedChanged += new System.EventHandler(this.RbAdvantage_CheckedChanged);
             // 
             // RbNormal
             // 
@@ -79,7 +78,6 @@
             this.RbNormal.TabStop = true;
             this.RbNormal.Text = "Normal";
             this.RbNormal.UseVisualStyleBackColor = true;
-            this.RbNormal.CheckedChanged += new System.EventHandler(this.RbNormal_CheckedChanged);
             // 
             // RbDisadvantage
             // 
@@ -91,7 +89,6 @@
             this.RbDisadvantage.TabStop = true;
             this.RbDisadvantage.Text = "Disadvantage";
             this.RbDisadvantage.UseVisualStyleBackColor = true;
-            this.RbDisadvantage.CheckedChanged += new System.EventHandler(this.RbDisadvantage_CheckedChanged);
             // 
             // LblCharacterName
             // 
@@ -162,22 +159,13 @@
             this.GrpAttacks.TabStop = false;
             this.GrpAttacks.Text = "Attacks";
             // 
-            // DdlEquippedWeapon
-            // 
-            this.DdlEquippedWeapon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DdlEquippedWeapon.FormattingEnabled = true;
-            this.DdlEquippedWeapon.Location = new System.Drawing.Point(6, 19);
-            this.DdlEquippedWeapon.Name = "DdlEquippedWeapon";
-            this.DdlEquippedWeapon.Size = new System.Drawing.Size(143, 21);
-            this.DdlEquippedWeapon.TabIndex = 7;
-            // 
             // BtnAttack1
             // 
             this.BtnAttack1.Location = new System.Drawing.Point(6, 46);
             this.BtnAttack1.Name = "BtnAttack1";
             this.BtnAttack1.Size = new System.Drawing.Size(143, 23);
             this.BtnAttack1.TabIndex = 0;
-            this.BtnAttack1.Text = "BtnAttack1";
+            this.BtnAttack1.Text = "Attack!";
             this.BtnAttack1.UseVisualStyleBackColor = true;
             this.BtnAttack1.Click += new System.EventHandler(this.BtnAttack1_Click);
             // 
@@ -302,6 +290,15 @@
             this.LblTopmost.Size = new System.Drawing.Size(73, 13);
             this.LblTopmost.TabIndex = 16;
             this.LblTopmost.Text = "Always on top";
+            // 
+            // DdlEquippedWeapon
+            // 
+            this.DdlEquippedWeapon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DdlEquippedWeapon.FormattingEnabled = true;
+            this.DdlEquippedWeapon.Location = new System.Drawing.Point(8, 19);
+            this.DdlEquippedWeapon.Name = "DdlEquippedWeapon";
+            this.DdlEquippedWeapon.Size = new System.Drawing.Size(141, 21);
+            this.DdlEquippedWeapon.TabIndex = 7;
             // 
             // CharacterForm
             // 

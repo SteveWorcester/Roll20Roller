@@ -163,13 +163,6 @@ namespace CharacterSheet5e.Forms
 
         #endregion
 
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            _Actions._Driver.Quit();
-            Environment.Exit(0);
-        }
-
-
         #region Advantage
 
         private void SetAdvantage()
