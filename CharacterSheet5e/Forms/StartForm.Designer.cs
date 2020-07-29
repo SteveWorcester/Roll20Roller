@@ -103,7 +103,7 @@
             this.Controls.Add(this.TxtOther);
             this.Controls.Add(this.BtnImport);
             this.Name = "StartForm";
-            this.Text = "StartForm";
+            this.Text = "Import - Roll20Roller";
             this.ResumeLayout(false);
             this.PerformLayout();
 

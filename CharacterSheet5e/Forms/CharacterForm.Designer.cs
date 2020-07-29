@@ -95,11 +95,13 @@
             // 
             // LblCharacterName
             // 
+            this.LblCharacterName.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.LblCharacterName.Location = new System.Drawing.Point(0, 0);
             this.LblCharacterName.Name = "LblCharacterName";
-            this.LblCharacterName.Size = new System.Drawing.Size(158, 23);
+            this.LblCharacterName.Size = new System.Drawing.Size(325, 23);
             this.LblCharacterName.TabIndex = 7;
-            this.LblCharacterName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblCharacterName.Text = "name text";
+            this.LblCharacterName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DdlSkills
             // 
@@ -320,7 +322,7 @@
             this.Controls.Add(this.RbNormal);
             this.Controls.Add(this.RbAdvantage);
             this.Name = "CharacterForm";
-            this.Text = "Skills";
+            this.Text = "characterName - Roll20Roller";
             this.TopMost = true;
             this.GrpAttacks.ResumeLayout(false);
             this.GrpSavingThrows.ResumeLayout(false);
