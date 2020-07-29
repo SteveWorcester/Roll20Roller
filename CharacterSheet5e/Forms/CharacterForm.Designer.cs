@@ -67,6 +67,7 @@
             this.RbAdvantage.TabStop = true;
             this.RbAdvantage.Text = "Advantage";
             this.RbAdvantage.UseVisualStyleBackColor = true;
+            this.RbAdvantage.CheckedChanged += new System.EventHandler(this.RbAdvantage_CheckedChanged);
             // 
             // RbNormal
             // 
@@ -78,6 +79,7 @@
             this.RbNormal.TabStop = true;
             this.RbNormal.Text = "Normal";
             this.RbNormal.UseVisualStyleBackColor = true;
+            this.RbNormal.CheckedChanged += new System.EventHandler(this.RbNormal_CheckedChanged);
             // 
             // RbDisadvantage
             // 
@@ -89,6 +91,7 @@
             this.RbDisadvantage.TabStop = true;
             this.RbDisadvantage.Text = "Disadvantage";
             this.RbDisadvantage.UseVisualStyleBackColor = true;
+            this.RbDisadvantage.CheckedChanged += new System.EventHandler(this.RbDisadvantage_CheckedChanged);
             // 
             // LblCharacterName
             // 
