@@ -4,6 +4,7 @@ using CharacterSheet5e.Managers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -162,11 +163,7 @@ namespace CharacterSheet5e.Forms
 
         #endregion
 
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            _Actions._Driver.Quit();
-            Environment.Exit(0);
-        }
+        #region Advantage
 
         private void SetAdvantage()
         {
@@ -182,6 +179,67 @@ namespace CharacterSheet5e.Forms
             {
                 selectedAdvantage = Advantage.Advantage;
             }
+            SetAdvantageColors();
+        }
+
+        private void SetAdvantageColors()
+        {
+            var buttonList = GetAllControls(this).ToList();
+            foreach (Control control in buttonList)
+            {
+                if (control is Button && control.Text != "Exit")
+                {
+                    if (selectedAdvantage.Equals(Advantage.Disadvantage))
+                    {
+                        control.BackColor = Color.LightPink;
+                    }
+                    if (selectedAdvantage.Equals(Advantage.Normal))
+                    {
+                        control.BackColor = Color.LightGray;
+                    }
+                    if (selectedAdvantage.Equals(Advantage.Advantage))
+                    {
+                        control.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<Control> GetAllControls(Control parent)
+        {
+            List<Control> controls = new List<Control>();
+
+            foreach (Control child in parent.Controls)
+            {
+                controls.AddRange(GetAllControls(child));
+            }
+
+            controls.Add(parent);
+
+            return controls;
+        }
+
+        private void RbAdvantage_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAdvantage();
+        }
+
+        private void RbNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAdvantage();
+        }
+
+        private void RbDisadvantage_CheckedChanged(object sender, EventArgs e)
+        {
+            SetAdvantage();
+        }
+
+        #endregion
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            _Actions._Driver.Quit();
+            Environment.Exit(0);
         }
 
         private void CbTopmost_CheckedChanged(object sender, EventArgs e)
