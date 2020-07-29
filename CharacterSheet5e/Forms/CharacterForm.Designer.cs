@@ -38,7 +38,6 @@
             this.BtnInitiative = new System.Windows.Forms.Button();
             this.LblSelectToken = new System.Windows.Forms.Label();
             this.GrpAttacks = new System.Windows.Forms.GroupBox();
-            this.BtnAttack2 = new System.Windows.Forms.Button();
             this.BtnAttack1 = new System.Windows.Forms.Button();
             this.GrpSavingThrows = new System.Windows.Forms.GroupBox();
             this.BtnSavingThrowCha = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.GrpInitiative = new System.Windows.Forms.GroupBox();
             this.CbTopmost = new System.Windows.Forms.CheckBox();
             this.LblTopmost = new System.Windows.Forms.Label();
+            this.DdlEquippedWeapon = new System.Windows.Forms.ComboBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -150,32 +150,22 @@
             // 
             // GrpAttacks
             // 
-            this.GrpAttacks.Controls.Add(this.BtnAttack2);
+            this.GrpAttacks.Controls.Add(this.DdlEquippedWeapon);
             this.GrpAttacks.Controls.Add(this.BtnAttack1);
             this.GrpAttacks.Location = new System.Drawing.Point(164, 127);
             this.GrpAttacks.Name = "GrpAttacks";
-            this.GrpAttacks.Size = new System.Drawing.Size(155, 103);
+            this.GrpAttacks.Size = new System.Drawing.Size(155, 80);
             this.GrpAttacks.TabIndex = 11;
             this.GrpAttacks.TabStop = false;
             this.GrpAttacks.Text = "Attacks";
             // 
-            // BtnAttack2
-            // 
-            this.BtnAttack2.Location = new System.Drawing.Point(6, 62);
-            this.BtnAttack2.Name = "BtnAttack2";
-            this.BtnAttack2.Size = new System.Drawing.Size(143, 36);
-            this.BtnAttack2.TabIndex = 1;
-            this.BtnAttack2.Text = "BtnAttack2";
-            this.BtnAttack2.UseVisualStyleBackColor = true;
-            this.BtnAttack2.Click += new System.EventHandler(this.BtnAttack2_Click);
-            // 
             // BtnAttack1
             // 
-            this.BtnAttack1.Location = new System.Drawing.Point(6, 20);
+            this.BtnAttack1.Location = new System.Drawing.Point(6, 46);
             this.BtnAttack1.Name = "BtnAttack1";
-            this.BtnAttack1.Size = new System.Drawing.Size(143, 36);
+            this.BtnAttack1.Size = new System.Drawing.Size(143, 23);
             this.BtnAttack1.TabIndex = 0;
-            this.BtnAttack1.Text = "BtnAttack1";
+            this.BtnAttack1.Text = "Attack!";
             this.BtnAttack1.UseVisualStyleBackColor = true;
             this.BtnAttack1.Click += new System.EventHandler(this.BtnAttack1_Click);
             // 
@@ -301,6 +291,15 @@
             this.LblTopmost.TabIndex = 16;
             this.LblTopmost.Text = "Always on top";
             // 
+            // DdlEquippedWeapon
+            // 
+            this.DdlEquippedWeapon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DdlEquippedWeapon.FormattingEnabled = true;
+            this.DdlEquippedWeapon.Location = new System.Drawing.Point(8, 19);
+            this.DdlEquippedWeapon.Name = "DdlEquippedWeapon";
+            this.DdlEquippedWeapon.Size = new System.Drawing.Size(141, 21);
+            this.DdlEquippedWeapon.TabIndex = 7;
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,7 +341,6 @@
         private System.Windows.Forms.Button BtnInitiative;
         private System.Windows.Forms.Label LblSelectToken;
         private System.Windows.Forms.GroupBox GrpAttacks;
-        private System.Windows.Forms.Button BtnAttack2;
         private System.Windows.Forms.Button BtnAttack1;
         private System.Windows.Forms.GroupBox GrpSavingThrows;
         private System.Windows.Forms.GroupBox GrpSkills;
@@ -355,5 +353,6 @@
         private System.Windows.Forms.Button BtnSavingThrowStr;
         private System.Windows.Forms.CheckBox CbTopmost;
         private System.Windows.Forms.Label LblTopmost;
+        private System.Windows.Forms.ComboBox DdlEquippedWeapon;
     }
 }
