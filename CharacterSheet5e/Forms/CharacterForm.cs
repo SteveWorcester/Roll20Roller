@@ -34,6 +34,7 @@ namespace CharacterSheet5e.Forms
 
             _MainPage = new MainPageActions(charId);
             LblCharacterName.Text = _MainPage.GetCharacterName();
+            this.Text = $"{_MainPage.GetCharacterName()} - Roll20Roller";
 
             #endregion
 
