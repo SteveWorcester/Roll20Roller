@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Roll20Roller.exe" version="1.2.0.1" publicKeyToken="637fda01e0c1855a" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Roll20Roller" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Roll20Roller.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Roll20Roller.exe" size="36320">
+      <assemblyIdentity name="Roll20Roller" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>GmWg1xE/9WqKGY9J7z+8HLBAUJhP2BckAvZpr5SOmsY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WebDriver.dll" size="1783808">
+      <assemblyIdentity name="WebDriver" version="3.141.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>DuYZsXhs9ZccD5xu4YWUl67LqTpJU8+S/qmY6O763zw=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Roll20Roller.exe.config" size="1450">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>M3ZZVy9ctr5N1eFLmRuDy7Ha88XluMF/WQWEqgnhhoY=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-100ER00\Worce" issuerKeyHash="83fce5e6e96c141ec978bbe73cee7c8407801fdf" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>7X7j+wRMvbyQtIL0OqXh3M+7czBxW4j8Y+Behm5ruT8=</DigestValue></Reference></SignedInfo><SignatureValue>cJ9Ex1aUrXoY6knVGOqvX0gOzVaXZmsqP5WGvpIGRBcKibBfG5v2aOCo0oT3o+XBKUq1daZGWNAoPQcM8Cbfnibsp8Q1ZnTUknW3+q6c4y9SyBSxxdD/A3yeyv4t9D0EOvjdegnX6in0b61a+o7mP5dJJPWNYgZIzw3JK7Oe9Vs=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>w3R1pWd7sjwBqEBzdfbJop9nMwUBoVYgEXY7O0A6e/skAbILNY8PzOCzK3A5utRll1af9RIvWuOUDPAl1b3m5SZTxFWsWNkvDWOCOOK1u5oh7ev12YtiqzfueGumj5ANGR6hy+gG8nPRx2zeqPXWlE4Jxpef4K1xIJc7WRL1Ztk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="3fb96b6e865ee063fc885b713073bbcfdce1a53af482b490bcbd4c04fbe37eed" Description="" Url=""><as:assemblyIdentity name="Roll20Roller.exe" version="1.2.0.1" publicKeyToken="637fda01e0c1855a" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-100ER00\Worce</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>m0GSOeiBZqq0clGK+SO8bL6tXWDDClvM7L6eKwsMoCM=</DigestValue></Reference></SignedInfo><SignatureValue>JhhOAGQaSxiAU2v6y6iE/HYZlAOWCP3BfiCA3u4yIFl2ZE48V3K8n71jKkyqkPdM4lupW1rX4YiSGA7s9n9TlXkud6zIVWlkyTuCToXEG52D3bEwk49iwWFU6yEZoqiCVzd426/VVh7A4bGoY09rGX89Kx5WH6+mMpFRg3EJ3Vc=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>w3R1pWd7sjwBqEBzdfbJop9nMwUBoVYgEXY7O0A6e/skAbILNY8PzOCzK3A5utRll1af9RIvWuOUDPAl1b3m5SZTxFWsWNkvDWOCOOK1u5oh7ev12YtiqzfueGumj5ANGR6hy+gG8nPRx2zeqPXWlE4Jxpef4K1xIJc7WRL1Ztk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQEiDKuLz/HqRI9Ro4AyP9nTANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtADEAMAAwAEUAUgAwADAAXABXAG8AcgBjAGUwHhcNMjAwNzMwMjMzMDQ3WhcNMjEwNzMxMDUzMDQ3WjA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtADEAMAAwAEUAUgAwADAAXABXAG8AcgBjAGUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMN0daVne7I8AahAc3X2yaKfZzMFAaFWIBF2OztAOnv7JAGyCzWPD8zgsytwObrUZZdWn/USL1rjlAzwJdW95uUmU8RVrFjZLw1jgjjitbuaIe3r9dmLYqs37nhrpo+QDRkeocvoBvJz0cds3qj11pROCcaXn+CtcSCXO1kS9WbZAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAdemRl/c/IkACp/ttuXxpwrfgN8qjUJVn08/erUCn8mn5/9QxtEct1eSD7UcTVvgv9QfsXt3tjvdUnIJ3yTXxaullzQXPf+ya03At2GRt5NU02R63aaCJkoDp7f3cdmBKB8WV3pg0rIBnHHIV1Q6B6/DJiVGrs9cDEG5hbdCoujA=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
