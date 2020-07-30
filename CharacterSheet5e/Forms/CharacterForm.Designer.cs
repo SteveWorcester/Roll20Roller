@@ -53,6 +53,7 @@
             this.GrpInitiative = new System.Windows.Forms.GroupBox();
             this.CbTopmost = new System.Windows.Forms.CheckBox();
             this.LblTopmost = new System.Windows.Forms.Label();
+            this.CbGmOnly = new System.Windows.Forms.CheckBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -329,11 +330,23 @@
             this.LblTopmost.TabIndex = 16;
             this.LblTopmost.Text = "Always on top";
             // 
+            // CbGmOnly
+            // 
+            this.CbGmOnly.AutoSize = true;
+            this.CbGmOnly.Location = new System.Drawing.Point(49, 235);
+            this.CbGmOnly.Name = "CbGmOnly";
+            this.CbGmOnly.Size = new System.Drawing.Size(167, 17);
+            this.CbGmOnly.TabIndex = 17;
+            this.CbGmOnly.Text = "Send to GM only - sssshhhhh!";
+            this.CbGmOnly.UseVisualStyleBackColor = true;
+            this.CbGmOnly.CheckedChanged += new System.EventHandler(this.CbGmOnly_CheckedChanged);
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 255);
+            this.Controls.Add(this.CbGmOnly);
             this.Controls.Add(this.LblTopmost);
             this.Controls.Add(this.CbTopmost);
             this.Controls.Add(this.GrpInitiative);
@@ -386,5 +399,6 @@
         private System.Windows.Forms.ComboBox DdlEquippedWeapon;
         private System.Windows.Forms.Label LblVersatile;
         private System.Windows.Forms.CheckBox CbVersatile;
+        private System.Windows.Forms.CheckBox CbGmOnly;
     }
 }

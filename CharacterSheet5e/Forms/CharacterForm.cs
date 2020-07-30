@@ -20,6 +20,7 @@ namespace CharacterSheet5e.Forms
         public string SelectedSkillName = "Acrobatics";
         
         private Advantage selectedAdvantage;
+        private bool GmOnly = false;
 
         IList<string> AllAttackNames { get; set; }
         public string SelectedAttackName;
@@ -95,7 +96,7 @@ namespace CharacterSheet5e.Forms
         private void BtnSkillRoll_Click(object sender, EventArgs e)
         {
             SetAdvantage();
-            _Roll.RollSkill(selectedAdvantage, SelectedSkillName);          
+            _Roll.RollSkill(selectedAdvantage, SelectedSkillName, GmOnly);          
         }
 
         #endregion
@@ -105,7 +106,7 @@ namespace CharacterSheet5e.Forms
         private void BtnInitiative_Click(object sender, EventArgs e)
         {
             SetAdvantage();
-            _Roll.RollInitiative(selectedAdvantage);
+            _Roll.RollInitiative(selectedAdvantage, GmOnly);
         }
 
         #endregion
@@ -115,7 +116,7 @@ namespace CharacterSheet5e.Forms
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
             SetAdvantage();
-            _Roll.RollAttack(selectedAdvantage, SelectedAttackName, UsingVersatile);
+            _Roll.RollAttack(selectedAdvantage, SelectedAttackName, UsingVersatile, GmOnly);
         }
 
         private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,7 +167,7 @@ namespace CharacterSheet5e.Forms
         private void ActivateSavingThrow(string threeLetterAcronym)
         {
             SetAdvantage();
-            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym);
+            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, GmOnly);
         }
 
         #endregion
@@ -252,14 +253,12 @@ namespace CharacterSheet5e.Forms
 
         private void CbTopmost_CheckedChanged(object sender, EventArgs e)
         {
-            if (CbTopmost.Checked)
-            {
-                this.TopMost = true;
-            }
-            else if (!CbTopmost.Checked)
-            {
-                this.TopMost = false;
-            }
+            this.TopMost = CbTopmost.Checked; 
+        }
+
+        private void CbGmOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            GmOnly = CbGmOnly.Checked;
         }
     }
 }
