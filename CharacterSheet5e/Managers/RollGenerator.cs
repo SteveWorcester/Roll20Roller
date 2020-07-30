@@ -26,11 +26,19 @@ namespace CharacterSheet5e.Managers
         public ActionsActions _Actions;
         public SavingThrowsActions _SavingThrows;
 
-        public void RollSkill(Advantage adv, string skillName)
+        private string _gmWhisper = "/w gm ";
+
+        public void RollSkill(Advantage adv, string skillName, bool gmOnly)
         {
             var bonus = _Skills.GetSkillBonusByName(skillName);
+            var template = string.Empty;
 
-            var template = TemplateStartDefaultTemplate("Skill Check")
+            if (gmOnly)
+            {
+                template += _gmWhisper;
+            }
+
+            template += TemplateStartDefaultTemplate("Skill Check")
             + TemplateGenerateRow("Skill", skillName)
             + TemplateGenerateRow("Advantage", adv.ToString())
             + TemplateGenerateD20HiddenRoll(adv, bonus);
@@ -38,22 +46,35 @@ namespace CharacterSheet5e.Managers
             Clipboard.SetText(template);
         }
 
-        public void RollInitiative(Advantage adv)
+        public void RollInitiative(Advantage adv, bool gmOnly)
         {
             var initiativeBonus = _MainPage.GetInitiativeBonus();
+            var template = string.Empty;
 
-            var template = TemplateStartDefaultTemplate("Initiative")
+            if (gmOnly)
+            {
+                template += _gmWhisper;
+            }
+
+            template += TemplateStartDefaultTemplate("Initiative")
             + TemplateGenerateRow("Advantage", adv.ToString())
             + TemplateGenerateD20HiddenRoll(adv, initiativeBonus, addToTurnTracker: true);
 
             Clipboard.SetText(template);
         }
 
-        public void RollSavingThrow(Advantage adv, string savingThrow)
+        public void RollSavingThrow(Advantage adv, string savingThrow, bool gmOnly)
         {
             var bonus = _SavingThrows.GetSavingThrowBonus(savingThrow);
 
-            var template = TemplateStartDefaultTemplate($"Saving Throw")
+            var template = string.Empty;
+
+            if (gmOnly)
+            {
+                template += _gmWhisper;
+            }
+
+            template += TemplateStartDefaultTemplate($"Saving Throw")
             + TemplateGenerateRow("Save", savingThrow)
             + TemplateGenerateRow("Advantage", adv.ToString())
             + TemplateGenerateD20HiddenRoll(adv, bonus);
@@ -61,7 +82,7 @@ namespace CharacterSheet5e.Managers
             Clipboard.SetText(template);
         }
 
-        public void RollAttack(Advantage adv, string attackName, bool versatile)
+        public void RollAttack(Advantage adv, string attackName, bool versatile, bool gmOnly)
         {
             // to hit            
             var toHitBonus = _Actions.GetToHitBonus(attackName);
@@ -71,7 +92,14 @@ namespace CharacterSheet5e.Managers
             var damageType = _Actions.GetDamageType(attackName);
 
             // template
-            var template = TemplateStartDefaultTemplate($"{attackName} Attack");
+            var template = string.Empty;
+
+            if (gmOnly)
+            {
+                template += _gmWhisper;
+            }
+
+            template += TemplateStartDefaultTemplate($"{attackName} Attack");
             
             if (versatile)
             {
@@ -82,7 +110,6 @@ namespace CharacterSheet5e.Managers
             + TemplateGenerateD20HiddenRoll(adv, toHitBonus, descriptor: "ToHit")
             + TemplateGenerateRowWithHiddenRollText("Damage", damageRoll)
             + TemplateGenerateRow("DamageType", damageType);
-
 
             Clipboard.SetText(template);
         }       
