@@ -38,6 +38,8 @@
             this.BtnInitiative = new System.Windows.Forms.Button();
             this.LblSelectToken = new System.Windows.Forms.Label();
             this.GrpAttacks = new System.Windows.Forms.GroupBox();
+            this.LblVersatile = new System.Windows.Forms.Label();
+            this.CbVersatile = new System.Windows.Forms.CheckBox();
             this.DdlEquippedWeapon = new System.Windows.Forms.ComboBox();
             this.BtnAttack1 = new System.Windows.Forms.Button();
             this.GrpSavingThrows = new System.Windows.Forms.GroupBox();
@@ -155,6 +157,8 @@
             // 
             // GrpAttacks
             // 
+            this.GrpAttacks.Controls.Add(this.LblVersatile);
+            this.GrpAttacks.Controls.Add(this.CbVersatile);
             this.GrpAttacks.Controls.Add(this.DdlEquippedWeapon);
             this.GrpAttacks.Controls.Add(this.BtnAttack1);
             this.GrpAttacks.Location = new System.Drawing.Point(164, 127);
@@ -164,6 +168,25 @@
             this.GrpAttacks.TabStop = false;
             this.GrpAttacks.Text = "Attacks";
             // 
+            // LblVersatile
+            // 
+            this.LblVersatile.AutoSize = true;
+            this.LblVersatile.Location = new System.Drawing.Point(102, 51);
+            this.LblVersatile.Name = "LblVersatile";
+            this.LblVersatile.Size = new System.Drawing.Size(47, 13);
+            this.LblVersatile.TabIndex = 9;
+            this.LblVersatile.Text = "Versatile";
+            // 
+            // CbVersatile
+            // 
+            this.CbVersatile.AutoSize = true;
+            this.CbVersatile.Location = new System.Drawing.Point(89, 51);
+            this.CbVersatile.Name = "CbVersatile";
+            this.CbVersatile.Size = new System.Drawing.Size(15, 14);
+            this.CbVersatile.TabIndex = 8;
+            this.CbVersatile.UseVisualStyleBackColor = true;
+            this.CbVersatile.CheckedChanged += new System.EventHandler(this.CbVersatile_CheckedChanged);
+            // 
             // DdlEquippedWeapon
             // 
             this.DdlEquippedWeapon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -172,12 +195,13 @@
             this.DdlEquippedWeapon.Name = "DdlEquippedWeapon";
             this.DdlEquippedWeapon.Size = new System.Drawing.Size(143, 21);
             this.DdlEquippedWeapon.TabIndex = 7;
+            this.DdlEquippedWeapon.SelectedIndexChanged += new System.EventHandler(this.DdlEquippedWeapon_SelectedIndexChanged);
             // 
             // BtnAttack1
             // 
             this.BtnAttack1.Location = new System.Drawing.Point(6, 46);
             this.BtnAttack1.Name = "BtnAttack1";
-            this.BtnAttack1.Size = new System.Drawing.Size(143, 23);
+            this.BtnAttack1.Size = new System.Drawing.Size(77, 23);
             this.BtnAttack1.TabIndex = 0;
             this.BtnAttack1.Text = "BtnAttack1";
             this.BtnAttack1.UseVisualStyleBackColor = true;
@@ -325,6 +349,7 @@
             this.Text = "characterName - Roll20Roller";
             this.TopMost = true;
             this.GrpAttacks.ResumeLayout(false);
+            this.GrpAttacks.PerformLayout();
             this.GrpSavingThrows.ResumeLayout(false);
             this.GrpSkills.ResumeLayout(false);
             this.GrpInitiative.ResumeLayout(false);
@@ -359,5 +384,7 @@
         private System.Windows.Forms.CheckBox CbTopmost;
         private System.Windows.Forms.Label LblTopmost;
         private System.Windows.Forms.ComboBox DdlEquippedWeapon;
+        private System.Windows.Forms.Label LblVersatile;
+        private System.Windows.Forms.CheckBox CbVersatile;
     }
 }

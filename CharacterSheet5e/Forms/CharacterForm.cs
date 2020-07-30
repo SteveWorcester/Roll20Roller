@@ -23,7 +23,7 @@ namespace CharacterSheet5e.Forms
 
         IList<string> AllAttackNames { get; set; }
         public string SelectedAttackName;
-        
+        public bool UsingVersatile = false;
 
         public CharacterForm(long charId)
         {
@@ -42,6 +42,7 @@ namespace CharacterSheet5e.Forms
 
             _Actions = new ActionsActions(charId);
             AllAttackNames = _Actions.AllAttackNames();
+            BtnAttack1.Text = "Attack!";
 
             var attacksBindingSource = new BindingSource();
             attacksBindingSource.DataSource = AllAttackNames;
@@ -50,6 +51,7 @@ namespace CharacterSheet5e.Forms
             DdlEquippedWeapon.DisplayMember = "Name";
             DdlEquippedWeapon.DataSource = attacksBindingSource.DataSource;
             SelectedAttackName = AllAttackNames.First();
+            CbVersatile.Enabled = _Actions.IsAttackVersatile(SelectedAttackName) ? true : false;
 
             #endregion
 
@@ -113,12 +115,18 @@ namespace CharacterSheet5e.Forms
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
             SetAdvantage();
-            _Roll.RollAttack(selectedAdvantage, SelectedAttackName);
+            _Roll.RollAttack(selectedAdvantage, SelectedAttackName, UsingVersatile);
         }
 
         private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {            
             SelectedAttackName = DdlEquippedWeapon.SelectedItem.ToString();
+            CbVersatile.Enabled = _Actions.IsAttackVersatile(SelectedAttackName) ? true : false;
+        }
+
+        private void CbVersatile_CheckedChanged(object sender, EventArgs e)
+        {
+            UsingVersatile = CbVersatile.Checked;
         }
 
         #endregion

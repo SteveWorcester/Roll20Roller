@@ -61,21 +61,28 @@ namespace CharacterSheet5e.Managers
             Clipboard.SetText(template);
         }
 
-        public void RollAttack(Advantage adv, string attackName)
+        public void RollAttack(Advantage adv, string attackName, bool versatile)
         {
             // to hit            
             var toHitBonus = _Actions.GetToHitBonus(attackName);
 
             // damage
-            var damageRoll = _Actions.GetBaseAttackRoll(attackName);
+            var damageRoll = versatile ? _Actions.GetVersatileAttackRoll(attackName) : _Actions.GetBaseAttackRoll(attackName);
             var damageType = _Actions.GetDamageType(attackName);
 
             // template
-            var template = TemplateStartDefaultTemplate($"{attackName} Attack")
-            + TemplateGenerateRow("Advantage", adv.ToString())
+            var template = TemplateStartDefaultTemplate($"{attackName} Attack");
+            
+            if (versatile)
+            {
+                template += TemplateGenerateRow("Versatile", "2-Handed");
+            }
+
+            template += TemplateGenerateRow("Advantage", adv.ToString())
             + TemplateGenerateD20HiddenRoll(adv, toHitBonus, descriptor: "ToHit")
             + TemplateGenerateRowWithHiddenRollText("Damage", damageRoll)
             + TemplateGenerateRow("DamageType", damageType);
+
 
             Clipboard.SetText(template);
         }       

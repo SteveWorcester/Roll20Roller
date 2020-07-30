@@ -21,7 +21,18 @@ namespace CharacterSheet5e.Importer.Maps
         protected IWebElement _attackDamageRoll(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-damage__value']"));
         protected IWebElement _attackToHitBonus(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-signed-number__number']"));
         protected IWebElement _attackHitBonusPlusMinus(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-signed-number__sign']"));
-        
+        protected IWebElement _attackDamageRollVersatile(string attackName)
+        {
+            try
+            {
+                return _attackDamageRoll(attackName).FindElement(By.XPath("./parent::span/following-sibling::span/span"));
+            }
+            catch (NoSuchElementException)
+            {
+                return _attackDamageRoll(attackName);
+            }            
+        }
+
         /// <summary>
         /// Attack Damage Type is in the "data-original-title" inner text.
         /// </summary>
