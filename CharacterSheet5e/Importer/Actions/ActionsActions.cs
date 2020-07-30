@@ -63,6 +63,20 @@ namespace CharacterSheet5e.Importer.Actions
             return _attackDamageType(attackName).GetAttribute("data-original-title");
         }
 
+        public string GetVersatileAttackRoll(string attackName)
+        {
+            return _attackDamageRollVersatile(attackName).Text;
+        }
+
+        public bool IsAttackVersatile(string attackName)
+        {
+            if (_attackDamageRoll(attackName).Text.Equals(_attackDamageRollVersatile(attackName).Text))
+            {
+                return false;
+            }
+            return true;
+        }
+
         #endregion
     }
 }
