@@ -21,6 +21,9 @@ namespace Roll20Roller.Forms
         
         private Advantage selectedAdvantage;
         private bool GmOnly = false;
+        private string characterName = string.Empty;
+        private string primaryClass = string.Empty;
+        private string secondaryClass = string.Empty;
 
         IList<string> AllAttackNames { get; set; }
         public string SelectedAttackName;
@@ -34,8 +37,29 @@ namespace Roll20Roller.Forms
             #region Main Page
 
             _MainPage = new MainPageActions(charId);
-            LblCharacterName.Text = _MainPage.GetCharacterName();
-            this.Text = $"{_MainPage.GetCharacterName()} - Roll20Roller";
+
+            characterName = _MainPage.GetCharacterName();
+            primaryClass = _MainPage.GetClassNames().First();
+            secondaryClass = _MainPage.GetClassNames().Last();
+            
+            
+            LblCharacterName.Text = characterName;
+            this.Text = $"{characterName} - Roll20Roller";
+            
+            GrpClassOptions1.Text = $"{primaryClass} Options";
+            _MainPage.SetupClassOptions(GrpClassOptions1);
+
+            if (primaryClass.Equals(secondaryClass))
+            {
+                GrpClassOptions2.Text = "No Secondary Class";
+                GrpClassOptions2.Enabled = false;
+            }
+            else if (!primaryClass.Equals(secondaryClass))
+            {
+                GrpClassOptions2.Text = $"{secondaryClass} Options";
+            }
+            this.SetupClassOptions()
+
 
             #endregion
 

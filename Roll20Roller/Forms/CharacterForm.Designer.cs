@@ -54,10 +54,16 @@
             this.CbTopmost = new System.Windows.Forms.CheckBox();
             this.LblTopmost = new System.Windows.Forms.Label();
             this.CbGmOnly = new System.Windows.Forms.CheckBox();
+            this.GrpClassOptions1 = new System.Windows.Forms.GroupBox();
+            this.CbPriClassOption1 = new System.Windows.Forms.CheckBox();
+            this.GrpClassOptions2 = new System.Windows.Forms.GroupBox();
+            this.CbSecClassOption1 = new System.Windows.Forms.CheckBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
             this.GrpInitiative.SuspendLayout();
+            this.GrpClassOptions1.SuspendLayout();
+            this.GrpClassOptions2.SuspendLayout();
             this.SuspendLayout();
             // 
             // RbAdvantage
@@ -129,7 +135,7 @@
             // BtnExit
             // 
             this.BtnExit.BackColor = System.Drawing.Color.Red;
-            this.BtnExit.Location = new System.Drawing.Point(3, 222);
+            this.BtnExit.Location = new System.Drawing.Point(3, 303);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(39, 31);
             this.BtnExit.TabIndex = 8;
@@ -314,7 +320,7 @@
             // CbTopmost
             // 
             this.CbTopmost.AutoSize = true;
-            this.CbTopmost.Location = new System.Drawing.Point(310, 236);
+            this.CbTopmost.Location = new System.Drawing.Point(320, 0);
             this.CbTopmost.Name = "CbTopmost";
             this.CbTopmost.Size = new System.Drawing.Size(15, 14);
             this.CbTopmost.TabIndex = 15;
@@ -324,7 +330,7 @@
             // LblTopmost
             // 
             this.LblTopmost.AutoSize = true;
-            this.LblTopmost.Location = new System.Drawing.Point(231, 237);
+            this.LblTopmost.Location = new System.Drawing.Point(246, 0);
             this.LblTopmost.Name = "LblTopmost";
             this.LblTopmost.Size = new System.Drawing.Size(73, 13);
             this.LblTopmost.TabIndex = 16;
@@ -333,7 +339,7 @@
             // CbGmOnly
             // 
             this.CbGmOnly.AutoSize = true;
-            this.CbGmOnly.Location = new System.Drawing.Point(49, 235);
+            this.CbGmOnly.Location = new System.Drawing.Point(48, 311);
             this.CbGmOnly.Name = "CbGmOnly";
             this.CbGmOnly.Size = new System.Drawing.Size(167, 17);
             this.CbGmOnly.TabIndex = 17;
@@ -341,11 +347,53 @@
             this.CbGmOnly.UseVisualStyleBackColor = true;
             this.CbGmOnly.CheckedChanged += new System.EventHandler(this.CbGmOnly_CheckedChanged);
             // 
+            // GrpClassOptions1
+            // 
+            this.GrpClassOptions1.Controls.Add(this.CbPriClassOption1);
+            this.GrpClassOptions1.Location = new System.Drawing.Point(9, 203);
+            this.GrpClassOptions1.Name = "GrpClassOptions1";
+            this.GrpClassOptions1.Size = new System.Drawing.Size(316, 44);
+            this.GrpClassOptions1.TabIndex = 18;
+            this.GrpClassOptions1.TabStop = false;
+            this.GrpClassOptions1.Text = "Class Options";
+            // 
+            // CbPriClassOption1
+            // 
+            this.CbPriClassOption1.AutoSize = true;
+            this.CbPriClassOption1.Location = new System.Drawing.Point(8, 20);
+            this.CbPriClassOption1.Name = "CbPriClassOption1";
+            this.CbPriClassOption1.Size = new System.Drawing.Size(113, 17);
+            this.CbPriClassOption1.TabIndex = 0;
+            this.CbPriClassOption1.Text = "CbPriClassOption1";
+            this.CbPriClassOption1.UseVisualStyleBackColor = true;
+            // 
+            // GrpClassOptions2
+            // 
+            this.GrpClassOptions2.Controls.Add(this.CbSecClassOption1);
+            this.GrpClassOptions2.Location = new System.Drawing.Point(9, 253);
+            this.GrpClassOptions2.Name = "GrpClassOptions2";
+            this.GrpClassOptions2.Size = new System.Drawing.Size(316, 44);
+            this.GrpClassOptions2.TabIndex = 19;
+            this.GrpClassOptions2.TabStop = false;
+            this.GrpClassOptions2.Text = "Class Options 2";
+            // 
+            // CbSecClassOption1
+            // 
+            this.CbSecClassOption1.AutoSize = true;
+            this.CbSecClassOption1.Location = new System.Drawing.Point(7, 20);
+            this.CbSecClassOption1.Name = "CbSecClassOption1";
+            this.CbSecClassOption1.Size = new System.Drawing.Size(120, 17);
+            this.CbSecClassOption1.TabIndex = 0;
+            this.CbSecClassOption1.Text = "CbSecClassOption1";
+            this.CbSecClassOption1.UseVisualStyleBackColor = true;
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 255);
+            this.ClientSize = new System.Drawing.Size(334, 338);
+            this.Controls.Add(this.GrpClassOptions2);
+            this.Controls.Add(this.GrpClassOptions1);
             this.Controls.Add(this.CbGmOnly);
             this.Controls.Add(this.LblTopmost);
             this.Controls.Add(this.CbTopmost);
@@ -367,6 +415,10 @@
             this.GrpSkills.ResumeLayout(false);
             this.GrpInitiative.ResumeLayout(false);
             this.GrpInitiative.PerformLayout();
+            this.GrpClassOptions1.ResumeLayout(false);
+            this.GrpClassOptions1.PerformLayout();
+            this.GrpClassOptions2.ResumeLayout(false);
+            this.GrpClassOptions2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +452,9 @@
         private System.Windows.Forms.Label LblVersatile;
         private System.Windows.Forms.CheckBox CbVersatile;
         private System.Windows.Forms.CheckBox CbGmOnly;
+        private System.Windows.Forms.GroupBox GrpClassOptions1;
+        private System.Windows.Forms.CheckBox CbPriClassOption1;
+        private System.Windows.Forms.GroupBox GrpClassOptions2;
+        private System.Windows.Forms.CheckBox CbSecClassOption1;
     }
 }
