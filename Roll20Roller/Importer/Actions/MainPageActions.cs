@@ -1,4 +1,5 @@
-﻿using Roll20Roller.Importer.Maps;
+﻿using Roll20Roller.Enums;
+using Roll20Roller.Importer.Maps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,35 +34,19 @@ namespace Roll20Roller.Importer.Actions
         public List<string> GetClassNames()
         {
             var finalList = new List<string>();
-            var classname = _classNames.Text.Split('/').ToList();
-            classname.ForEach(c => c.Split(' '));
-            foreach (var item in classname)
+            var tempClasses = _classNames.Text.Split('/').ToList();
+            var tempClassList = new List<string>();
+            tempClasses.ForEach(c => tempClassList.Add(c.Remove(4))); // all class names are first 4 letters.
+            foreach (var classOnly in tempClassList)
             {
-                var canParse = int.TryParse(item, out var level);
+                var canParse = int.TryParse(classOnly, out var level);
                 if (!canParse)
                 {
-                    finalList.Add(item);
+                    finalList.Add(classOnly);
                 }
             }
 
             return finalList;
-        }
-
-        public void SetupClassOptions(GroupBox classOptionsGroup)
-        {
-            if (classOptionsGroup.Text.Equals())
-            {
-
-            }
-
-            var controls = classOptionsGroup.Controls;
-            foreach (Control checkBox in controls)
-            {
-                if (checkBox is CheckBox)
-                {
-
-                }
-            }
         }
     }
 }

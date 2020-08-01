@@ -15,6 +15,7 @@ namespace Roll20Roller.Forms
         public MainPageActions _MainPage;
         public RollGenerator _Roll;
         public ActionsActions _Actions;
+        SavingThrowsActions _SavingThrows;
 
         public IList<string> AllSkillNames { get; set; }
         public string SelectedSkillName = "Acrobatics";
@@ -22,50 +23,31 @@ namespace Roll20Roller.Forms
         private Advantage selectedAdvantage;
         private bool GmOnly = false;
         private string characterName = string.Empty;
-        private string primaryClass = string.Empty;
-        private string secondaryClass = string.Empty;
 
         IList<string> AllAttackNames { get; set; }
         public string SelectedAttackName;
-        public bool UsingVersatile = false;
 
         public CharacterForm(long charId)
         {
             InitializeComponent();
             _Roll = new RollGenerator(charId);
+            _MainPage = new MainPageActions(charId);
+            _Actions = new ActionsActions(charId);
+            _Skills = new SkillsActions(charId);
+            _SavingThrows = new SavingThrowsActions(charId);
 
             #region Main Page
 
-            _MainPage = new MainPageActions(charId);
-
-            characterName = _MainPage.GetCharacterName();
-            primaryClass = _MainPage.GetClassNames().First();
-            secondaryClass = _MainPage.GetClassNames().Last();
-            
+            characterName = _MainPage.GetCharacterName();            
             
             LblCharacterName.Text = characterName;
             this.Text = $"{characterName} - Roll20Roller";
-            
-            GrpClassOptions1.Text = $"{primaryClass} Options";
-            _MainPage.SetupClassOptions(GrpClassOptions1);
-
-            if (primaryClass.Equals(secondaryClass))
-            {
-                GrpClassOptions2.Text = "No Secondary Class";
-                GrpClassOptions2.Enabled = false;
-            }
-            else if (!primaryClass.Equals(secondaryClass))
-            {
-                GrpClassOptions2.Text = $"{secondaryClass} Options";
-            }
-            this.SetupClassOptions()
-
 
             #endregion
 
             #region Attacks
 
-            _Actions = new ActionsActions(charId);
+            
             AllAttackNames = _Actions.AllAttackNames();
             BtnAttack1.Text = "Attack!";
 
@@ -82,7 +64,7 @@ namespace Roll20Roller.Forms
 
             #region Skills
 
-            _Skills = new SkillsActions(charId);
+            
             AllSkillNames = _Skills.GetAllSkillNames();
             var skillsBindingSource = new BindingSource();
             skillsBindingSource.DataSource = AllSkillNames;
@@ -95,7 +77,7 @@ namespace Roll20Roller.Forms
 
             #region Saving Throws
 
-            SavingThrowsActions _SavingThrows = new SavingThrowsActions(charId);
+            
             var savingThrowNames = _SavingThrows.GetAllSavingThrowNames();
             BtnSavingThrowStr.Text = savingThrowNames[0];
             BtnSavingThrowDex.Text = savingThrowNames[1];
@@ -103,6 +85,13 @@ namespace Roll20Roller.Forms
             BtnSavingThrowInt.Text = savingThrowNames[3];
             BtnSavingThrowWis.Text = savingThrowNames[4];
             BtnSavingThrowCha.Text = savingThrowNames[5];
+
+            #endregion
+
+            #region Class-Specific Options
+
+            var classNames = _MainPage.GetClassNames();
+            _Actions.SetupClassOptions(GrpClassOptions1, classNames.First(), classNames.Last());
 
             #endregion
 
@@ -140,18 +129,14 @@ namespace Roll20Roller.Forms
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
             SetAdvantage();
-            _Roll.RollAttack(selectedAdvantage, SelectedAttackName, UsingVersatile, GmOnly);
+            _Roll.RollAttack(selectedAdvantage, SelectedAttackName, CbVersatile.Checked, GmOnly, CbRage.Checked);
         }
 
         private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
+            CbVersatile.Checked = false;
             SelectedAttackName = DdlEquippedWeapon.SelectedItem.ToString();
             CbVersatile.Enabled = _Actions.IsAttackVersatile(SelectedAttackName) ? true : false;
-        }
-
-        private void CbVersatile_CheckedChanged(object sender, EventArgs e)
-        {
-            UsingVersatile = CbVersatile.Checked;
         }
 
         #endregion
@@ -191,7 +176,7 @@ namespace Roll20Roller.Forms
         private void ActivateSavingThrow(string threeLetterAcronym)
         {
             SetAdvantage();
-            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, GmOnly);
+            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, GmOnly, CbRage.Checked);
         }
 
         #endregion
