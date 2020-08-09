@@ -47,5 +47,16 @@ namespace Roll20Roller.Importer.Maps
         }
 
         #endregion
+
+        #region Bonus Actions
+
+        protected IWebElement _bonusActionsHeader => _Driver.WaitForElement(By.XPath("/html/body/div[1]/div/div[3]/div/section/div/div/div[2]/div/div[3]/div[6]/div/div[2]/div[2]/div/div/div/div[1]/div[4]/div"));
+
+        protected IWebElement _bonusActionsParent => _Driver.WaitForElement(By.XPath("/html/body/div[1]/div/div[3]/div/section/div/div/div[2]/div/div[3]/div[6]/div/div[2]/div[2]/div/div/div/div[2]/div/div[2]"));
+        protected ReadOnlyCollection<IWebElement> _allBonusActionNames => _bonusActionsParent.FindElements(By.XPath("./div[@class='ct-actions-list__content']/div/div/div[@class='ct-feature-snippet__heading']"));
+        protected IWebElement _bonusActionName(string bonusActionName) => _allBonusActionNames.First(n => n.Text.Equals(bonusActionName));     
+        protected IWebElement _rageBonus => _bonusActionName("Rage").FindElement(By.XPath("//span[@class='ddbc-snippet__tag']"));
+
+        #endregion
     }
 }

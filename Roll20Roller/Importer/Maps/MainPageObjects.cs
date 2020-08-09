@@ -10,5 +10,6 @@ namespace Roll20Roller.Importer.Maps
         protected IWebElement _characterName => _Driver.WaitForElement(By.CssSelector(".ddbc-character-tidbits__heading > div:nth-child(1)"));
         protected IWebElement _initiativePlusMinus => _Driver.WaitForElement(By.CssSelector("span.ddbc-signed-number:nth-child(2) > span:nth-child(1)"));
         protected IWebElement _initiativeBonus => _Driver.WaitForElement(By.CssSelector("span.ddbc-signed-number:nth-child(2) > span:nth-child(2)"));
+        protected IWebElement _classNames => _Driver.WaitForElement(By.CssSelector(".ddbc-character-summary__classes"));
     }
 }

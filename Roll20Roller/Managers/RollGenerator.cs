@@ -63,9 +63,9 @@ namespace Roll20Roller.Managers
             Clipboard.SetText(template);
         }
 
-        public void RollSavingThrow(Advantage adv, string savingThrow, bool gmOnly)
+        public void RollSavingThrow(Advantage adv, string savingThrow, bool gmOnly, bool barbRage)
         {
-            var bonus = _SavingThrows.GetSavingThrowBonus(savingThrow);
+            var bonus = barbRage && savingThrow.Equals("STR") ? _SavingThrows.GetSavingThrowBonus(savingThrow) + _Actions.GetRageBonus() : _SavingThrows.GetSavingThrowBonus(savingThrow);
 
             var template = string.Empty;
 
@@ -82,13 +82,14 @@ namespace Roll20Roller.Managers
             Clipboard.SetText(template);
         }
 
-        public void RollAttack(Advantage adv, string attackName, bool versatile, bool gmOnly)
+        public void RollAttack(Advantage adv, string attackName, bool versatile, bool gmOnly, bool rageEnabled)
         {
             // to hit            
             var toHitBonus = _Actions.GetToHitBonus(attackName);
 
             // damage
             var damageRoll = versatile ? _Actions.GetVersatileAttackRoll(attackName) : _Actions.GetBaseAttackRoll(attackName);
+            damageRoll = rageEnabled ? damageRoll+=$"+{_Actions.GetRageBonus().ToString()}" : damageRoll;
             var damageType = _Actions.GetDamageType(attackName);
 
             // template

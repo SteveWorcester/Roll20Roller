@@ -1,12 +1,15 @@
-﻿using Roll20Roller.Importer.Base;
+﻿using Roll20Roller.Enums;
+using Roll20Roller.Importer.Base;
 using Roll20Roller.Importer.Maps;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Roll20Roller.Importer.Actions
 {
@@ -75,6 +78,86 @@ namespace Roll20Roller.Importer.Actions
                 return false;
             }
             return true;
+        }
+
+        #endregion
+
+        #region Class-Specific Options
+
+        public void SetupClassOptions(GroupBox classOptionsGroupBox, string className1, string className2)
+        {
+            var canParsePrimary = Enum.TryParse(className1, out CharacterClass primaryClass);
+            var canParseSecondary = Enum.TryParse(className2, out CharacterClass secondaryClass);
+            
+            if (!canParsePrimary && !canParseSecondary)
+            {
+                classOptionsGroupBox.Enabled = false;
+            }
+
+            var controls = classOptionsGroupBox.Controls;
+            var classOptionsCheckBoxes = new List<CheckBox>();
+            foreach (Control ctrl in controls)
+            {
+                if (ctrl is CheckBox)
+                {
+                    ctrl.Enabled = false;
+                    classOptionsCheckBoxes.Add((CheckBox)ctrl);
+                }
+            }
+
+            ActivateOptionsForClass(primaryClass, classOptionsCheckBoxes);
+
+            var hasSecondaryClass = !primaryClass.Equals(secondaryClass);            
+            if (hasSecondaryClass)
+            {
+                ActivateOptionsForClass(secondaryClass, classOptionsCheckBoxes);
+            }
+        }
+
+        public int GetRageBonus()
+        {
+            var canParse = int.TryParse(_rageBonus.Text, out var bonus);
+            if (!canParse)
+            {
+                throw new Exception("Cannot parse rage bonus");
+            }
+            return bonus;
+        }
+
+        private void ActivateOptionsForClass(CharacterClass characterClass, List<CheckBox> classOptionsCheckBoxes)
+        {
+            switch (characterClass)
+            {
+                case CharacterClass.None:
+                    break;
+                case CharacterClass.Barb:
+                    classOptionsCheckBoxes.First(cb => cb.Text.Equals("Rage")).Enabled = true;
+                    break;
+                case CharacterClass.Bard:
+                    break;
+                case CharacterClass.Cler:
+                    break;
+                case CharacterClass.Drui:
+                    break;
+                case CharacterClass.Figh:
+                    break;
+                case CharacterClass.Monk:
+                    break;
+                case CharacterClass.Pala:
+                    break;
+                case CharacterClass.Rang:
+                    break;
+                case CharacterClass.Rogu:
+                    break;
+                case CharacterClass.Sorc:
+                    break;
+                case CharacterClass.Warl:
+                    break;
+                case CharacterClass.Wiza:
+                    break;
+                default:
+                    break;
+            }
         }
 
         #endregion
