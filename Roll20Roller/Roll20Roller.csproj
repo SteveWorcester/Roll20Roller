@@ -25,10 +25,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://raw.github.com/SteveWorcester/Roll20Roller/tree/master/Roll20Roller/Publish/</InstallUrl>
+    <InstallUrl>https://raw.github.com/SteveWorcester/Roll20Roller/master/Roll20Roller/Publish/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -57,7 +57,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>8B0E95A9DF4EABAF2D4DC5A33F1D7A4A2A7CAA09</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>C36BA5458DA73E3712003091CF4C6B3C4BCE169E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Roll20Roller_TemporaryKey.pfx</ManifestKeyFile>
