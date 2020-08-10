@@ -34,5 +34,15 @@ namespace Roll20Roller.Importer.Actions
             }
             return _savingThrowPlusMinus(savingThrow).Text.Equals("+") ? parsedBonus : -parsedBonus;
         }
+
+        public int GetStatCheckBonus(string statName)
+        {
+            var canParse = int.TryParse(_statCheckBonus(statName).Text, out var parsedBonus);
+            if (!canParse)
+            {
+                throw new Exception("Cannot parse saving throw bonus");
+            }
+            return _statCheckPlusMinus(statName).Text.Equals("+") ? parsedBonus : -parsedBonus;
+        }
     }
 }
