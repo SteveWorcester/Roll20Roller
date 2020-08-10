@@ -176,7 +176,7 @@ namespace Roll20Roller.Forms
         private void ActivateSavingThrow(string threeLetterAcronym)
         {
             SetAdvantage();
-            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, GmOnly, CbRage.Checked);
+            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, GmOnly);
         }
 
         #endregion

@@ -63,9 +63,9 @@ namespace Roll20Roller.Managers
             Clipboard.SetText(template);
         }
 
-        public void RollSavingThrow(Advantage adv, string savingThrow, bool gmOnly, bool barbRage)
+        public void RollSavingThrow(Advantage adv, string savingThrow, bool gmOnly)
         {
-            var bonus = barbRage && savingThrow.Equals("STR") ? _SavingThrows.GetSavingThrowBonus(savingThrow) + _Actions.GetRageBonus() : _SavingThrows.GetSavingThrowBonus(savingThrow);
+            var bonus = _SavingThrows.GetSavingThrowBonus(savingThrow);
 
             var template = string.Empty;
 
