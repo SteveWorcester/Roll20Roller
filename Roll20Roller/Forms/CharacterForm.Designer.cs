@@ -56,6 +56,8 @@
             this.CbGmOnly = new System.Windows.Forms.CheckBox();
             this.GrpClassOptions1 = new System.Windows.Forms.GroupBox();
             this.CbRage = new System.Windows.Forms.CheckBox();
+            this.LblGmOnly = new System.Windows.Forms.Label();
+            this.CbStatCheck = new System.Windows.Forms.CheckBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -132,7 +134,7 @@
             // BtnExit
             // 
             this.BtnExit.BackColor = System.Drawing.Color.Red;
-            this.BtnExit.Location = new System.Drawing.Point(3, 303);
+            this.BtnExit.Location = new System.Drawing.Point(3, 351);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(39, 31);
             this.BtnExit.TabIndex = 8;
@@ -144,7 +146,7 @@
             // 
             this.BtnInitiative.Location = new System.Drawing.Point(6, 32);
             this.BtnInitiative.Name = "BtnInitiative";
-            this.BtnInitiative.Size = new System.Drawing.Size(155, 29);
+            this.BtnInitiative.Size = new System.Drawing.Size(143, 29);
             this.BtnInitiative.TabIndex = 9;
             this.BtnInitiative.Text = "Roll Initiative!";
             this.BtnInitiative.UseVisualStyleBackColor = true;
@@ -165,7 +167,7 @@
             this.GrpAttacks.Controls.Add(this.CbVersatile);
             this.GrpAttacks.Controls.Add(this.DdlEquippedWeapon);
             this.GrpAttacks.Controls.Add(this.BtnAttack1);
-            this.GrpAttacks.Location = new System.Drawing.Point(164, 127);
+            this.GrpAttacks.Location = new System.Drawing.Point(164, 146);
             this.GrpAttacks.Name = "GrpAttacks";
             this.GrpAttacks.Size = new System.Drawing.Size(155, 80);
             this.GrpAttacks.TabIndex = 11;
@@ -212,15 +214,16 @@
             // 
             // GrpSavingThrows
             // 
+            this.GrpSavingThrows.Controls.Add(this.CbStatCheck);
+            this.GrpSavingThrows.Controls.Add(this.BtnSavingThrowStr);
             this.GrpSavingThrows.Controls.Add(this.BtnSavingThrowCha);
             this.GrpSavingThrows.Controls.Add(this.BtnSavingThrowWis);
             this.GrpSavingThrows.Controls.Add(this.BtnSavingThrowInt);
             this.GrpSavingThrows.Controls.Add(this.BtnSavingThrowCon);
             this.GrpSavingThrows.Controls.Add(this.BtnSavingThrowDex);
-            this.GrpSavingThrows.Controls.Add(this.BtnSavingThrowStr);
             this.GrpSavingThrows.Location = new System.Drawing.Point(3, 49);
             this.GrpSavingThrows.Name = "GrpSavingThrows";
-            this.GrpSavingThrows.Size = new System.Drawing.Size(155, 72);
+            this.GrpSavingThrows.Size = new System.Drawing.Size(155, 91);
             this.GrpSavingThrows.TabIndex = 12;
             this.GrpSavingThrows.TabStop = false;
             this.GrpSavingThrows.Text = "Saving Throws";
@@ -295,7 +298,7 @@
             // 
             this.GrpSkills.Controls.Add(this.DdlSkills);
             this.GrpSkills.Controls.Add(this.BtnSkillRoll);
-            this.GrpSkills.Location = new System.Drawing.Point(3, 127);
+            this.GrpSkills.Location = new System.Drawing.Point(3, 146);
             this.GrpSkills.Name = "GrpSkills";
             this.GrpSkills.Size = new System.Drawing.Size(155, 80);
             this.GrpSkills.TabIndex = 13;
@@ -308,7 +311,7 @@
             this.GrpInitiative.Controls.Add(this.LblSelectToken);
             this.GrpInitiative.Location = new System.Drawing.Point(164, 49);
             this.GrpInitiative.Name = "GrpInitiative";
-            this.GrpInitiative.Size = new System.Drawing.Size(161, 72);
+            this.GrpInitiative.Size = new System.Drawing.Size(155, 91);
             this.GrpInitiative.TabIndex = 14;
             this.GrpInitiative.TabStop = false;
             this.GrpInitiative.Text = "Initiative";
@@ -335,20 +338,19 @@
             // CbGmOnly
             // 
             this.CbGmOnly.AutoSize = true;
-            this.CbGmOnly.Location = new System.Drawing.Point(48, 311);
+            this.CbGmOnly.Location = new System.Drawing.Point(310, 368);
             this.CbGmOnly.Name = "CbGmOnly";
-            this.CbGmOnly.Size = new System.Drawing.Size(167, 17);
+            this.CbGmOnly.Size = new System.Drawing.Size(15, 14);
             this.CbGmOnly.TabIndex = 17;
-            this.CbGmOnly.Text = "Send to GM only - sssshhhhh!";
             this.CbGmOnly.UseVisualStyleBackColor = true;
             this.CbGmOnly.CheckedChanged += new System.EventHandler(this.CbGmOnly_CheckedChanged);
             // 
             // GrpClassOptions1
             // 
             this.GrpClassOptions1.Controls.Add(this.CbRage);
-            this.GrpClassOptions1.Location = new System.Drawing.Point(3, 213);
+            this.GrpClassOptions1.Location = new System.Drawing.Point(3, 232);
             this.GrpClassOptions1.Name = "GrpClassOptions1";
-            this.GrpClassOptions1.Size = new System.Drawing.Size(155, 84);
+            this.GrpClassOptions1.Size = new System.Drawing.Size(155, 113);
             this.GrpClassOptions1.TabIndex = 18;
             this.GrpClassOptions1.TabStop = false;
             this.GrpClassOptions1.Text = "Class Options";
@@ -363,11 +365,31 @@
             this.CbRage.Text = "Rage";
             this.CbRage.UseVisualStyleBackColor = true;
             // 
+            // LblGmOnly
+            // 
+            this.LblGmOnly.AutoSize = true;
+            this.LblGmOnly.Location = new System.Drawing.Point(218, 368);
+            this.LblGmOnly.Name = "LblGmOnly";
+            this.LblGmOnly.Size = new System.Drawing.Size(86, 13);
+            this.LblGmOnly.TabIndex = 19;
+            this.LblGmOnly.Text = "Send to GM only";
+            // 
+            // CbStatCheck
+            // 
+            this.CbStatCheck.AutoSize = true;
+            this.CbStatCheck.Location = new System.Drawing.Point(26, 71);
+            this.CbStatCheck.Name = "CbStatCheck";
+            this.CbStatCheck.Size = new System.Drawing.Size(103, 17);
+            this.CbStatCheck.TabIndex = 6;
+            this.CbStatCheck.Text = "Stat Check Only";
+            this.CbStatCheck.UseVisualStyleBackColor = true;
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 338);
+            this.ClientSize = new System.Drawing.Size(334, 384);
+            this.Controls.Add(this.LblGmOnly);
             this.Controls.Add(this.GrpClassOptions1);
             this.Controls.Add(this.CbGmOnly);
             this.Controls.Add(this.LblTopmost);
@@ -387,6 +409,7 @@
             this.GrpAttacks.ResumeLayout(false);
             this.GrpAttacks.PerformLayout();
             this.GrpSavingThrows.ResumeLayout(false);
+            this.GrpSavingThrows.PerformLayout();
             this.GrpSkills.ResumeLayout(false);
             this.GrpInitiative.ResumeLayout(false);
             this.GrpInitiative.PerformLayout();
@@ -427,5 +450,7 @@
         private System.Windows.Forms.CheckBox CbGmOnly;
         private System.Windows.Forms.GroupBox GrpClassOptions1;
         private System.Windows.Forms.CheckBox CbRage;
+        private System.Windows.Forms.CheckBox CbStatCheck;
+        private System.Windows.Forms.Label LblGmOnly;
     }
 }
