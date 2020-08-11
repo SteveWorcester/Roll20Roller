@@ -28,7 +28,7 @@
     <InstallUrl>https://raw.github.com/SteveWorcester/Roll20Roller/master/Roll20Roller/Publish/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -109,7 +109,9 @@
     <Compile Include="Importer\Maps\MainPageObjects.cs" />
     <Compile Include="Importer\Maps\SavingThrowsObjects.cs" />
     <Compile Include="Importer\Maps\SkillsObjects.cs" />
+    <Compile Include="Managers\CustomRollManager.cs" />
     <Compile Include="Managers\RollGenerator.cs" />
+    <Compile Include="Models\CustomRoll.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\CharacterForm.resx">

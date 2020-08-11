@@ -33,10 +33,12 @@ namespace Roll20Roller.Forms
             var fileExists = File.Exists(fullFilePath);
             if (fileExists)
             {
-                StreamReader read = new StreamReader(fullFilePath);
-                lastCharacterId = read.ReadLine();
-                read.Close();
-                TxtOther.Text = lastCharacterId;
+                using (StreamReader read = new StreamReader(fullFilePath))
+                {
+                    lastCharacterId = read.ReadLine();
+                    read.Close();
+                    TxtOther.Text = lastCharacterId;
+                }
             }
             else if (!fileExists)
             {
@@ -64,9 +66,11 @@ namespace Roll20Roller.Forms
 
             if (!TxtOther.Text.Equals(lastCharacterId))
             {
-                StreamWriter write = new StreamWriter(fullFilePath);
-                write.WriteLine(TxtOther.Text);
-                write.Close();
+                using (StreamWriter write = new StreamWriter(fullFilePath))
+                {
+                    write.WriteLine(TxtOther.Text);
+                    write.Close();
+                }                
             }
 
             CharacterForm characterForm = new CharacterForm(selectedCharacterId);
