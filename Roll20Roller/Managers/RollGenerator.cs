@@ -1,6 +1,7 @@
 ﻿using Roll20Roller.Enums;
 using Roll20Roller.Importer.Actions;
 using Roll20Roller.Importer.Base;
+using Roll20Roller.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -113,6 +114,22 @@ namespace Roll20Roller.Managers
             + TemplateGenerateRow("DamageType", damageType);
 
             Clipboard.SetText(template);
-        }       
+        }
+
+        public void RollCustom(CustomRoll roll, bool gmOnly)
+        {
+            var template = string.Empty;
+
+            if (gmOnly)
+            {
+                template += _gmWhisper;
+            }
+
+            template += TemplateStartDefaultTemplate($"Custom Roll")
+            + TemplateGenerateRow("Description", roll.Description)
+            + TemplateGenerateRowWithHiddenRollText("Roll", $"{roll.NumberOfDice}d{roll.SidesOfDice}+{roll.Bonus}");
+
+            Clipboard.SetText(template);
+        }
     }
 }
