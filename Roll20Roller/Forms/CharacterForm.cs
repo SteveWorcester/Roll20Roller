@@ -1,11 +1,16 @@
 ﻿using Roll20Roller.Enums;
 using Roll20Roller.Importer.Actions;
+using Roll20Roller.Importer.Base;
+using Roll20Roller.Importer.Spells;
 using Roll20Roller.Managers;
 using Roll20Roller.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Roll20Roller.Forms
@@ -18,6 +23,7 @@ namespace Roll20Roller.Forms
         public ActionsActions _Actions;
         public SavingThrowsActions _SavingThrows;
         public CustomRollManager _CustomRollManager;
+        public SpellsActions _Spells;
 
         public IList<string> AllSkillNames { get; set; }
         public string SelectedSkillName = "Acrobatics";
@@ -38,6 +44,52 @@ namespace Roll20Roller.Forms
             _Skills = new SkillsActions(charId);
             _SavingThrows = new SavingThrowsActions(charId);
             _CustomRollManager = new CustomRollManager(charId);
+            _Spells = new SpellsActions(charId);
+
+            #region Class-Specific Options
+
+            var classes = _MainPage.GetClassNamesAndLevels();
+            _Actions.SetupClassOptions(GrpClassOptions1, classes.First().Item1.ToString(), classes.Last().Item1.ToString());
+
+            #endregion
+
+            #region Spells            
+
+            var characterIdFolder = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.AppSettings["LastCharacterIdFilePath"]);
+            var spellsFilePath = Path.Combine(characterIdFolder, $"{charId}_Spells.txt");
+            var fileExists = File.Exists(spellsFilePath);
+
+            // Importing spells takes a long time (~20 minutes on old method 8/15/2020). give the option to skip it.
+            var spellImportMessage = "Character spells are saved between sessions. Would you like to import spells? (This can take a very long time - ~20mins)";
+            var spellImportTitle = "Spell Importer";
+            var msgButtons = MessageBoxButtons.YesNo;
+            DialogResult import = MessageBox.Show(spellImportMessage, spellImportTitle, msgButtons);
+
+            if (import == DialogResult.Yes)
+            {
+                if (!fileExists)
+                {
+                    var newFile = File.Create(spellsFilePath);
+                    newFile.Close();
+                }
+
+                if (SpellsBase.SpellcastingClasses.Contains(classes.First().charClass) || SpellsBase.SpellcastingClasses.Contains(classes.Last().charClass))
+                {
+                    _Spells.WriteAvailableSpellNames(spellsFilePath).ContinueWith(t => SetSpellsList(t, spellsFilePath));
+                }
+                else
+                {
+                    DdlSpells.Enabled = false;
+                    BtnSpell.Enabled = false;
+                    BtnSpell.Text = "Not a spellcaster!";
+                }
+            }
+            if (import == DialogResult.No)
+            {
+                SetSpellsList(spellsFilePath);
+            }
+
+            #endregion
 
             #region Main Page
 
@@ -49,7 +101,6 @@ namespace Roll20Roller.Forms
             #endregion
 
             #region Attacks
-
             
             AllAttackNames = _Actions.AllAttackNames();
             BtnAttack1.Text = "Attack!";
@@ -91,12 +142,7 @@ namespace Roll20Roller.Forms
 
             #endregion
 
-            #region Class-Specific Options
 
-            var classNames = _MainPage.GetClassNames();
-            _Actions.SetupClassOptions(GrpClassOptions1, classNames.First(), classNames.Last());
-
-            #endregion
 
             #region Custom Rolls
 
@@ -130,6 +176,8 @@ namespace Roll20Roller.Forms
             }
 
             #endregion
+
+
 
             RbNormal.Select();
             CbTopmost.Checked = true;
@@ -328,6 +376,8 @@ namespace Roll20Roller.Forms
         private void BtnExit_Click(object sender, EventArgs e)
         {
             _Actions._Driver.Quit();
+            _Spells._SpellCardsDriver.Quit();
+            _Spells._SpellsIndexDriver.Quit();
             Environment.Exit(0);
         }
 
@@ -341,6 +391,43 @@ namespace Roll20Roller.Forms
             GmOnly = CbGmOnly.Checked;
         }
 
+        private void SetSpellsList(Task task, string spellsFilePath)
+        {
+            List<string> spellNames = new List<string>();            
 
+            using (StreamReader reader = new StreamReader(spellsFilePath))
+            {
+                spellNames = reader.ReadToEnd().Split('$').ToList();
+            }
+
+            var spellsBindingSource = new BindingSource();
+            spellsBindingSource.DataSource = spellNames;
+
+            DdlSpells.ValueMember = "Name";
+            DdlSpells.DisplayMember = "Name";
+            DdlSpells.DataSource = spellsBindingSource.DataSource;
+        }
+
+        private void SetSpellsList(string spellsFilePath)
+        {
+            List<string> spellNames = new List<string>();
+
+            using (StreamReader reader = new StreamReader(spellsFilePath))
+            {
+                spellNames = reader.ReadToEnd().Split('$').ToList();
+            }
+
+            var spellsBindingSource = new BindingSource();
+            spellsBindingSource.DataSource = spellNames;
+
+            DdlSpells.ValueMember = "Name";
+            DdlSpells.DisplayMember = "Name";
+            DdlSpells.DataSource = spellsBindingSource.DataSource;
+        }
+
+        private void BtnSpell_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

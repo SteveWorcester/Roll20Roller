@@ -97,12 +97,16 @@
             this.LblBonus = new System.Windows.Forms.Label();
             this.LblDice = new System.Windows.Forms.Label();
             this.LblDescription = new System.Windows.Forms.Label();
+            this.GrpSpells = new System.Windows.Forms.GroupBox();
+            this.DdlSpells = new System.Windows.Forms.ComboBox();
+            this.BtnSpell = new System.Windows.Forms.Button();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
             this.GrpInitiative.SuspendLayout();
             this.GrpClassOptions1.SuspendLayout();
             this.GrpCustom.SuspendLayout();
+            this.GrpSpells.SuspendLayout();
             this.SuspendLayout();
             // 
             // RbAdvantage
@@ -184,7 +188,7 @@
             // 
             // BtnInitiative
             // 
-            this.BtnInitiative.Location = new System.Drawing.Point(6, 32);
+            this.BtnInitiative.Location = new System.Drawing.Point(6, 40);
             this.BtnInitiative.Name = "BtnInitiative";
             this.BtnInitiative.Size = new System.Drawing.Size(143, 29);
             this.BtnInitiative.TabIndex = 9;
@@ -400,7 +404,7 @@
             this.GrpClassOptions1.Controls.Add(this.CbRage);
             this.GrpClassOptions1.Location = new System.Drawing.Point(3, 232);
             this.GrpClassOptions1.Name = "GrpClassOptions1";
-            this.GrpClassOptions1.Size = new System.Drawing.Size(316, 79);
+            this.GrpClassOptions1.Size = new System.Drawing.Size(155, 79);
             this.GrpClassOptions1.TabIndex = 18;
             this.GrpClassOptions1.TabStop = false;
             this.GrpClassOptions1.Text = "Class Options";
@@ -778,11 +782,41 @@
             this.LblDescription.TabIndex = 0;
             this.LblDescription.Text = "Description";
             // 
+            // GrpSpells
+            // 
+            this.GrpSpells.Controls.Add(this.BtnSpell);
+            this.GrpSpells.Controls.Add(this.DdlSpells);
+            this.GrpSpells.Location = new System.Drawing.Point(164, 232);
+            this.GrpSpells.Name = "GrpSpells";
+            this.GrpSpells.Size = new System.Drawing.Size(155, 79);
+            this.GrpSpells.TabIndex = 19;
+            this.GrpSpells.TabStop = false;
+            this.GrpSpells.Text = "Spells";
+            // 
+            // DdlSpells
+            // 
+            this.DdlSpells.FormattingEnabled = true;
+            this.DdlSpells.Location = new System.Drawing.Point(9, 20);
+            this.DdlSpells.Name = "DdlSpells";
+            this.DdlSpells.Size = new System.Drawing.Size(140, 21);
+            this.DdlSpells.TabIndex = 0;
+            // 
+            // BtnSpell
+            // 
+            this.BtnSpell.Location = new System.Drawing.Point(9, 47);
+            this.BtnSpell.Name = "BtnSpell";
+            this.BtnSpell.Size = new System.Drawing.Size(140, 23);
+            this.BtnSpell.TabIndex = 1;
+            this.BtnSpell.Text = "Get Spell Details";
+            this.BtnSpell.UseVisualStyleBackColor = true;
+            this.BtnSpell.Click += new System.EventHandler(this.BtnSpell_Click);
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 521);
+            this.Controls.Add(this.GrpSpells);
             this.Controls.Add(this.GrpCustom);
             this.Controls.Add(this.LblGmOnly);
             this.Controls.Add(this.GrpClassOptions1);
@@ -812,6 +846,7 @@
             this.GrpClassOptions1.PerformLayout();
             this.GrpCustom.ResumeLayout(false);
             this.GrpCustom.PerformLayout();
+            this.GrpSpells.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -888,5 +923,8 @@
         private System.Windows.Forms.Label LblBonus;
         private System.Windows.Forms.Label LblDice;
         private System.Windows.Forms.Label LblDescription;
+        private System.Windows.Forms.GroupBox GrpSpells;
+        private System.Windows.Forms.Button BtnSpell;
+        private System.Windows.Forms.ComboBox DdlSpells;
     }
 }

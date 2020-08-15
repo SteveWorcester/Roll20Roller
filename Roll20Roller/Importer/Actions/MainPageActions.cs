@@ -3,7 +3,6 @@ using Roll20Roller.Importer.Maps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace Roll20Roller.Importer.Actions
 {
@@ -31,19 +30,32 @@ namespace Roll20Roller.Importer.Actions
             return isPositive ? bonus : -bonus;
         }
 
-        public List<string> GetClassNames()
+        public List<(CharacterClass charClass, int charLevel)> GetClassNamesAndLevels()
         {
-            var finalList = new List<string>();
-            var tempClasses = _classNames.Text.Split('/').ToList();
-            var tempClassList = new List<string>();
-            tempClasses.ForEach(c => tempClassList.Add(c.Remove(4))); // all class names are first 4 letters.
-            foreach (var classOnly in tempClassList)
+            var finalList = new List<(CharacterClass charClass, int charLevel)>();
+
+            var thingtest = _classNames.Text.ToCharArray();
+            var classes = _classNames.Text.Split('/').ToList();
+
+            var classList = new List<string>();
+            classes.ForEach(c => classList.Add(c.Trim().Remove(c.Length-2)));
+
+            var levelList = new List<char>();
+            classes.ForEach(c => levelList.Add(c.Trim().Last()));
+
+            var finalClassList = new List<CharacterClass>();
+            foreach (var segment in classList)
             {
-                var canParse = int.TryParse(classOnly, out var level);
-                if (!canParse)
+                var canParseClass = Enum.TryParse(segment, out CharacterClass charClass);
+                if (canParseClass)
                 {
-                    finalList.Add(classOnly);
+                    finalClassList.Add(charClass);
                 }
+            }
+
+            for (int i = 0; i < finalClassList.Count; i++)
+            {
+                finalList.Add((finalClassList[i], int.Parse(levelList[i].ToString())));
             }
 
             return finalList;

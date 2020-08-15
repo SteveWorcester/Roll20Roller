@@ -123,37 +123,37 @@ namespace Roll20Roller.Importer.Actions
             }
             return bonus;
         }
-
+        
         private void ActivateOptionsForClass(CharacterClass characterClass, List<CheckBox> classOptionsCheckBoxes)
         {
             switch (characterClass)
             {
                 case CharacterClass.None:
                     break;
-                case CharacterClass.Barb:
+                case CharacterClass.Barbarian:
                     classOptionsCheckBoxes.First(cb => cb.Text.Equals("Rage")).Enabled = true;
                     break;
                 case CharacterClass.Bard:
                     break;
-                case CharacterClass.Cler:
+                case CharacterClass.Cleric:
                     break;
-                case CharacterClass.Drui:
+                case CharacterClass.Druid:
                     break;
-                case CharacterClass.Figh:
+                case CharacterClass.Fighter:
                     break;
                 case CharacterClass.Monk:
                     break;
-                case CharacterClass.Pala:
+                case CharacterClass.Paladin:
                     break;
-                case CharacterClass.Rang:
+                case CharacterClass.Ranger:
                     break;
-                case CharacterClass.Rogu:
+                case CharacterClass.Rogue:
                     break;
-                case CharacterClass.Sorc:
+                case CharacterClass.Sorcerer:
                     break;
-                case CharacterClass.Warl:
+                case CharacterClass.Warlock:
                     break;
-                case CharacterClass.Wiza:
+                case CharacterClass.Wizard:
                     break;
                 default:
                     break;

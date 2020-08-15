@@ -9,17 +9,17 @@ namespace Roll20Roller.Enums
     public enum CharacterClass
     {
         None,
-        Barb,
+        Barbarian,
         Bard,
-        Cler,
-        Drui,
-        Figh,
+        Cleric,
+        Druid,
+        Fighter,
         Monk,
-        Pala,
-        Rang,
-        Rogu,
-        Sorc,
-        Warl,
-        Wiza
+        Paladin,
+        Ranger,
+        Rogue,
+        Sorcerer,
+        Warlock,
+        Wizard
     }
 }
