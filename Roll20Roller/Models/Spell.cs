@@ -13,11 +13,9 @@ namespace Roll20Roller.Models
         public string Description { get; set; }
         public string Range { get; set; }
         public string Components { get; set; }
-        public string Ritual { get; set; }
-        public string Level { get; set; }
+        public int Level { get; set; }
         public string School { get; set; }
         public CharacterClass Class { get; set; }
-        public string Concentration { get; set; }
         public string CastingTime { get; set; }
         public string Duration { get; set; }
     }

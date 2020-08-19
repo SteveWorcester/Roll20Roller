@@ -35,6 +35,8 @@ namespace Roll20Roller.Forms
         IList<string> AllAttackNames { get; set; }
         public string SelectedAttackName;
 
+        public bool IsDebug = bool.Parse(ConfigurationManager.AppSettings["IsDebugMode"]);
+
         public CharacterForm(long charId)
         {
             InitializeComponent();
@@ -53,47 +55,24 @@ namespace Roll20Roller.Forms
 
             #endregion
 
-            #region Spells            
-
-            var characterIdFolder = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.AppSettings["LastCharacterIdFilePath"]);
-            var spellsFilePath = Path.Combine(characterIdFolder, $"{charId}_Spells.txt");
-            var fileExists = File.Exists(spellsFilePath);
-
-            // Importing spells takes a long time (~20 minutes on old method 8/15/2020). give the option to skip it.
-            var spellImportMessage = "Character spells are saved between sessions. Would you like to import spells? (This can take a very long time - ~20mins)";
-            var spellImportTitle = "Spell Importer";
-            var msgButtons = MessageBoxButtons.YesNo;
-            DialogResult import = MessageBox.Show(spellImportMessage, spellImportTitle, msgButtons);
-
-            if (import == DialogResult.Yes)
+            #region Spells
+            if (SpellsManager.SpellcastingClasses.Contains(classes.First().charClass) 
+                || SpellsManager.SpellcastingClasses.Contains(classes.Last().charClass))
             {
-                if (!fileExists)
-                {
-                    var newFile = File.Create(spellsFilePath);
-                    newFile.Close();
-                }
-
-                if (SpellsBase.SpellcastingClasses.Contains(classes.First().charClass) || SpellsBase.SpellcastingClasses.Contains(classes.Last().charClass))
-                {
-                    _Spells.WriteAvailableSpellNames(spellsFilePath).ContinueWith(t => SetSpellsList(t, spellsFilePath));
-                }
-                else
-                {
-                    DdlSpells.Enabled = false;
-                    BtnSpell.Enabled = false;
-                    BtnSpell.Text = "Not a spellcaster!";
-                }
+                _Spells.SetSpellsList(DdlSpells);
             }
-            if (import == DialogResult.No)
+            else
             {
-                SetSpellsList(spellsFilePath);
+                DdlSpells.Enabled = false;
+                BtnSpell.Enabled = false;
+                BtnSpell.Text = "Not a spellcaster!";
             }
 
             #endregion
 
             #region Main Page
 
-            characterName = _MainPage.GetCharacterName();            
+                characterName = _MainPage.GetCharacterName();            
             
             LblCharacterName.Text = characterName;
             this.Text = $"{characterName} - Roll20Roller";
@@ -142,8 +121,6 @@ namespace Roll20Roller.Forms
 
             #endregion
 
-
-
             #region Custom Rolls
 
             var allCustomRolls = _CustomRollManager.GetAllCustomRolls();
@@ -176,8 +153,6 @@ namespace Roll20Roller.Forms
             }
 
             #endregion
-
-
 
             RbNormal.Select();
             CbTopmost.Checked = true;
@@ -376,8 +351,6 @@ namespace Roll20Roller.Forms
         private void BtnExit_Click(object sender, EventArgs e)
         {
             _Actions._Driver.Quit();
-            _Spells._SpellCardsDriver.Quit();
-            _Spells._SpellsIndexDriver.Quit();
             Environment.Exit(0);
         }
 
@@ -391,43 +364,9 @@ namespace Roll20Roller.Forms
             GmOnly = CbGmOnly.Checked;
         }
 
-        private void SetSpellsList(Task task, string spellsFilePath)
-        {
-            List<string> spellNames = new List<string>();            
-
-            using (StreamReader reader = new StreamReader(spellsFilePath))
-            {
-                spellNames = reader.ReadToEnd().Split('$').ToList();
-            }
-
-            var spellsBindingSource = new BindingSource();
-            spellsBindingSource.DataSource = spellNames;
-
-            DdlSpells.ValueMember = "Name";
-            DdlSpells.DisplayMember = "Name";
-            DdlSpells.DataSource = spellsBindingSource.DataSource;
-        }
-
-        private void SetSpellsList(string spellsFilePath)
-        {
-            List<string> spellNames = new List<string>();
-
-            using (StreamReader reader = new StreamReader(spellsFilePath))
-            {
-                spellNames = reader.ReadToEnd().Split('$').ToList();
-            }
-
-            var spellsBindingSource = new BindingSource();
-            spellsBindingSource.DataSource = spellNames;
-
-            DdlSpells.ValueMember = "Name";
-            DdlSpells.DisplayMember = "Name";
-            DdlSpells.DataSource = spellsBindingSource.DataSource;
-        }
-
         private void BtnSpell_Click(object sender, EventArgs e)
         {
-
+            _Roll.GetSpellCard(_Spells.GetSpell(DdlSpells.Text), GmOnly);
         }
     }
 }
