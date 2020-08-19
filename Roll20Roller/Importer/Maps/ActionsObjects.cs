@@ -17,7 +17,7 @@ namespace Roll20Roller.Importer.Maps
         protected ReadOnlyCollection<IWebElement> _allAttackRows => _Driver.FindElements(By.XPath("//div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]/div"));
         protected ReadOnlyCollection<IWebElement> _allAttackNames => _baseAttacksParent.FindElements(By.XPath("//div/div/div[2]/div/div[1]/div[2]/div[1]/div[2]/div/div[2]/div[1]/span"));        
         protected IWebElement _attackName(string attackName) => _allAttackNames.FirstOrDefault(n => n.Text.Equals(attackName));
-        protected IWebElement _attackParent(string attackName) => FindAttackParent(attackName);
+        protected IWebElement _attackParent(string attackName) => _attackName(attackName).FindElement(By.XPath("./parent::div[1]/parent::div[1]/parent::div[1]"));
         protected IWebElement _attackDamageRoll(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-damage__value']"));
         protected IWebElement _attackToHitBonus(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-signed-number__number']"));
         protected IWebElement _attackHitBonusPlusMinus(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-signed-number__sign']"));
@@ -40,11 +40,11 @@ namespace Roll20Roller.Importer.Maps
         /// <returns></returns>
         protected IWebElement _attackDamageType(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-tooltip  ddbc-damage']"));
 
-        private IWebElement FindAttackParent(string attackName)
-        {
-            var parentIndex = _allAttackNames.IndexOf(_attackName(attackName));
-            return _allAttackRows[parentIndex];
-        }
+        // private IWebElement FindAttackParent(string attackName)
+        // {
+        //     var parentIndex = _allAttackNames.IndexOf(_attackName(attackName));
+        //     return _allAttackRows[parentIndex];
+        // }
 
         #endregion
 

@@ -1,11 +1,16 @@
 ﻿using Roll20Roller.Enums;
 using Roll20Roller.Importer.Actions;
+using Roll20Roller.Importer.Base;
+using Roll20Roller.Importer.Spells;
 using Roll20Roller.Managers;
 using Roll20Roller.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Roll20Roller.Forms
@@ -18,6 +23,7 @@ namespace Roll20Roller.Forms
         public ActionsActions _Actions;
         public SavingThrowsActions _SavingThrows;
         public CustomRollManager _CustomRollManager;
+        public SpellsActions _Spells;
 
         public IList<string> AllSkillNames { get; set; }
         public string SelectedSkillName = "Acrobatics";
@@ -29,6 +35,8 @@ namespace Roll20Roller.Forms
         IList<string> AllAttackNames { get; set; }
         public string SelectedAttackName;
 
+        public bool IsDebug = bool.Parse(ConfigurationManager.AppSettings["IsDebugMode"]);
+
         public CharacterForm(long charId)
         {
             InitializeComponent();
@@ -38,10 +46,33 @@ namespace Roll20Roller.Forms
             _Skills = new SkillsActions(charId);
             _SavingThrows = new SavingThrowsActions(charId);
             _CustomRollManager = new CustomRollManager(charId);
+            _Spells = new SpellsActions(charId);
+
+            #region Class-Specific Options
+
+            var classes = _MainPage.GetClassNamesAndLevels();
+            _Actions.SetupClassOptions(GrpClassOptions1, classes.First().Item1.ToString(), classes.Last().Item1.ToString());
+
+            #endregion
+
+            #region Spells
+            if (SpellsManager.SpellcastingClasses.Contains(classes.First().charClass) 
+                || SpellsManager.SpellcastingClasses.Contains(classes.Last().charClass))
+            {
+                _Spells.SetSpellsList(DdlSpells);
+            }
+            else
+            {
+                DdlSpells.Enabled = false;
+                BtnSpell.Enabled = false;
+                BtnSpell.Text = "Not a spellcaster!";
+            }
+
+            #endregion
 
             #region Main Page
 
-            characterName = _MainPage.GetCharacterName();            
+                characterName = _MainPage.GetCharacterName();            
             
             LblCharacterName.Text = characterName;
             this.Text = $"{characterName} - Roll20Roller";
@@ -49,7 +80,6 @@ namespace Roll20Roller.Forms
             #endregion
 
             #region Attacks
-
             
             AllAttackNames = _Actions.AllAttackNames();
             BtnAttack1.Text = "Attack!";
@@ -88,13 +118,6 @@ namespace Roll20Roller.Forms
             BtnSavingThrowInt.Text = savingThrowNames[3];
             BtnSavingThrowWis.Text = savingThrowNames[4];
             BtnSavingThrowCha.Text = savingThrowNames[5];
-
-            #endregion
-
-            #region Class-Specific Options
-
-            var classNames = _MainPage.GetClassNames();
-            _Actions.SetupClassOptions(GrpClassOptions1, classNames.First(), classNames.Last());
 
             #endregion
 
@@ -341,6 +364,9 @@ namespace Roll20Roller.Forms
             GmOnly = CbGmOnly.Checked;
         }
 
-
+        private void BtnSpell_Click(object sender, EventArgs e)
+        {
+            _Roll.GetSpellCard(_Spells.GetSpell(DdlSpells.Text), GmOnly);
+        }
     }
 }

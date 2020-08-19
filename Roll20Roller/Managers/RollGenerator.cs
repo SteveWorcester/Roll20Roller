@@ -131,5 +131,26 @@ namespace Roll20Roller.Managers
 
             Clipboard.SetText(template);
         }
+
+        internal void GetSpellCard(Spell spell, bool gmOnly)
+        {
+            var template = string.Empty;
+
+            if (gmOnly)
+            {
+                template += _gmWhisper;
+            }
+
+            template += TemplateStartDefaultTemplate($"{spell.Name} ({spell.Class})")
+            + TemplateGenerateRow("School", spell.School)
+            + TemplateGenerateRow("Level", spell.Level.ToString())
+            + TemplateGenerateRow("Casting Time", spell.CastingTime)
+            + TemplateGenerateRow("Range", spell.Range)
+            + TemplateGenerateRow("Components", spell.Components)
+            + TemplateGenerateRow("Duration", spell.Duration)
+            + TemplateGenerateRow("Description", spell.Description);
+
+            Clipboard.SetText(template);
+        }
     }
 }
