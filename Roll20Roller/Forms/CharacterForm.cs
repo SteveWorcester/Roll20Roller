@@ -167,7 +167,6 @@ namespace Roll20Roller.Forms
 
         private void BtnSkillRoll_Click(object sender, EventArgs e)
         {
-            SetAdvantage();
             _Roll.RollSkill(selectedAdvantage, SelectedSkillName, GmOnly);          
         }
 
@@ -177,7 +176,6 @@ namespace Roll20Roller.Forms
 
         private void BtnInitiative_Click(object sender, EventArgs e)
         {
-            SetAdvantage();
             _Roll.RollInitiative(selectedAdvantage, GmOnly);
         }
 
@@ -187,7 +185,6 @@ namespace Roll20Roller.Forms
 
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
-            SetAdvantage();
             _Roll.RollAttack(selectedAdvantage, SelectedAttackName, CbVersatile.Checked, GmOnly, CbRage.Checked);
         }
 
@@ -234,7 +231,6 @@ namespace Roll20Roller.Forms
 
         private void ActivateSavingThrow(string threeLetterAcronym)
         {
-            SetAdvantage();
             _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, GmOnly, CbStatCheck.Checked);
         }
 
@@ -242,29 +238,16 @@ namespace Roll20Roller.Forms
 
         #region Advantage
 
-        private void SetAdvantage()
-        {
-            if (RbDisadvantage.Checked)
-            {
-                selectedAdvantage = Advantage.Disadvantage;
-            }
-            else if (RbNormal.Checked)
-            {
-                selectedAdvantage = Advantage.Normal;
-            }
-            else if (RbAdvantage.Checked)
-            {
-                selectedAdvantage = Advantage.Advantage;
-            }
-            SetAdvantageColors();
-        }
-
         private void SetAdvantageColors()
         {
             var buttonList = GetAllControls(this).ToList();
             foreach (Control control in buttonList)
             {
-                if (control is Button && control.Text != "Exit" && !control.Text.Equals("Roll"))
+                if (control is Button 
+                    && !control.Text.Equals("Exit") 
+                    && !control.Text.Equals("Roll") 
+                    && !control.Name.Contains("Rb")
+                    && !control.Text.Equals("Copy Spell Details"))
                 {
                     if (selectedAdvantage.Equals(Advantage.Disadvantage))
                     {
@@ -296,19 +279,22 @@ namespace Roll20Roller.Forms
             return controls;
         }
 
-        private void RbAdvantage_CheckedChanged(object sender, EventArgs e)
+        private void RbAdvantage_Click(object sender, EventArgs e)
         {
-            SetAdvantage();
+            selectedAdvantage = Advantage.Advantage;
+            SetAdvantageColors();
         }
 
-        private void RbNormal_CheckedChanged(object sender, EventArgs e)
+        private void RbNormal_Click(object sender, EventArgs e)
         {
-            SetAdvantage();
+            selectedAdvantage = Advantage.Normal;
+            SetAdvantageColors();
         }
 
-        private void RbDisadvantage_CheckedChanged(object sender, EventArgs e)
+        private void RbDisadvantage_Click(object sender, EventArgs e)
         {
-            SetAdvantage();
+            selectedAdvantage = Advantage.Disadvantage;
+            SetAdvantageColors();
         }
 
         #endregion
