@@ -204,7 +204,7 @@
     <Content Include="chromedriver.exe" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="Managers\SpellCsv\Spells_Bard.csv">
+    <PublishFile Include="SpellCsv\Spells_Bard.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -214,7 +214,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Managers\SpellCsv\Spells_Cleric.csv">
+    <PublishFile Include="SpellCsv\Spells_Cleric.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -224,7 +224,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Managers\SpellCsv\Spells_Druid.csv">
+    <PublishFile Include="SpellCsv\Spells_Druid.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -234,7 +234,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Managers\SpellCsv\Spells_Paladin.csv">
+    <PublishFile Include="SpellCsv\Spells_Paladin.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -244,7 +244,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Managers\SpellCsv\Spells_Ranger.csv">
+    <PublishFile Include="SpellCsv\Spells_Ranger.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -254,7 +254,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Managers\SpellCsv\Spells_Sorcerer.csv">
+    <PublishFile Include="SpellCsv\Spells_Sorcerer.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -264,7 +264,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Managers\SpellCsv\Spells_Warlock.csv">
+    <PublishFile Include="SpellCsv\Spells_Warlock.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -274,7 +274,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
-    <PublishFile Include="Managers\SpellCsv\Spells_Wizard.csv">
+    <PublishFile Include="SpellCsv\Spells_Wizard.csv">
       <Visible>False</Visible>
       <Group>
       </Group>
