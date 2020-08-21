@@ -1,6 +1,5 @@
 ﻿using Roll20Roller.Enums;
 using Roll20Roller.Importer.Actions;
-using Roll20Roller.Importer.Base;
 using Roll20Roller.Managers;
 using Roll20Roller.Models;
 using System;
