@@ -1,6 +1,7 @@
 ﻿using Roll20Roller.Enums;
 using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -28,9 +29,14 @@ namespace Roll20Roller.Managers
 
         public void SetSpellFilePaths(List<(CharacterClass charClass, int charLevel)> allClassesAndLevels)
         {
-            MainClassSpellsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "SpellCsv", $"Spells_{allClassesAndLevels.First().charClass}.csv");
-
-            OffClassSpellsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "SpellCsv", $"Spells_{allClassesAndLevels.Last().charClass}.csv");
+            var isNetworkDeployed = ApplicationDeployment.IsNetworkDeployed;
+            MainClassSpellsFilePath = isNetworkDeployed 
+                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "SpellCsv", $"Spells_{allClassesAndLevels.First().charClass}.csv") 
+                : Path.Combine(Directory.GetCurrentDirectory(), "SpellCsv", $"Spells_{allClassesAndLevels.First().charClass}.csv");
+            
+            OffClassSpellsFilePath = isNetworkDeployed 
+                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "SpellCsv", $"Spells_{allClassesAndLevels.Last().charClass}.csv")
+                : Path.Combine(Directory.GetCurrentDirectory(), "SpellCsv", $"Spells_{allClassesAndLevels.Last().charClass}.csv");
         }
     }
 }
