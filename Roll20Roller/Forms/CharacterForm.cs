@@ -166,7 +166,7 @@ namespace Roll20Roller.Forms
         private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
         {
             CbVersatile.Checked = false;
-            CbVersatile.Enabled = _Actions.IsAttackVersatile(DdlEquippedWeapon.Text) ? true : false;
+            CbVersatile.Enabled = _Actions.IsAttackVersatile(DdlEquippedWeapon.Text);
         }
 
         #endregion
