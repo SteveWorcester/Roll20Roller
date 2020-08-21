@@ -100,6 +100,7 @@
             this.RbAdvantage = new System.Windows.Forms.Button();
             this.RbNormal = new System.Windows.Forms.Button();
             this.RbDisadvantage = new System.Windows.Forms.Button();
+            this.BtnDarkMode = new System.Windows.Forms.Button();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -121,13 +122,11 @@
             // 
             // DdlSkills
             // 
-            this.DdlSkills.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DdlSkills.FormattingEnabled = true;
             this.DdlSkills.Location = new System.Drawing.Point(6, 19);
             this.DdlSkills.Name = "DdlSkills";
             this.DdlSkills.Size = new System.Drawing.Size(132, 21);
             this.DdlSkills.TabIndex = 4;
-            this.DdlSkills.SelectedIndexChanged += new System.EventHandler(this.DdlSkills_SelectedIndexChanged);
             // 
             // BtnSkillRoll
             // 
@@ -202,7 +201,6 @@
             // 
             // DdlEquippedWeapon
             // 
-            this.DdlEquippedWeapon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DdlEquippedWeapon.FormattingEnabled = true;
             this.DdlEquippedWeapon.Location = new System.Drawing.Point(6, 19);
             this.DdlEquippedWeapon.Name = "DdlEquippedWeapon";
@@ -216,7 +214,7 @@
             this.BtnAttack1.Name = "BtnAttack1";
             this.BtnAttack1.Size = new System.Drawing.Size(77, 23);
             this.BtnAttack1.TabIndex = 0;
-            this.BtnAttack1.Text = "BtnAttack1";
+            this.BtnAttack1.Text = "Attack!";
             this.BtnAttack1.UseVisualStyleBackColor = true;
             this.BtnAttack1.Click += new System.EventHandler(this.BtnAttack1_Click);
             // 
@@ -805,11 +803,22 @@
             this.RbDisadvantage.UseVisualStyleBackColor = true;
             this.RbDisadvantage.Click += new System.EventHandler(this.RbDisadvantage_Click);
             // 
+            // BtnDarkMode
+            // 
+            this.BtnDarkMode.Location = new System.Drawing.Point(124, 495);
+            this.BtnDarkMode.Name = "BtnDarkMode";
+            this.BtnDarkMode.Size = new System.Drawing.Size(75, 23);
+            this.BtnDarkMode.TabIndex = 24;
+            this.BtnDarkMode.Text = "Light Theme";
+            this.BtnDarkMode.UseVisualStyleBackColor = true;
+            this.BtnDarkMode.Click += new System.EventHandler(this.BtnDarkMode_Click);
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(322, 521);
+            this.Controls.Add(this.BtnDarkMode);
             this.Controls.Add(this.RbDisadvantage);
             this.Controls.Add(this.RbNormal);
             this.Controls.Add(this.RbAdvantage);
@@ -919,5 +928,6 @@
         private System.Windows.Forms.Button RbAdvantage;
         private System.Windows.Forms.Button RbNormal;
         private System.Windows.Forms.Button RbDisadvantage;
+        private System.Windows.Forms.Button BtnDarkMode;
     }
 }

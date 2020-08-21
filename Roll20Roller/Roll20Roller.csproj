@@ -120,6 +120,7 @@
     <Compile Include="Managers\CustomRollManager.cs" />
     <Compile Include="Managers\RollGenerator.cs" />
     <Compile Include="Managers\SpellsManager.cs" />
+    <Compile Include="Managers\ViewManager.cs" />
     <Compile Include="Models\CustomRoll.cs" />
     <Compile Include="Models\Spell.cs" />
     <Compile Include="Program.cs" />

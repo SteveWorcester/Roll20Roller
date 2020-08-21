@@ -114,6 +114,16 @@ namespace Roll20Roller.Importer.Actions
             }
         }
 
+        public void SetEquippedWeaponsList(ComboBox ddlEquippedWeapon)
+        {
+            var equippedWeaponBind = new BindingSource();
+            equippedWeaponBind.DataSource = AllAttackNames();
+
+            ddlEquippedWeapon.ValueMember = "Name";
+            ddlEquippedWeapon.DisplayMember = "Name";
+            ddlEquippedWeapon.DataSource = equippedWeaponBind.DataSource;
+        }
+
         public int GetRageBonus()
         {
             var canParse = int.TryParse(_rageBonus.Text, out var bonus);
