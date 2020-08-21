@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,18 +25,13 @@ namespace Roll20Roller.Forms
         public SavingThrowsActions _SavingThrows;
         public CustomRollManager _CustomRollManager;
         public SpellsActions _Spells;
-
-        public IList<string> AllSkillNames { get; set; }
-        public string SelectedSkillName = "Acrobatics";
         
-        private Advantage selectedAdvantage;
+        private Advantage selectedAdvantage = Advantage.Normal;
         private bool GmOnly = false;
         private string characterName = string.Empty;
 
-        IList<string> AllAttackNames { get; set; }
-        public string SelectedAttackName;
-
         public bool IsDebug = bool.Parse(ConfigurationManager.AppSettings["IsDebugMode"]);
+        public bool IsDarkMode = true;
 
         public CharacterForm(long charId)
         {
@@ -56,6 +52,7 @@ namespace Roll20Roller.Forms
             #endregion
 
             #region Spells
+
             if (SpellsManager.SpellcastingClasses.Contains(classes.First().charClass) 
                 || SpellsManager.SpellcastingClasses.Contains(classes.Last().charClass))
             {
@@ -72,7 +69,7 @@ namespace Roll20Roller.Forms
 
             #region Main Page
 
-                characterName = _MainPage.GetCharacterName();            
+            characterName = _MainPage.GetCharacterName();            
             
             LblCharacterName.Text = characterName;
             this.Text = $"{characterName} - Roll20Roller";
@@ -80,36 +77,18 @@ namespace Roll20Roller.Forms
             #endregion
 
             #region Attacks
-            
-            AllAttackNames = _Actions.AllAttackNames();
-            BtnAttack1.Text = "Attack!";
 
-            var attacksBindingSource = new BindingSource();
-            attacksBindingSource.DataSource = AllAttackNames;
-
-            DdlEquippedWeapon.ValueMember = "Name";
-            DdlEquippedWeapon.DisplayMember = "Name";
-            DdlEquippedWeapon.DataSource = attacksBindingSource.DataSource;
-            SelectedAttackName = AllAttackNames.First();
-            CbVersatile.Enabled = _Actions.IsAttackVersatile(SelectedAttackName) ? true : false;
+            _Actions.SetEquippedWeaponsList(DdlEquippedWeapon);
 
             #endregion
 
             #region Skills
 
-            
-            AllSkillNames = _Skills.GetAllSkillNames();
-            var skillsBindingSource = new BindingSource();
-            skillsBindingSource.DataSource = AllSkillNames;
-
-            DdlSkills.ValueMember = "Name";
-            DdlSkills.DisplayMember = "Name";
-            DdlSkills.DataSource = skillsBindingSource.DataSource;
+            _Skills.SetSkillsList(DdlSkills);
 
             #endregion
 
             #region Saving Throws
-
             
             var savingThrowNames = _SavingThrows.GetAllSavingThrowNames();
             BtnSavingThrowStr.Text = savingThrowNames[0];
@@ -156,18 +135,14 @@ namespace Roll20Roller.Forms
 
             RbNormal.Select();
             CbTopmost.Checked = true;
+            ViewManager.ToggleDarkMode(this);
         }
 
         #region Skills
 
-        private void DdlSkills_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectedSkillName = DdlSkills.SelectedItem.ToString();
-        }
-
         private void BtnSkillRoll_Click(object sender, EventArgs e)
         {
-            _Roll.RollSkill(selectedAdvantage, SelectedSkillName, GmOnly);          
+            _Roll.RollSkill(selectedAdvantage, DdlSkills.Text, GmOnly);          
         }
 
         #endregion
@@ -185,14 +160,13 @@ namespace Roll20Roller.Forms
 
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
-            _Roll.RollAttack(selectedAdvantage, SelectedAttackName, CbVersatile.Checked, GmOnly, CbRage.Checked);
+            _Roll.RollAttack(selectedAdvantage, DdlEquippedWeapon.Text, CbVersatile.Checked, GmOnly, CbRage.Checked);
         }
 
         private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
         {
             CbVersatile.Checked = false;
-            SelectedAttackName = DdlEquippedWeapon.SelectedItem.ToString();
-            CbVersatile.Enabled = _Actions.IsAttackVersatile(SelectedAttackName) ? true : false;
+            CbVersatile.Enabled = _Actions.IsAttackVersatile(DdlEquippedWeapon.Text) ? true : false;
         }
 
         #endregion
@@ -247,19 +221,20 @@ namespace Roll20Roller.Forms
                     && !control.Text.Equals("Exit") 
                     && !control.Text.Equals("Roll") 
                     && !control.Name.Contains("Rb")
-                    && !control.Text.Equals("Copy Spell Details"))
+                    && !control.Text.Equals("Copy Spell Details")
+                    && !control.Text.Contains("Theme"))
                 {
                     if (selectedAdvantage.Equals(Advantage.Disadvantage))
                     {
-                        control.BackColor = Color.LightPink;
+                        control.BackColor = IsDarkMode ? Color.DarkRed : Color.LightPink;
                     }
                     if (selectedAdvantage.Equals(Advantage.Normal))
                     {
-                        control.BackColor = Color.LightGray;
+                        control.BackColor = IsDarkMode ? Color.DarkSlateGray : Color.White;
                     }
                     if (selectedAdvantage.Equals(Advantage.Advantage))
                     {
-                        control.BackColor = Color.LightGreen;
+                        control.BackColor = IsDarkMode ? Color.Green : Color.LightGreen;
                     }
                 }
             }
@@ -299,6 +274,15 @@ namespace Roll20Roller.Forms
 
         #endregion
 
+        #region Spells
+
+        private void BtnSpell_Click(object sender, EventArgs e)
+        {
+            _Roll.GetSpellCard(_Spells.GetSpell(DdlSpells.Text), GmOnly);
+        }
+
+        #endregion
+
         #region Custom Rolls
 
         private void CustomRoll(string description, string numberOfDice, string dieSides, string bonus, int rowNumber)
@@ -334,6 +318,8 @@ namespace Roll20Roller.Forms
 
         #endregion
 
+        #region Main Window
+
         private void BtnExit_Click(object sender, EventArgs e)
         {
             _Actions._Driver.Quit();
@@ -342,7 +328,7 @@ namespace Roll20Roller.Forms
 
         private void CbTopmost_CheckedChanged(object sender, EventArgs e)
         {
-            this.TopMost = CbTopmost.Checked; 
+            this.TopMost = CbTopmost.Checked;
         }
 
         private void CbGmOnly_CheckedChanged(object sender, EventArgs e)
@@ -350,9 +336,14 @@ namespace Roll20Roller.Forms
             GmOnly = CbGmOnly.Checked;
         }
 
-        private void BtnSpell_Click(object sender, EventArgs e)
+        private void BtnDarkMode_Click(object sender, EventArgs e)
         {
-            _Roll.GetSpellCard(_Spells.GetSpell(DdlSpells.Text), GmOnly);
+            selectedAdvantage = Advantage.Normal;
+            IsDarkMode = IsDarkMode ? false : true;
+            BtnDarkMode.Text = BtnDarkMode.Text.Equals("Light Theme") ? "Dark Theme" : "Light Theme";
+            ViewManager.ToggleDarkMode(this);
         }
+
+        #endregion
     }
 }

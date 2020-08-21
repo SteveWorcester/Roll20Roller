@@ -67,6 +67,7 @@ namespace Roll20Roller.Managers
         public void RollSavingThrow(Advantage adv, string savingThrow, bool gmOnly, bool statCheckOnly)
         {
             var bonus = statCheckOnly ? _SavingThrows.GetStatCheckBonus(savingThrow) : _SavingThrows.GetSavingThrowBonus(savingThrow);
+            var title = statCheckOnly ? "Stat Check" : "Saving Throw";
 
             var template = string.Empty;
 
@@ -75,7 +76,7 @@ namespace Roll20Roller.Managers
                 template += _gmWhisper;
             }
 
-            template += TemplateStartDefaultTemplate($"Saving Throw")
+            template += TemplateStartDefaultTemplate(title)
             + TemplateGenerateRow("Save", savingThrow)
             + TemplateGenerateRow("Advantage", adv.ToString())
             + TemplateGenerateD20HiddenRoll(adv, bonus);

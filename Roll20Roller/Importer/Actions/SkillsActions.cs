@@ -2,6 +2,7 @@
 using Roll20Roller.Importer.Maps;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Roll20Roller.Importer.Actions
 {
@@ -31,6 +32,16 @@ namespace Roll20Roller.Importer.Actions
                 throw new FormatException($"Unable to parse {abilityName}'s bonus text");
             }
             return isPositive ? bonus : -bonus;
+        }
+
+        internal void SetSkillsList(ComboBox ddlSkills)
+        {
+            var skillsBindingSource = new BindingSource();
+            skillsBindingSource.DataSource = GetAllSkillNames();
+
+            ddlSkills.ValueMember = "Name";
+            ddlSkills.DisplayMember = "Name";
+            ddlSkills.DataSource = skillsBindingSource.DataSource;
         }
     }
 }
