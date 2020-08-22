@@ -30,5 +30,9 @@ namespace Roll20Roller.Importer.Maps
         protected IWebElement _statCheckBonus(string statName) => _statCheckName(statName).FindElement(By.XPath("./parent::div/following-sibling::div[@class='ddbc-ability-summary__primary']/span/span[@class='ddbc-signed-number__number']"));
 
         #endregion
+
+        protected IWebElement _proficiencyBonusParent => _Driver.WaitForElement(By.CssSelector(".ct-proficiency-bonus-box__value > span:nth-child(1)"));
+        public IWebElement _proficiencyPlusMinus => _proficiencyBonusParent.FindElement(By.XPath("./span[1]"));
+        public IWebElement _proficiencyBonus => _proficiencyBonusParent.FindElement(By.XPath("./span[2]"));
     }
 }

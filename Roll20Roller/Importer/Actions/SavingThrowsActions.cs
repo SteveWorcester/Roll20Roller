@@ -44,5 +44,15 @@ namespace Roll20Roller.Importer.Actions
             }
             return _statCheckPlusMinus(statName).Text.Equals("+") ? parsedBonus : -parsedBonus;
         }
+
+        public int GetProficiencyBonus()
+        {
+            var canParse = int.TryParse(_proficiencyBonus.Text, out var profBonus);
+            if (!canParse)
+            {
+                throw new Exception("Cannot parse proficiency bonus");
+            }
+            return _proficiencyPlusMinus.Text.Equals("+") ? profBonus : -profBonus;
+        }
     }
 }
