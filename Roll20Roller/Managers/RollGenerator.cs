@@ -126,8 +126,7 @@ namespace Roll20Roller.Managers
                 template += _gmWhisper;
             }
 
-            template += TemplateStartDefaultTemplate($"Custom Roll")
-            + TemplateGenerateRow("Description", roll.Description)
+            template += TemplateStartDefaultTemplate($"{roll.Description}")
             + TemplateGenerateRowWithHiddenRollText("Roll", $"{roll.NumberOfDice}d{roll.SidesOfDice}+{roll.Bonus}");
 
             Clipboard.SetText(template);
