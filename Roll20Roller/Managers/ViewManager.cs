@@ -13,54 +13,71 @@ namespace Roll20Roller.Managers
         public static void ToggleDarkMode(Form window)
         {
             var isDarkMode = window.BackColor.Equals(Color.Black);
-            
+
             window.ForeColor = isDarkMode ? Color.Black : Color.White;
             window.BackColor = isDarkMode ? Color.White : Color.Black;
+
+            var btnForeColor = isDarkMode ? Color.Black : Color.White;
+            var btnBackColor = isDarkMode ? Color.White : Color.DarkSlateGray;
+
+            var txtForeColor = isDarkMode ? Color.Black : Color.White;
+            var txtBackColor = isDarkMode ? Color.White : Color.Black;
+
+            var grpForeColor = isDarkMode ? Color.Black : Color.White;
+            var grpBackColor = isDarkMode ? Color.White : Color.Black;
+
+            var cbForeColor = isDarkMode ? Color.Black : Color.White;
+            var cbBackColor = isDarkMode ? Color.White : Color.Black;
+
+            var lblForeColor = isDarkMode ? Color.Black : Color.White;
+            var lblBackColor = isDarkMode ? Color.White : Color.Black;
+
+            var ddlForeColor = isDarkMode ? Color.Black : Color.White;
+            var ddlBackColor = isDarkMode ? Color.White : Color.Black;
 
             foreach (Control ctrl in window.Controls)
             {
                 if (ctrl is Button && !ctrl.Text.Equals("Exit"))
                 {
-                    ctrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                    ctrl.BackColor = isDarkMode ? Color.White : Color.DarkSlateGray;
+                    ctrl.ForeColor = btnForeColor;
+                    ctrl.BackColor = btnBackColor;
                 }
                 if (ctrl is TextBox)
                 {
-                    ctrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                    ctrl.BackColor = isDarkMode ? Color.White : Color.Black;
+                    ctrl.ForeColor = txtForeColor;
+                    ctrl.BackColor = txtBackColor;
                 }
                 if (ctrl is GroupBox)
                 {
-                    ctrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                    ctrl.BackColor = isDarkMode ? Color.White : Color.Black;
+                    ctrl.ForeColor = grpForeColor;
+                    ctrl.BackColor = grpBackColor;
 
-                    var grpButtons = ctrl.Controls;
-                    foreach (Control grpCtrl in grpButtons)
+                    foreach (Control grpCtrl in ctrl.Controls)
                     {
                         if (grpCtrl is Button)
                         {
-                            grpCtrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                            grpCtrl.BackColor = isDarkMode ? Color.White : Color.DarkSlateGray;
+                            grpCtrl.ForeColor = btnForeColor;
+                            grpCtrl.BackColor = btnBackColor;
                         }
                         if (grpCtrl is ComboBox)
                         {
-                            grpCtrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                            grpCtrl.BackColor = isDarkMode ? Color.White : Color.Black;
+                            grpCtrl.ForeColor = ddlForeColor;
+                            grpCtrl.BackColor = ddlBackColor;
                         }
                         if (grpCtrl is CheckBox)
                         {
-                            grpCtrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                            grpCtrl.BackColor = isDarkMode ? Color.White : Color.Black;
+                            grpCtrl.ForeColor = cbForeColor;
+                            grpCtrl.BackColor = ddlBackColor;
                         }
                         if (grpCtrl is TextBox)
                         {
-                            grpCtrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                            grpCtrl.BackColor = isDarkMode ? Color.White : Color.Black;
+                            grpCtrl.ForeColor = txtForeColor;
+                            grpCtrl.BackColor = txtBackColor;
                         }
                         if (grpCtrl is Label)
                         {
-                            grpCtrl.ForeColor = isDarkMode ? Color.Black : Color.White;
-                            grpCtrl.BackColor = isDarkMode ? Color.White : Color.Black;
+                            grpCtrl.ForeColor = lblForeColor;
+                            grpCtrl.BackColor = lblBackColor;
                         }
                     }
                 }
