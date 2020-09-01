@@ -31,7 +31,6 @@
             this.LblCharacterName = new System.Windows.Forms.Label();
             this.DdlSkills = new System.Windows.Forms.ComboBox();
             this.BtnSkillRoll = new System.Windows.Forms.Button();
-            this.BtnExit = new System.Windows.Forms.Button();
             this.BtnInitiative = new System.Windows.Forms.Button();
             this.LblSelectToken = new System.Windows.Forms.Label();
             this.GrpAttacks = new System.Windows.Forms.GroupBox();
@@ -137,17 +136,6 @@
             this.BtnSkillRoll.Text = "Copy Skill Roll";
             this.BtnSkillRoll.UseVisualStyleBackColor = true;
             this.BtnSkillRoll.Click += new System.EventHandler(this.BtnSkillRoll_Click);
-            // 
-            // BtnExit
-            // 
-            this.BtnExit.BackColor = System.Drawing.Color.Red;
-            this.BtnExit.Location = new System.Drawing.Point(3, 487);
-            this.BtnExit.Name = "BtnExit";
-            this.BtnExit.Size = new System.Drawing.Size(39, 31);
-            this.BtnExit.TabIndex = 8;
-            this.BtnExit.Text = "Exit";
-            this.BtnExit.UseVisualStyleBackColor = false;
-            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // BtnInitiative
             // 
@@ -805,7 +793,7 @@
             // 
             // BtnDarkMode
             // 
-            this.BtnDarkMode.Location = new System.Drawing.Point(124, 495);
+            this.BtnDarkMode.Location = new System.Drawing.Point(3, 495);
             this.BtnDarkMode.Name = "BtnDarkMode";
             this.BtnDarkMode.Size = new System.Drawing.Size(75, 23);
             this.BtnDarkMode.TabIndex = 24;
@@ -833,7 +821,6 @@
             this.Controls.Add(this.GrpSkills);
             this.Controls.Add(this.GrpAttacks);
             this.Controls.Add(this.GrpSavingThrows);
-            this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.LblCharacterName);
             this.Name = "CharacterForm";
             this.Text = "characterName - Roll20Roller";
@@ -859,7 +846,6 @@
         private System.Windows.Forms.Label LblCharacterName;
         private System.Windows.Forms.ComboBox DdlSkills;
         private System.Windows.Forms.Button BtnSkillRoll;
-        private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.Button BtnInitiative;
         private System.Windows.Forms.Label LblSelectToken;
         private System.Windows.Forms.GroupBox GrpAttacks;
