@@ -320,7 +320,7 @@ namespace Roll20Roller.Forms
 
         #region Main Window
 
-        private void BtnExit_Click(object sender, EventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
             _Actions._Driver.Quit();
             Environment.Exit(0);

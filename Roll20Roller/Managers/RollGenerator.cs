@@ -134,6 +134,11 @@ namespace Roll20Roller.Managers
 
         public void GetSpellCard(Spell spell, bool gmOnly)
         {
+            if (spell.Class.Equals(CharacterClass.None))
+            {
+                return;
+            }
+
             var template = string.Empty;
 
             if (gmOnly)
