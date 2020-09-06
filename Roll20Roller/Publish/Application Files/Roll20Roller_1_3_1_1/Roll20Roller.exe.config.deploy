@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="Roll20Roller.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+    </startup>
+  <appSettings>
+    <add key="IsDebugMode" value="true"/>
+    <add key="BaseUrl" value="https://www.dndbeyond.com/characters/" />
+    <add key="XmlOnly" value="json"/>
+    <add key="LastCharacterIdFilePath" value="CharacterInformation"/>
+    <add key="FileName" value="LastCharacterId.txt"/>
+  </appSettings>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <bindingRedirect oldVersion="0.0.0.0-1.11.24.0" newVersion="1.11.24.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+<applicationSettings>
+        <Roll20Roller.Properties.Settings>
+            <setting name="LastCharacterId" serializeAs="String">
+                <value />
+            </setting>
+        </Roll20Roller.Properties.Settings>
+    </applicationSettings>
+</configuration>
