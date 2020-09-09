@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Deployment.Application;
 using System.IO;
+using System.IO.Compression;
 using OpenQA.Selenium.Chrome;
 
 namespace Roll20Roller.Importer.Base
@@ -10,10 +12,40 @@ namespace Roll20Roller.Importer.Base
     {
         public ScraperBase()
         {
-            options = new ChromeOptions();
-            options.AddArguments(new List<string>() { "Headless", "--window-size=1920,1080" });
+            options = new ChromeOptions();            
+            options.BinaryLocation = GetChromeBinaryLocation();
+            options.AddArgument("--headless");
+            options.AddArgument("--window-size=1920,1080");
+
+            
             service = ChromeDriverService.CreateDefaultService();
+            service.SuppressInitialDiagnosticInformation = true;
             service.HideCommandPromptWindow = true;
+        }
+
+        private string GetChromeBinaryLocation()
+        {
+            var isNetworkDeployed = ApplicationDeployment.IsNetworkDeployed;
+
+            var chromeZip = isNetworkDeployed
+                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Importer", "ChromeCompressed", "ChromeZip.zip")
+                : Path.Combine(Directory.GetCurrentDirectory(), "Importer", "ChromeCompressed", "ChromeZip.zip");
+
+            var chromeDir = isNetworkDeployed
+                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "ChromeBin")
+                : Path.Combine(Directory.GetCurrentDirectory(), "ChromeBin");
+
+            if (!Directory.Exists(chromeDir))
+            {
+                Directory.CreateDirectory(chromeDir);                
+            }
+
+            if (!File.Exists(Path.Combine(chromeDir, "GoogleChromePortable", "App", "Chrome-Bin", "chrome.exe")))
+            {
+                ZipFile.ExtractToDirectory(chromeZip, chromeDir);
+            }
+
+            return Path.Combine(chromeDir, "GoogleChromePortable", "App", "Chrome-Bin", "chrome.exe");
         }
 
         private static ChromeOptions options;
