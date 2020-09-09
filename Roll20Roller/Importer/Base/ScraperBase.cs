@@ -28,7 +28,7 @@ namespace Roll20Roller.Importer.Base
             var isNetworkDeployed = ApplicationDeployment.IsNetworkDeployed;
 
             var chromeZip = isNetworkDeployed
-                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Importer", "ChromeCompressed", "ChromeZip.zip")
+                ? Path.Combine(ApplicationDeployment.CurrentDeployment.ActivationUri.ToString(), "Importer", "ChromeCompressed", "ChromeZip.zip")
                 : Path.Combine(Directory.GetCurrentDirectory(), "Importer", "ChromeCompressed", "ChromeZip.zip");
 
             var chromeDir = isNetworkDeployed
