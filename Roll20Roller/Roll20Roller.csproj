@@ -215,7 +215,7 @@
     <Content Include="chromedriver.exe" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="ChromeZip.zip">
+    <PublishFile Include="Importer\ChromeCompressed\ChromeZip.zip">
       <Visible>False</Visible>
       <Group>
       </Group>
