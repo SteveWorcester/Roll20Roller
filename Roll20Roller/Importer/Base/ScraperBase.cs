@@ -28,24 +28,19 @@ namespace Roll20Roller.Importer.Base
             var isNetworkDeployed = ApplicationDeployment.IsNetworkDeployed;
 
             var chromeZip = isNetworkDeployed
-                ? Path.Combine(ApplicationDeployment.CurrentDeployment.ActivationUri.ToString(), "Importer", "ChromeCompressed", "ChromeZip.zip")
+                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "Importer", "ChromeCompressed", "ChromeZip.zip")
                 : Path.Combine(Directory.GetCurrentDirectory(), "Importer", "ChromeCompressed", "ChromeZip.zip");
 
-            var chromeDir = isNetworkDeployed
+            var chromeDir = Directory.CreateDirectory(isNetworkDeployed
                 ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "ChromeBin")
-                : Path.Combine(Directory.GetCurrentDirectory(), "ChromeBin");
+                : Path.Combine(Directory.GetCurrentDirectory(), "ChromeBin"));
 
-            if (!Directory.Exists(chromeDir))
+            if (!File.Exists(Path.Combine(chromeDir.FullName, "GoogleChromePortable", "App", "Chrome-Bin", "chrome.exe")))
             {
-                Directory.CreateDirectory(chromeDir);                
+                ZipFile.ExtractToDirectory(chromeZip, chromeDir.FullName);
             }
 
-            if (!File.Exists(Path.Combine(chromeDir, "GoogleChromePortable", "App", "Chrome-Bin", "chrome.exe")))
-            {
-                ZipFile.ExtractToDirectory(chromeZip, chromeDir);
-            }
-
-            return Path.Combine(chromeDir, "GoogleChromePortable", "App", "Chrome-Bin", "chrome.exe");
+            return Path.Combine(chromeDir.FullName, "GoogleChromePortable", "App", "Chrome-Bin", "chrome.exe");
         }
 
         private static ChromeOptions options;
