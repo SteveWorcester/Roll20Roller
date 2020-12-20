@@ -40,11 +40,7 @@ namespace Roll20Roller.Importer.Maps
         /// <returns></returns>
         protected IWebElement _attackDamageType(string attackName) => _attackParent(attackName).FindElement(By.XPath(".//span[@class='ddbc-tooltip  ddbc-damage']"));
 
-        // private IWebElement FindAttackParent(string attackName)
-        // {
-        //     var parentIndex = _allAttackNames.IndexOf(_attackName(attackName));
-        //     return _allAttackRows[parentIndex];
-        // }
+        protected IWebElement _spellAttackDamageType(string attackName) => _attackParent(attackName).FindElement(By.CssSelector(".ddbc-spell-damage-effect__damages > span:nth-child(2) > span:nth-child(1) > span:nth-child(1)"));
 
         #endregion
 

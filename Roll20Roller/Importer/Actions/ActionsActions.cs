@@ -63,7 +63,16 @@ namespace Roll20Roller.Importer.Actions
 
         public string GetDamageType(string attackName)
         {
-            return _attackDamageType(attackName).GetAttribute("data-original-title");
+            try
+            {
+                var damageType = _attackDamageType(attackName).GetAttribute("data-original-title");
+                return damageType;
+            }
+            catch (Exception)
+            {
+                var damageType = _spellAttackDamageType(attackName).GetAttribute("data-original-title");
+                return damageType;
+            }          
         }
 
         public string GetVersatileAttackRoll(string attackName)
