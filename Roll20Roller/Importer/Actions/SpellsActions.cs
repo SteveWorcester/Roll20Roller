@@ -108,23 +108,26 @@ namespace Roll20Roller.Importer.Spells
             8 = class + ExtraInfo if expanded book
             */
 
-            StreamReader reader = new StreamReader(MainClassSpellsFilePath);
-            var intendedSpellLine = new List<string>();
             var foundSpell = false;
-            do
+            var intendedSpellLine = new List<string>();
+            if (SpellcastingClasses.Contains(_classNamesAndLevels.First().charClass))
             {
-                var line = reader.ReadLine().Split(';');
-                if (line[1].Replace('"', ' ').Trim().Equals(spellName)) 
+                StreamReader reader = new StreamReader(MainClassSpellsFilePath);                             
+                do
                 {
-                    intendedSpellLine = line.ToList();
-                    foundSpell = true;
+                    var line = reader.ReadLine().Split(';');
+                    if (line[1].Replace('"', ' ').Trim().Equals(spellName))
+                    {
+                        intendedSpellLine = line.ToList();
+                        foundSpell = true;
+                    }
                 }
-            } 
-            while (!foundSpell && !reader.Peek().Equals(null));
+                while (!foundSpell && !reader.Peek().Equals(null));
+            }
 
             if (!foundSpell)
             {
-                reader = new StreamReader(OffClassSpellsFilePath);
+                StreamReader reader = new StreamReader(OffClassSpellsFilePath);
                 do
                 {
                     var line = reader.ReadLine().Split(';');
