@@ -116,6 +116,7 @@
     <Compile Include="Importer\Actions\MainPageActions.cs" />
     <Compile Include="Importer\Actions\SavingThrowsActions.cs" />
     <Compile Include="Importer\Actions\SkillsActions.cs" />
+    <Compile Include="Importer\Actions\SpellsFromDdbActions.cs" />
     <Compile Include="Importer\Base\TemplateFactory.cs" />
     <Compile Include="Importer\Base\ScraperBase.cs" />
     <Compile Include="Importer\Base\Wait.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Importer\Maps\SavingThrowsObjects.cs" />
     <Compile Include="Importer\Maps\SkillsObjects.cs" />
     <Compile Include="Importer\Actions\SpellsActions.cs" />
+    <Compile Include="Importer\Maps\SpellsObjects.cs" />
     <Compile Include="Managers\CustomRollManager.cs" />
     <Compile Include="Managers\RollGenerator.cs" />
     <Compile Include="Managers\SpellsManager.cs" />

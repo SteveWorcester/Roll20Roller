@@ -100,6 +100,9 @@
             this.RbNormal = new System.Windows.Forms.Button();
             this.RbDisadvantage = new System.Windows.Forms.Button();
             this.BtnDarkMode = new System.Windows.Forms.Button();
+            this.GrpDdbSpells = new System.Windows.Forms.GroupBox();
+            this.DdlDdbSpells = new System.Windows.Forms.ComboBox();
+            this.BtnDdbSpell = new System.Windows.Forms.Button();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -107,6 +110,7 @@
             this.GrpClassOptions1.SuspendLayout();
             this.GrpCustom.SuspendLayout();
             this.GrpSpells.SuspendLayout();
+            this.GrpDdbSpells.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblCharacterName
@@ -801,11 +805,41 @@
             this.BtnDarkMode.UseVisualStyleBackColor = true;
             this.BtnDarkMode.Click += new System.EventHandler(this.BtnDarkMode_Click);
             // 
+            // GrpDdbSpells
+            // 
+            this.GrpDdbSpells.Controls.Add(this.BtnDdbSpell);
+            this.GrpDdbSpells.Controls.Add(this.DdlDdbSpells);
+            this.GrpDdbSpells.Location = new System.Drawing.Point(3, 525);
+            this.GrpDdbSpells.Name = "GrpDdbSpells";
+            this.GrpDdbSpells.Size = new System.Drawing.Size(155, 78);
+            this.GrpDdbSpells.TabIndex = 25;
+            this.GrpDdbSpells.TabStop = false;
+            this.GrpDdbSpells.Text = "Spells Beta (From Ddb)";
+            // 
+            // DdlDdbSpells
+            // 
+            this.DdlDdbSpells.FormattingEnabled = true;
+            this.DdlDdbSpells.Location = new System.Drawing.Point(8, 20);
+            this.DdlDdbSpells.Name = "DdlDdbSpells";
+            this.DdlDdbSpells.Size = new System.Drawing.Size(121, 21);
+            this.DdlDdbSpells.TabIndex = 0;
+            this.DdlDdbSpells.SelectedIndexChanged += new System.EventHandler(this.DdlDdbSpells_SelectedIndexChanged);
+            // 
+            // BtnDdbSpell
+            // 
+            this.BtnDdbSpell.Location = new System.Drawing.Point(6, 48);
+            this.BtnDdbSpell.Name = "BtnDdbSpell";
+            this.BtnDdbSpell.Size = new System.Drawing.Size(123, 23);
+            this.BtnDdbSpell.TabIndex = 1;
+            this.BtnDdbSpell.Text = "Copy Spell Details";
+            this.BtnDdbSpell.UseVisualStyleBackColor = true;
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(322, 521);
+            this.ClientSize = new System.Drawing.Size(322, 631);
+            this.Controls.Add(this.GrpDdbSpells);
             this.Controls.Add(this.BtnDarkMode);
             this.Controls.Add(this.RbDisadvantage);
             this.Controls.Add(this.RbNormal);
@@ -837,6 +871,7 @@
             this.GrpCustom.ResumeLayout(false);
             this.GrpCustom.PerformLayout();
             this.GrpSpells.ResumeLayout(false);
+            this.GrpDdbSpells.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -915,5 +950,8 @@
         private System.Windows.Forms.Button RbNormal;
         private System.Windows.Forms.Button RbDisadvantage;
         private System.Windows.Forms.Button BtnDarkMode;
+        private System.Windows.Forms.GroupBox GrpDdbSpells;
+        private System.Windows.Forms.Button BtnDdbSpell;
+        private System.Windows.Forms.ComboBox DdlDdbSpells;
     }
 }

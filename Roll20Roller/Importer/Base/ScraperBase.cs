@@ -70,5 +70,23 @@ namespace Roll20Roller.Importer.Base
                 charId.ToString(),
                 ConfigurationManager.AppSettings["XmlOnly"]);            
         }
+
+        protected ChromeDriver InitializeNewChromeDriver(long charId)
+        {
+            options = new ChromeOptions();
+            options.BinaryLocation = GetChromeBinaryLocation();
+            options.AddArgument("--headless");
+            options.AddArgument("--window-size=1920,1080");
+
+            service = ChromeDriverService.CreateDefaultService();
+            service.SuppressInitialDiagnosticInformation = true;
+            service.HideCommandPromptWindow = true;
+
+            var driver = new ChromeDriver(service, options);
+            SetCharacterInfo(charId);
+            driver.Url = ScrapeUrl;
+
+            return driver;
+        }
     }
 }

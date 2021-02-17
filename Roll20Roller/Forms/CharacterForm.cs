@@ -25,6 +25,7 @@ namespace Roll20Roller.Forms
         public SavingThrowsActions _SavingThrows;
         public CustomRollManager _CustomRollManager;
         public SpellsActions _Spells;
+        public SpellsFromDdbActions _SpellsDdb;
         
         private Advantage selectedAdvantage = Advantage.Normal;
         private bool GmOnly = false;
@@ -43,6 +44,7 @@ namespace Roll20Roller.Forms
             _SavingThrows = new SavingThrowsActions(charId);
             _CustomRollManager = new CustomRollManager(charId);
             _Spells = new SpellsActions(charId);
+            _SpellsDdb = new SpellsFromDdbActions(charId);
 
             #region Class-Specific Options
 
@@ -130,6 +132,12 @@ namespace Roll20Roller.Forms
                     }
                 }
             }
+
+            #endregion
+
+            #region Spells From Ddb
+
+            _SpellsDdb.SetSpellsList(DdlDdbSpells);
 
             #endregion
 
@@ -345,5 +353,10 @@ namespace Roll20Roller.Forms
         }
 
         #endregion
+
+        private void DdlDdbSpells_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
