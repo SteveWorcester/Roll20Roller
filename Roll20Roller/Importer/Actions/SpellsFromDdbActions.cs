@@ -1,4 +1,5 @@
-﻿using Roll20Roller.Importer.Maps;
+﻿using Roll20Roller.Importer.Base;
+using Roll20Roller.Importer.Maps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace Roll20Roller.Importer.Actions
     public class SpellsFromDdbActions : SpellsObjects
     {
         public SpellsFromDdbActions(long charId)
-        {
+        {            
+            BtnSpellsTabButtonPreClick.Click();
+            BtnSpellsTabButtonPostClick.Click();
             SetCharacterAndPullData(charId);
         }
 

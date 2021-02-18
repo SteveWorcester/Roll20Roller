@@ -137,7 +137,12 @@ namespace Roll20Roller.Forms
 
             #region Spells From Ddb
 
-            _SpellsDdb.SetSpellsList(DdlDdbSpells);
+            if (SpellsManager.SpellcastingClasses.Contains(classes.First().charClass)
+                || SpellsManager.SpellcastingClasses.Contains(classes.Last().charClass))
+            {
+                _SpellsDdb.SetSpellsList(DdlDdbSpells);
+            }
+                
 
             #endregion
 
