@@ -1,9 +1,6 @@
 ﻿using Roll20Roller.Enums;
 using Roll20Roller.Importer.Actions;
-using Roll20Roller.Importer.Base;
-using Roll20Roller.Importer.Spells;
 using Roll20Roller.Managers;
-using Roll20Roller.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,7 +21,6 @@ namespace Roll20Roller.Forms
         public ActionsActions _Actions;
         public SavingThrowsActions _SavingThrows;
         public CustomRollManager _CustomRollManager;
-        public SpellsActions _Spells;
         public SpellsFromDdbActions _SpellsDdb;
         
         private Advantage selectedAdvantage = Advantage.Normal;
@@ -43,29 +39,12 @@ namespace Roll20Roller.Forms
             _Skills = new SkillsActions(charId);
             _SavingThrows = new SavingThrowsActions(charId);
             _CustomRollManager = new CustomRollManager(charId);
-            _Spells = new SpellsActions(charId);
             _SpellsDdb = new SpellsFromDdbActions(charId);
 
             #region Class-Specific Options
 
             var classes = _MainPage.GetClassNamesAndLevels();
             _Actions.SetupClassOptions(GrpClassOptions1, classes.First().Item1.ToString(), classes.Last().Item1.ToString());
-
-            #endregion
-
-            #region Spells
-
-            if (SpellsManager.SpellcastingClasses.Contains(classes.First().charClass) 
-                || SpellsManager.SpellcastingClasses.Contains(classes.Last().charClass))
-            {
-                _Spells.SetSpellsList(DdlSpells);
-            }
-            else
-            {
-                DdlSpells.Enabled = false;
-                BtnSpell.Enabled = false;
-                BtnSpell.Text = "Not a spellcaster!";
-            }
 
             #endregion
 
@@ -140,9 +119,14 @@ namespace Roll20Roller.Forms
             if (SpellsManager.SpellcastingClasses.Contains(classes.First().charClass)
                 || SpellsManager.SpellcastingClasses.Contains(classes.Last().charClass))
             {
-                _SpellsDdb.SetSpellsList(DdlDdbSpells);
+                _SpellsDdb.Init(DdlDdbSpells);
             }
-                
+            else
+            {
+                DdlDdbSpells.Enabled = false;
+                BtnDdbSpell.Enabled = false;
+                BtnDdbSpell.Text = "Not a Spellcaster!";
+            }
 
             #endregion
 
@@ -287,15 +271,6 @@ namespace Roll20Roller.Forms
 
         #endregion
 
-        #region Spells
-
-        private void BtnSpell_Click(object sender, EventArgs e)
-        {
-            _Roll.GetSpellCard(_Spells.GetSpell(DdlSpells.Text), GmOnly);
-        }
-
-        #endregion
-
         #region Custom Rolls
 
         private void CustomRoll(string description, string numberOfDice, string dieSides, string bonus, int rowNumber)
@@ -359,9 +334,19 @@ namespace Roll20Roller.Forms
 
         #endregion
 
+        #region Spells from Ddb
         private void DdlDdbSpells_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void BtnDdbSpell_Click(object sender, EventArgs e)
+        {
+            _Roll.GetSpellCard(_SpellsDdb.GetSpellFromDdb(DdlDdbSpells.Text), GmOnly);
+        }
+
+        #endregion
+
+
     }
 }

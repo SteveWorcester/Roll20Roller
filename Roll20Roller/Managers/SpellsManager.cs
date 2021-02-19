@@ -26,17 +26,5 @@ namespace Roll20Roller.Managers
             CharacterClass.Druid,
             CharacterClass.Cleric
         };
-
-        public void SetSpellFilePaths(List<(CharacterClass charClass, int charLevel)> allClassesAndLevels)
-        {
-            var isNetworkDeployed = ApplicationDeployment.IsNetworkDeployed;
-            MainClassSpellsFilePath = isNetworkDeployed 
-                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "SpellCsv", $"Spells_{allClassesAndLevels.First().charClass}.csv") 
-                : Path.Combine(Directory.GetCurrentDirectory(), "SpellCsv", $"Spells_{allClassesAndLevels.First().charClass}.csv");
-            
-            OffClassSpellsFilePath = isNetworkDeployed 
-                ? Path.Combine(ApplicationDeployment.CurrentDeployment.DataDirectory, "SpellCsv", $"Spells_{allClassesAndLevels.Last().charClass}.csv")
-                : Path.Combine(Directory.GetCurrentDirectory(), "SpellCsv", $"Spells_{allClassesAndLevels.Last().charClass}.csv");
-        }
     }
 }

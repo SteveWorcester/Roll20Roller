@@ -93,23 +93,19 @@
             this.LblBonus = new System.Windows.Forms.Label();
             this.LblDice = new System.Windows.Forms.Label();
             this.LblDescription = new System.Windows.Forms.Label();
-            this.GrpSpells = new System.Windows.Forms.GroupBox();
-            this.BtnSpell = new System.Windows.Forms.Button();
-            this.DdlSpells = new System.Windows.Forms.ComboBox();
             this.RbAdvantage = new System.Windows.Forms.Button();
             this.RbNormal = new System.Windows.Forms.Button();
             this.RbDisadvantage = new System.Windows.Forms.Button();
             this.BtnDarkMode = new System.Windows.Forms.Button();
             this.GrpDdbSpells = new System.Windows.Forms.GroupBox();
-            this.DdlDdbSpells = new System.Windows.Forms.ComboBox();
             this.BtnDdbSpell = new System.Windows.Forms.Button();
+            this.DdlDdbSpells = new System.Windows.Forms.ComboBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
             this.GrpInitiative.SuspendLayout();
             this.GrpClassOptions1.SuspendLayout();
             this.GrpCustom.SuspendLayout();
-            this.GrpSpells.SuspendLayout();
             this.GrpDdbSpells.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -736,35 +732,6 @@
             this.LblDescription.TabIndex = 0;
             this.LblDescription.Text = "Description";
             // 
-            // GrpSpells
-            // 
-            this.GrpSpells.Controls.Add(this.BtnSpell);
-            this.GrpSpells.Controls.Add(this.DdlSpells);
-            this.GrpSpells.Location = new System.Drawing.Point(164, 232);
-            this.GrpSpells.Name = "GrpSpells";
-            this.GrpSpells.Size = new System.Drawing.Size(155, 79);
-            this.GrpSpells.TabIndex = 19;
-            this.GrpSpells.TabStop = false;
-            this.GrpSpells.Text = "Spells";
-            // 
-            // BtnSpell
-            // 
-            this.BtnSpell.Location = new System.Drawing.Point(9, 47);
-            this.BtnSpell.Name = "BtnSpell";
-            this.BtnSpell.Size = new System.Drawing.Size(140, 23);
-            this.BtnSpell.TabIndex = 1;
-            this.BtnSpell.Text = "Copy Spell Details";
-            this.BtnSpell.UseVisualStyleBackColor = true;
-            this.BtnSpell.Click += new System.EventHandler(this.BtnSpell_Click);
-            // 
-            // DdlSpells
-            // 
-            this.DdlSpells.FormattingEnabled = true;
-            this.DdlSpells.Location = new System.Drawing.Point(9, 20);
-            this.DdlSpells.Name = "DdlSpells";
-            this.DdlSpells.Size = new System.Drawing.Size(140, 21);
-            this.DdlSpells.TabIndex = 0;
-            // 
             // RbAdvantage
             // 
             this.RbAdvantage.Location = new System.Drawing.Point(2, 20);
@@ -809,12 +776,22 @@
             // 
             this.GrpDdbSpells.Controls.Add(this.BtnDdbSpell);
             this.GrpDdbSpells.Controls.Add(this.DdlDdbSpells);
-            this.GrpDdbSpells.Location = new System.Drawing.Point(3, 525);
+            this.GrpDdbSpells.Location = new System.Drawing.Point(164, 233);
             this.GrpDdbSpells.Name = "GrpDdbSpells";
             this.GrpDdbSpells.Size = new System.Drawing.Size(155, 78);
             this.GrpDdbSpells.TabIndex = 25;
             this.GrpDdbSpells.TabStop = false;
             this.GrpDdbSpells.Text = "Spells Beta (From Ddb)";
+            // 
+            // BtnDdbSpell
+            // 
+            this.BtnDdbSpell.Location = new System.Drawing.Point(6, 48);
+            this.BtnDdbSpell.Name = "BtnDdbSpell";
+            this.BtnDdbSpell.Size = new System.Drawing.Size(123, 23);
+            this.BtnDdbSpell.TabIndex = 1;
+            this.BtnDdbSpell.Text = "Copy Spell Details";
+            this.BtnDdbSpell.UseVisualStyleBackColor = true;
+            this.BtnDdbSpell.Click += new System.EventHandler(this.BtnDdbSpell_Click);
             // 
             // DdlDdbSpells
             // 
@@ -825,26 +802,16 @@
             this.DdlDdbSpells.TabIndex = 0;
             this.DdlDdbSpells.SelectedIndexChanged += new System.EventHandler(this.DdlDdbSpells_SelectedIndexChanged);
             // 
-            // BtnDdbSpell
-            // 
-            this.BtnDdbSpell.Location = new System.Drawing.Point(6, 48);
-            this.BtnDdbSpell.Name = "BtnDdbSpell";
-            this.BtnDdbSpell.Size = new System.Drawing.Size(123, 23);
-            this.BtnDdbSpell.TabIndex = 1;
-            this.BtnDdbSpell.Text = "Copy Spell Details";
-            this.BtnDdbSpell.UseVisualStyleBackColor = true;
-            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(322, 631);
+            this.ClientSize = new System.Drawing.Size(322, 525);
             this.Controls.Add(this.GrpDdbSpells);
             this.Controls.Add(this.BtnDarkMode);
             this.Controls.Add(this.RbDisadvantage);
             this.Controls.Add(this.RbNormal);
             this.Controls.Add(this.RbAdvantage);
-            this.Controls.Add(this.GrpSpells);
             this.Controls.Add(this.GrpCustom);
             this.Controls.Add(this.LblGmOnly);
             this.Controls.Add(this.GrpClassOptions1);
@@ -870,7 +837,6 @@
             this.GrpClassOptions1.PerformLayout();
             this.GrpCustom.ResumeLayout(false);
             this.GrpCustom.PerformLayout();
-            this.GrpSpells.ResumeLayout(false);
             this.GrpDdbSpells.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -943,9 +909,6 @@
         private System.Windows.Forms.Label LblBonus;
         private System.Windows.Forms.Label LblDice;
         private System.Windows.Forms.Label LblDescription;
-        private System.Windows.Forms.GroupBox GrpSpells;
-        private System.Windows.Forms.Button BtnSpell;
-        private System.Windows.Forms.ComboBox DdlSpells;
         private System.Windows.Forms.Button RbAdvantage;
         private System.Windows.Forms.Button RbNormal;
         private System.Windows.Forms.Button RbDisadvantage;

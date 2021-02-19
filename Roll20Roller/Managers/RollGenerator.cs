@@ -139,6 +139,9 @@ namespace Roll20Roller.Managers
                 return;
             }
 
+            var componentTypes = new StringBuilder();
+            spell.ComponentTypes.ForEach(t => componentTypes.Append($"{t} "));
+
             var template = string.Empty;
 
             if (gmOnly)
@@ -150,53 +153,20 @@ namespace Roll20Roller.Managers
             + TemplateGenerateRow("School", spell.School)
             + TemplateGenerateRow("Level", spell.Level.ToString())
             + TemplateGenerateRow("Casting Time", spell.CastingTime)
-            + TemplateGenerateRow("Range", spell.Range)
-            + TemplateGenerateRow("Components", spell.Components)
+            + TemplateGenerateRow("Range/Area", spell.Range)
+            + TemplateGenerateRow("Components", componentTypes.ToString().Trim())
+            + TemplateGenerateRow("Materials", spell.ComponentMaterials)
             + TemplateGenerateRow("Duration", spell.Duration);
+            //+ TemplateGenerateRow("", spell.);
 
-            if (spell.Description.Contains("saving throw"))
+            if (spell.Description.ToLower().Contains("saving throw"))
             {                
-                var spellCastingAttribute = string.Empty;
 
-                switch (spell.Class)
-                {
-                    case CharacterClass.Bard:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Cleric:
-                        spellCastingAttribute = "WIS";
-                        break;
-                    case CharacterClass.Druid:
-                        spellCastingAttribute = "WIS";
-                        break;
-                    case CharacterClass.Paladin:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Ranger:
-                        spellCastingAttribute = "WIS";
-                        break;
-                    case CharacterClass.Sorcerer:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Warlock:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Wizard:
-                        spellCastingAttribute = "INT";
-                        break;
-                    default:
-                        spellCastingAttribute = string.Empty;
-                        break;
-                }
-                if (spellCastingAttribute.Equals(string.Empty))
-                {
-                    throw new Exception($"Spellcasting ability not found for class {spell.Class}");
-                }
 
                 var proficiencyBonus = _SavingThrows.GetProficiencyBonus();
-                var statBonus = _SavingThrows.GetStatCheckBonus(spellCastingAttribute);
+                //var statBonus = _SavingThrows.GetStatCheckBonus(spellCastingAttribute);
 
-                template += TemplateGenerateRow("Saving Throw", $"{8+proficiencyBonus+statBonus} (Not including any magical enhancement)");
+                //template += TemplateGenerateRow("Saving Throw", $"{8+proficiencyBonus+statBonus} (Not including any magical enhancement)");
             }
 
             template += TemplateGenerateRow("Description", spell.Description);

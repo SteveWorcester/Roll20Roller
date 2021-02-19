@@ -10,9 +10,12 @@ namespace Roll20Roller.Models
     public class Spell
     {
         public string Name { get; set; }
+        public bool ContainsShortDescription { get; set; }
         public string Description { get; set; }
+        public string DescriptionHigherLevels { get; set; }
         public string Range { get; set; }
-        public string Components { get; set; }
+        public List<string> ComponentTypes { get; set; }
+        public string ComponentMaterials { get; set; }
         public int Level { get; set; }
         public string School { get; set; }
         public CharacterClass Class { get; set; }
