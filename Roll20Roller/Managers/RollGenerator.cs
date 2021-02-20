@@ -132,13 +132,8 @@ namespace Roll20Roller.Managers
             Clipboard.SetText(template);
         }
 
-        public void GetSpellCard(Spell spell, bool gmOnly)
+        public void GetSpellCard(Spell spell, bool gmOnly, bool displayHigherLevelsText)
         {
-            if (spell.Class.Equals(CharacterClass.None))
-            {
-                return;
-            }
-
             var componentTypes = new StringBuilder();
             spell.ComponentTypes.ForEach(t => componentTypes.Append($"{t} "));
 
@@ -149,27 +144,19 @@ namespace Roll20Roller.Managers
                 template += _gmWhisper;
             }
 
-            template += TemplateStartDefaultTemplate($"{spell.Name} ({spell.Class})")
-            + TemplateGenerateRow("School", spell.School)
+            template += TemplateStartDefaultTemplate($"{spell.Name} - {spell.School} ({spell.Class})")
             + TemplateGenerateRow("Level", spell.Level.ToString())
             + TemplateGenerateRow("Casting Time", spell.CastingTime)
             + TemplateGenerateRow("Range/Area", spell.Range)
             + TemplateGenerateRow("Components", componentTypes.ToString().Trim())
             + TemplateGenerateRow("Materials", spell.ComponentMaterials)
-            + TemplateGenerateRow("Duration", spell.Duration);
-            //+ TemplateGenerateRow("", spell.);
+            + TemplateGenerateRow("Duration", spell.Duration) 
+            + TemplateGenerateRow("Short Description", spell.Description);
 
-            if (spell.Description.ToLower().Contains("saving throw"))
-            {                
-
-
-                var proficiencyBonus = _SavingThrows.GetProficiencyBonus();
-                //var statBonus = _SavingThrows.GetStatCheckBonus(spellCastingAttribute);
-
-                //template += TemplateGenerateRow("Saving Throw", $"{8+proficiencyBonus+statBonus} (Not including any magical enhancement)");
+            if (displayHigherLevelsText)
+            {
+                template += TemplateGenerateRow("Higher Levels", spell.DescriptionHigherLevels);
             }
-
-            template += TemplateGenerateRow("Description", spell.Description);
 
             Clipboard.SetText(template);
         }

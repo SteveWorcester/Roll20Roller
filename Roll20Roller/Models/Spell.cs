@@ -10,7 +10,6 @@ namespace Roll20Roller.Models
     public class Spell
     {
         public string Name { get; set; }
-        public bool ContainsShortDescription { get; set; }
         public string Description { get; set; }
         public string DescriptionHigherLevels { get; set; }
         public string Range { get; set; }
@@ -21,5 +20,6 @@ namespace Roll20Roller.Models
         public CharacterClass Class { get; set; }
         public string CastingTime { get; set; }
         public string Duration { get; set; }
+        public bool IsConcentration { get; set; }
     }
 }

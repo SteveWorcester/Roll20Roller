@@ -100,6 +100,7 @@
             this.GrpDdbSpells = new System.Windows.Forms.GroupBox();
             this.BtnDdbSpell = new System.Windows.Forms.Button();
             this.DdlDdbSpells = new System.Windows.Forms.ComboBox();
+            this.CbSpellHigherLevels = new System.Windows.Forms.CheckBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -124,14 +125,14 @@
             this.DdlSkills.FormattingEnabled = true;
             this.DdlSkills.Location = new System.Drawing.Point(6, 19);
             this.DdlSkills.Name = "DdlSkills";
-            this.DdlSkills.Size = new System.Drawing.Size(132, 21);
+            this.DdlSkills.Size = new System.Drawing.Size(143, 21);
             this.DdlSkills.TabIndex = 4;
             // 
             // BtnSkillRoll
             // 
             this.BtnSkillRoll.Location = new System.Drawing.Point(6, 46);
             this.BtnSkillRoll.Name = "BtnSkillRoll";
-            this.BtnSkillRoll.Size = new System.Drawing.Size(132, 23);
+            this.BtnSkillRoll.Size = new System.Drawing.Size(143, 23);
             this.BtnSkillRoll.TabIndex = 6;
             this.BtnSkillRoll.Text = "Copy Skill Roll";
             this.BtnSkillRoll.UseVisualStyleBackColor = true;
@@ -354,7 +355,7 @@
             this.GrpClassOptions1.Controls.Add(this.CbRage);
             this.GrpClassOptions1.Location = new System.Drawing.Point(3, 232);
             this.GrpClassOptions1.Name = "GrpClassOptions1";
-            this.GrpClassOptions1.Size = new System.Drawing.Size(155, 79);
+            this.GrpClassOptions1.Size = new System.Drawing.Size(103, 79);
             this.GrpClassOptions1.TabIndex = 18;
             this.GrpClassOptions1.TabStop = false;
             this.GrpClassOptions1.Text = "Class Options";
@@ -774,11 +775,12 @@
             // 
             // GrpDdbSpells
             // 
+            this.GrpDdbSpells.Controls.Add(this.CbSpellHigherLevels);
             this.GrpDdbSpells.Controls.Add(this.BtnDdbSpell);
             this.GrpDdbSpells.Controls.Add(this.DdlDdbSpells);
-            this.GrpDdbSpells.Location = new System.Drawing.Point(164, 233);
+            this.GrpDdbSpells.Location = new System.Drawing.Point(112, 233);
             this.GrpDdbSpells.Name = "GrpDdbSpells";
-            this.GrpDdbSpells.Size = new System.Drawing.Size(155, 78);
+            this.GrpDdbSpells.Size = new System.Drawing.Size(207, 78);
             this.GrpDdbSpells.TabIndex = 25;
             this.GrpDdbSpells.TabStop = false;
             this.GrpDdbSpells.Text = "Spells Beta (From Ddb)";
@@ -787,9 +789,9 @@
             // 
             this.BtnDdbSpell.Location = new System.Drawing.Point(6, 48);
             this.BtnDdbSpell.Name = "BtnDdbSpell";
-            this.BtnDdbSpell.Size = new System.Drawing.Size(123, 23);
+            this.BtnDdbSpell.Size = new System.Drawing.Size(96, 23);
             this.BtnDdbSpell.TabIndex = 1;
-            this.BtnDdbSpell.Text = "Copy Spell Details";
+            this.BtnDdbSpell.Text = "Copy Spell Card";
             this.BtnDdbSpell.UseVisualStyleBackColor = true;
             this.BtnDdbSpell.Click += new System.EventHandler(this.BtnDdbSpell_Click);
             // 
@@ -798,9 +800,19 @@
             this.DdlDdbSpells.FormattingEnabled = true;
             this.DdlDdbSpells.Location = new System.Drawing.Point(8, 20);
             this.DdlDdbSpells.Name = "DdlDdbSpells";
-            this.DdlDdbSpells.Size = new System.Drawing.Size(121, 21);
+            this.DdlDdbSpells.Size = new System.Drawing.Size(193, 21);
             this.DdlDdbSpells.TabIndex = 0;
             this.DdlDdbSpells.SelectedIndexChanged += new System.EventHandler(this.DdlDdbSpells_SelectedIndexChanged);
+            // 
+            // CbSpellHigherLevels
+            // 
+            this.CbSpellHigherLevels.AutoSize = true;
+            this.CbSpellHigherLevels.Location = new System.Drawing.Point(109, 52);
+            this.CbSpellHigherLevels.Name = "CbSpellHigherLevels";
+            this.CbSpellHigherLevels.Size = new System.Drawing.Size(91, 17);
+            this.CbSpellHigherLevels.TabIndex = 2;
+            this.CbSpellHigherLevels.Text = "Higher Levels";
+            this.CbSpellHigherLevels.UseVisualStyleBackColor = true;
             // 
             // CharacterForm
             // 
@@ -838,6 +850,7 @@
             this.GrpCustom.ResumeLayout(false);
             this.GrpCustom.PerformLayout();
             this.GrpDdbSpells.ResumeLayout(false);
+            this.GrpDdbSpells.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -916,5 +929,6 @@
         private System.Windows.Forms.GroupBox GrpDdbSpells;
         private System.Windows.Forms.Button BtnDdbSpell;
         private System.Windows.Forms.ComboBox DdlDdbSpells;
+        private System.Windows.Forms.CheckBox CbSpellHigherLevels;
     }
 }

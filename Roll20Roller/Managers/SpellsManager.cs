@@ -12,9 +12,6 @@ namespace Roll20Roller.Managers
 {
     public class SpellsManager
     {
-        public string MainClassSpellsFilePath;
-        public string OffClassSpellsFilePath;
-
         public static List<CharacterClass> SpellcastingClasses = new List<CharacterClass>()
         {
             CharacterClass.Paladin,

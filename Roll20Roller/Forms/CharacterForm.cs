@@ -337,12 +337,12 @@ namespace Roll20Roller.Forms
         #region Spells from Ddb
         private void DdlDdbSpells_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            _SpellsDdb.Init(DdlDdbSpells);
         }
 
         private void BtnDdbSpell_Click(object sender, EventArgs e)
         {
-            _Roll.GetSpellCard(_SpellsDdb.GetSpellFromDdb(DdlDdbSpells.Text), GmOnly);
+            _Roll.GetSpellCard(_SpellsDdb.GetSpellFromDdb(DdlDdbSpells.Text), GmOnly, CbSpellHigherLevels.Checked);
         }
 
         #endregion

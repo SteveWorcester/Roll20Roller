@@ -1,4 +1,5 @@
-﻿using Roll20Roller.Enums;
+﻿using OpenQA.Selenium;
+using Roll20Roller.Enums;
 using Roll20Roller.Importer.Base;
 using Roll20Roller.Importer.Maps;
 using Roll20Roller.Models;
@@ -22,12 +23,37 @@ namespace Roll20Roller.Importer.Actions
             _classNamesAndLevels = mainPage.GetClassNamesAndLevels();
         }
 
-        public List<string> GetAllSpellNames => AllSpellNames.Select(n => n.Text).ToList();
+        public List<string> GetSpellsListForDropdown()
+        {
+            var spellsList = new List<string>();
+            for (int i = 0; i < SpellLevelGroups.Count; i++)
+            {
+                if (i == 0)
+                {
+                    spellsList.Add("====Cantrip====");
+                }
+                if (i > 0)
+                {
+                    spellsList.Add(string.Empty);
+                    spellsList.Add($"===Level {i}===");
+                }
+
+                foreach (var nameElement in SpellNamesByLevel(i))
+                {
+                    if (!spellsList.Contains(nameElement.Text))
+                    {
+                        spellsList.Add(nameElement.GetAttribute("class"));
+                    }                    
+                }
+            }
+
+            return spellsList;
+        }
 
         internal void SetSpellsList(ComboBox ddlDdbSpells)
         {
             var spellsBindingSource = new BindingSource();
-            spellsBindingSource.DataSource = GetAllSpellNames;
+            spellsBindingSource.DataSource = GetSpellsListForDropdown();
 
             ddlDdbSpells.ValueMember = "Name";
             ddlDdbSpells.DisplayMember = "Name";
@@ -38,7 +64,7 @@ namespace Roll20Roller.Importer.Actions
         {
             BtnSpellsTabButtonPreClick.Click();
             SetSpellsList(ddlDdbSpells);
-            ddlDdbSpells.SelectedIndex = 0;
+            ddlDdbSpells.SelectedIndex = 1;
         }
 
         public Spell GetSpellFromDdb(string spellName)
@@ -55,11 +81,14 @@ namespace Roll20Roller.Importer.Actions
                 throw new FormatException($"The class {SelectedSpellClass.Text} cannot be parsed in spell description.");
             }
 
+            var spellSchool = SelectedSpellSchool.Text;
             if (!int.TryParse(SelectedSpellLevel.Text.First().ToString(), out var levelInt))
             {
-                if (SelectedSpellLevel.Text.Contains("Cantrip"))
+                // Cantrips school/level are backwards. ex: `1st level Necromancy` -vs- `Necromancy Cantrip`
+                if (SelectedSpellSchool.Text.Contains("Cantrip"))
                 {
                     levelInt = 0;
+                    spellSchool = SelectedSpellLevel.Text;
                 }
                 else
                 {
@@ -67,26 +96,20 @@ namespace Roll20Roller.Importer.Actions
                 }
             }
 
-            var isConcentration = SelectedSpellDuration.Text.Contains("Concentration");
-
-            //if (SelectedSpellShortDescription.Text)
-            {
-
-            }
-
             return new Spell()
             {
                 CastingTime = SelectedSpellCastingTime.Text,
                 Class = className,
                 ComponentTypes = SelectedSpellComponentTypes.Select(t => t.Text).ToList(),
-                ComponentMaterials = SelectedSpellComponentMaterials.Text,
+                ComponentMaterials = HasMaterialComponents() ? SelectedSpellComponentMaterials.Text:"None",
                 Description = SelectedSpellDetail.Text,
-                DescriptionHigherLevels = SelectedSpellDetailHigherLevels.Text,
+                DescriptionHigherLevels = HasHigherLevelsDescription() ? SelectedSpellDetailHigherLevels.Text : "None",
                 Duration = SelectedSpellDuration.Text,
+                IsConcentration = SelectedSpellDuration.Text.Contains("Concentration"),
                 Level = levelInt,
                 Name = SelectedSpellName.Text,
                 Range = SelectedSpellRangeArea.Text,
-                School = SelectedSpellSchool.Text
+                School = spellSchool
             };
         }
     }
