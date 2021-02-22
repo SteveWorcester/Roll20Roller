@@ -98,9 +98,9 @@
             this.RbDisadvantage = new System.Windows.Forms.Button();
             this.BtnDarkMode = new System.Windows.Forms.Button();
             this.GrpDdbSpells = new System.Windows.Forms.GroupBox();
+            this.CbSpellHigherLevels = new System.Windows.Forms.CheckBox();
             this.BtnDdbSpell = new System.Windows.Forms.Button();
             this.DdlDdbSpells = new System.Windows.Forms.ComboBox();
-            this.CbSpellHigherLevels = new System.Windows.Forms.CheckBox();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -116,24 +116,25 @@
             this.LblCharacterName.Location = new System.Drawing.Point(0, 0);
             this.LblCharacterName.Name = "LblCharacterName";
             this.LblCharacterName.Size = new System.Drawing.Size(219, 23);
-            this.LblCharacterName.TabIndex = 7;
+            this.LblCharacterName.TabIndex = 0;
             this.LblCharacterName.Text = "name text";
             this.LblCharacterName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // DdlSkills
             // 
             this.DdlSkills.FormattingEnabled = true;
+            this.DdlSkills.ItemHeight = 13;
             this.DdlSkills.Location = new System.Drawing.Point(6, 19);
             this.DdlSkills.Name = "DdlSkills";
             this.DdlSkills.Size = new System.Drawing.Size(143, 21);
-            this.DdlSkills.TabIndex = 4;
+            this.DdlSkills.TabIndex = 0;
             // 
             // BtnSkillRoll
             // 
             this.BtnSkillRoll.Location = new System.Drawing.Point(6, 46);
             this.BtnSkillRoll.Name = "BtnSkillRoll";
             this.BtnSkillRoll.Size = new System.Drawing.Size(143, 23);
-            this.BtnSkillRoll.TabIndex = 6;
+            this.BtnSkillRoll.TabIndex = 1;
             this.BtnSkillRoll.Text = "Copy Skill Roll";
             this.BtnSkillRoll.UseVisualStyleBackColor = true;
             this.BtnSkillRoll.Click += new System.EventHandler(this.BtnSkillRoll_Click);
@@ -143,7 +144,7 @@
             this.BtnInitiative.Location = new System.Drawing.Point(6, 40);
             this.BtnInitiative.Name = "BtnInitiative";
             this.BtnInitiative.Size = new System.Drawing.Size(143, 29);
-            this.BtnInitiative.TabIndex = 9;
+            this.BtnInitiative.TabIndex = 1;
             this.BtnInitiative.Text = "Roll Initiative!";
             this.BtnInitiative.UseVisualStyleBackColor = true;
             this.BtnInitiative.Click += new System.EventHandler(this.BtnInitiative_Click);
@@ -154,7 +155,7 @@
             this.LblSelectToken.Location = new System.Drawing.Point(6, 16);
             this.LblSelectToken.Name = "LblSelectToken";
             this.LblSelectToken.Size = new System.Drawing.Size(93, 13);
-            this.LblSelectToken.TabIndex = 10;
+            this.LblSelectToken.TabIndex = 0;
             this.LblSelectToken.Text = "Select your token!";
             // 
             // GrpAttacks
@@ -166,7 +167,7 @@
             this.GrpAttacks.Location = new System.Drawing.Point(164, 146);
             this.GrpAttacks.Name = "GrpAttacks";
             this.GrpAttacks.Size = new System.Drawing.Size(155, 80);
-            this.GrpAttacks.TabIndex = 11;
+            this.GrpAttacks.TabIndex = 8;
             this.GrpAttacks.TabStop = false;
             this.GrpAttacks.Text = "Attacks";
             // 
@@ -176,7 +177,7 @@
             this.LblVersatile.Location = new System.Drawing.Point(102, 51);
             this.LblVersatile.Name = "LblVersatile";
             this.LblVersatile.Size = new System.Drawing.Size(47, 13);
-            this.LblVersatile.TabIndex = 9;
+            this.LblVersatile.TabIndex = 3;
             this.LblVersatile.Text = "Versatile";
             // 
             // CbVersatile
@@ -185,16 +186,17 @@
             this.CbVersatile.Location = new System.Drawing.Point(89, 51);
             this.CbVersatile.Name = "CbVersatile";
             this.CbVersatile.Size = new System.Drawing.Size(15, 14);
-            this.CbVersatile.TabIndex = 8;
+            this.CbVersatile.TabIndex = 2;
             this.CbVersatile.UseVisualStyleBackColor = true;
             // 
             // DdlEquippedWeapon
             // 
             this.DdlEquippedWeapon.FormattingEnabled = true;
+            this.DdlEquippedWeapon.ItemHeight = 13;
             this.DdlEquippedWeapon.Location = new System.Drawing.Point(6, 19);
             this.DdlEquippedWeapon.Name = "DdlEquippedWeapon";
             this.DdlEquippedWeapon.Size = new System.Drawing.Size(143, 21);
-            this.DdlEquippedWeapon.TabIndex = 7;
+            this.DdlEquippedWeapon.TabIndex = 0;
             this.DdlEquippedWeapon.SelectedIndexChanged += new System.EventHandler(this.DdlEquippedWeapon_SelectedIndexChanged);
             // 
             // BtnAttack1
@@ -202,7 +204,7 @@
             this.BtnAttack1.Location = new System.Drawing.Point(6, 46);
             this.BtnAttack1.Name = "BtnAttack1";
             this.BtnAttack1.Size = new System.Drawing.Size(77, 23);
-            this.BtnAttack1.TabIndex = 0;
+            this.BtnAttack1.TabIndex = 1;
             this.BtnAttack1.Text = "Attack!";
             this.BtnAttack1.UseVisualStyleBackColor = true;
             this.BtnAttack1.Click += new System.EventHandler(this.BtnAttack1_Click);
@@ -219,7 +221,7 @@
             this.GrpSavingThrows.Location = new System.Drawing.Point(3, 49);
             this.GrpSavingThrows.Name = "GrpSavingThrows";
             this.GrpSavingThrows.Size = new System.Drawing.Size(155, 91);
-            this.GrpSavingThrows.TabIndex = 12;
+            this.GrpSavingThrows.TabIndex = 5;
             this.GrpSavingThrows.TabStop = false;
             this.GrpSavingThrows.Text = "Saving Throws";
             // 
@@ -306,7 +308,7 @@
             this.GrpSkills.Location = new System.Drawing.Point(3, 146);
             this.GrpSkills.Name = "GrpSkills";
             this.GrpSkills.Size = new System.Drawing.Size(155, 80);
-            this.GrpSkills.TabIndex = 13;
+            this.GrpSkills.TabIndex = 7;
             this.GrpSkills.TabStop = false;
             this.GrpSkills.Text = "Skills";
             // 
@@ -317,7 +319,7 @@
             this.GrpInitiative.Location = new System.Drawing.Point(164, 49);
             this.GrpInitiative.Name = "GrpInitiative";
             this.GrpInitiative.Size = new System.Drawing.Size(155, 91);
-            this.GrpInitiative.TabIndex = 14;
+            this.GrpInitiative.TabIndex = 6;
             this.GrpInitiative.TabStop = false;
             this.GrpInitiative.Text = "Initiative";
             // 
@@ -337,7 +339,7 @@
             this.LblTopmost.Location = new System.Drawing.Point(231, 0);
             this.LblTopmost.Name = "LblTopmost";
             this.LblTopmost.Size = new System.Drawing.Size(73, 13);
-            this.LblTopmost.TabIndex = 16;
+            this.LblTopmost.TabIndex = 1;
             this.LblTopmost.Text = "Always on top";
             // 
             // CbGmOnly
@@ -346,9 +348,8 @@
             this.CbGmOnly.Location = new System.Drawing.Point(304, 505);
             this.CbGmOnly.Name = "CbGmOnly";
             this.CbGmOnly.Size = new System.Drawing.Size(15, 14);
-            this.CbGmOnly.TabIndex = 17;
+            this.CbGmOnly.TabIndex = 14;
             this.CbGmOnly.UseVisualStyleBackColor = true;
-            this.CbGmOnly.CheckedChanged += new System.EventHandler(this.CbGmOnly_CheckedChanged);
             // 
             // GrpClassOptions1
             // 
@@ -356,7 +357,7 @@
             this.GrpClassOptions1.Location = new System.Drawing.Point(3, 232);
             this.GrpClassOptions1.Name = "GrpClassOptions1";
             this.GrpClassOptions1.Size = new System.Drawing.Size(103, 79);
-            this.GrpClassOptions1.TabIndex = 18;
+            this.GrpClassOptions1.TabIndex = 9;
             this.GrpClassOptions1.TabStop = false;
             this.GrpClassOptions1.Text = "Class Options";
             // 
@@ -376,7 +377,7 @@
             this.LblGmOnly.Location = new System.Drawing.Point(218, 505);
             this.LblGmOnly.Name = "LblGmOnly";
             this.LblGmOnly.Size = new System.Drawing.Size(86, 13);
-            this.LblGmOnly.TabIndex = 19;
+            this.LblGmOnly.TabIndex = 13;
             this.LblGmOnly.Text = "Send to GM only";
             // 
             // GrpCustom
@@ -422,7 +423,7 @@
             this.GrpCustom.Location = new System.Drawing.Point(3, 317);
             this.GrpCustom.Name = "GrpCustom";
             this.GrpCustom.Size = new System.Drawing.Size(316, 164);
-            this.GrpCustom.TabIndex = 20;
+            this.GrpCustom.TabIndex = 11;
             this.GrpCustom.TabStop = false;
             this.GrpCustom.Text = "Custom Rolls";
             // 
@@ -440,7 +441,7 @@
             this.TxtBonus4.Location = new System.Drawing.Point(231, 137);
             this.TxtBonus4.Name = "TxtBonus4";
             this.TxtBonus4.Size = new System.Drawing.Size(29, 20);
-            this.TxtBonus4.TabIndex = 36;
+            this.TxtBonus4.TabIndex = 23;
             // 
             // label8
             // 
@@ -456,21 +457,21 @@
             this.TxtDieSides4.Location = new System.Drawing.Point(190, 137);
             this.TxtDieSides4.Name = "TxtDieSides4";
             this.TxtDieSides4.Size = new System.Drawing.Size(24, 20);
-            this.TxtDieSides4.TabIndex = 34;
+            this.TxtDieSides4.TabIndex = 22;
             // 
             // TxtNumberOfDice4
             // 
             this.TxtNumberOfDice4.Location = new System.Drawing.Point(148, 137);
             this.TxtNumberOfDice4.Name = "TxtNumberOfDice4";
             this.TxtNumberOfDice4.Size = new System.Drawing.Size(24, 20);
-            this.TxtNumberOfDice4.TabIndex = 33;
+            this.TxtNumberOfDice4.TabIndex = 21;
             // 
             // BtnRollCustom4
             // 
             this.BtnRollCustom4.Location = new System.Drawing.Point(277, 137);
             this.BtnRollCustom4.Name = "BtnRollCustom4";
             this.BtnRollCustom4.Size = new System.Drawing.Size(33, 20);
-            this.BtnRollCustom4.TabIndex = 32;
+            this.BtnRollCustom4.TabIndex = 24;
             this.BtnRollCustom4.Text = "Roll";
             this.BtnRollCustom4.UseVisualStyleBackColor = true;
             this.BtnRollCustom4.Click += new System.EventHandler(this.BtnRollCustom4_Click);
@@ -480,7 +481,7 @@
             this.TxtDescription4.Location = new System.Drawing.Point(12, 137);
             this.TxtDescription4.Name = "TxtDescription4";
             this.TxtDescription4.Size = new System.Drawing.Size(126, 20);
-            this.TxtDescription4.TabIndex = 31;
+            this.TxtDescription4.TabIndex = 20;
             // 
             // label5
             // 
@@ -496,7 +497,7 @@
             this.TxtBonus3.Location = new System.Drawing.Point(231, 111);
             this.TxtBonus3.Name = "TxtBonus3";
             this.TxtBonus3.Size = new System.Drawing.Size(29, 20);
-            this.TxtBonus3.TabIndex = 29;
+            this.TxtBonus3.TabIndex = 18;
             // 
             // label6
             // 
@@ -512,21 +513,21 @@
             this.TxtDieSides3.Location = new System.Drawing.Point(190, 111);
             this.TxtDieSides3.Name = "TxtDieSides3";
             this.TxtDieSides3.Size = new System.Drawing.Size(24, 20);
-            this.TxtDieSides3.TabIndex = 27;
+            this.TxtDieSides3.TabIndex = 17;
             // 
             // TxtNumberOfDice3
             // 
             this.TxtNumberOfDice3.Location = new System.Drawing.Point(148, 111);
             this.TxtNumberOfDice3.Name = "TxtNumberOfDice3";
             this.TxtNumberOfDice3.Size = new System.Drawing.Size(24, 20);
-            this.TxtNumberOfDice3.TabIndex = 26;
+            this.TxtNumberOfDice3.TabIndex = 16;
             // 
             // BtnRollCustom3
             // 
             this.BtnRollCustom3.Location = new System.Drawing.Point(277, 111);
             this.BtnRollCustom3.Name = "BtnRollCustom3";
             this.BtnRollCustom3.Size = new System.Drawing.Size(33, 20);
-            this.BtnRollCustom3.TabIndex = 25;
+            this.BtnRollCustom3.TabIndex = 19;
             this.BtnRollCustom3.Text = "Roll";
             this.BtnRollCustom3.UseVisualStyleBackColor = true;
             this.BtnRollCustom3.Click += new System.EventHandler(this.BtnRollCustom3_Click);
@@ -536,7 +537,7 @@
             this.TxtDescription3.Location = new System.Drawing.Point(12, 111);
             this.TxtDescription3.Name = "TxtDescription3";
             this.TxtDescription3.Size = new System.Drawing.Size(126, 20);
-            this.TxtDescription3.TabIndex = 24;
+            this.TxtDescription3.TabIndex = 15;
             // 
             // label3
             // 
@@ -552,7 +553,7 @@
             this.TxtBonus2.Location = new System.Drawing.Point(231, 85);
             this.TxtBonus2.Name = "TxtBonus2";
             this.TxtBonus2.Size = new System.Drawing.Size(29, 20);
-            this.TxtBonus2.TabIndex = 22;
+            this.TxtBonus2.TabIndex = 13;
             // 
             // label4
             // 
@@ -568,21 +569,21 @@
             this.TxtDieSides2.Location = new System.Drawing.Point(190, 85);
             this.TxtDieSides2.Name = "TxtDieSides2";
             this.TxtDieSides2.Size = new System.Drawing.Size(24, 20);
-            this.TxtDieSides2.TabIndex = 20;
+            this.TxtDieSides2.TabIndex = 12;
             // 
             // TxtNumberOfDice2
             // 
             this.TxtNumberOfDice2.Location = new System.Drawing.Point(148, 85);
             this.TxtNumberOfDice2.Name = "TxtNumberOfDice2";
             this.TxtNumberOfDice2.Size = new System.Drawing.Size(24, 20);
-            this.TxtNumberOfDice2.TabIndex = 19;
+            this.TxtNumberOfDice2.TabIndex = 11;
             // 
             // BtnRollCustom2
             // 
             this.BtnRollCustom2.Location = new System.Drawing.Point(277, 85);
             this.BtnRollCustom2.Name = "BtnRollCustom2";
             this.BtnRollCustom2.Size = new System.Drawing.Size(33, 20);
-            this.BtnRollCustom2.TabIndex = 18;
+            this.BtnRollCustom2.TabIndex = 14;
             this.BtnRollCustom2.Text = "Roll";
             this.BtnRollCustom2.UseVisualStyleBackColor = true;
             this.BtnRollCustom2.Click += new System.EventHandler(this.BtnRollCustom2_Click);
@@ -592,7 +593,7 @@
             this.TxtDescription2.Location = new System.Drawing.Point(12, 85);
             this.TxtDescription2.Name = "TxtDescription2";
             this.TxtDescription2.Size = new System.Drawing.Size(126, 20);
-            this.TxtDescription2.TabIndex = 17;
+            this.TxtDescription2.TabIndex = 10;
             // 
             // label1
             // 
@@ -608,7 +609,7 @@
             this.TxtBonus1.Location = new System.Drawing.Point(231, 59);
             this.TxtBonus1.Name = "TxtBonus1";
             this.TxtBonus1.Size = new System.Drawing.Size(29, 20);
-            this.TxtBonus1.TabIndex = 15;
+            this.TxtBonus1.TabIndex = 8;
             // 
             // label2
             // 
@@ -624,21 +625,21 @@
             this.TxtDieSides1.Location = new System.Drawing.Point(190, 59);
             this.TxtDieSides1.Name = "TxtDieSides1";
             this.TxtDieSides1.Size = new System.Drawing.Size(24, 20);
-            this.TxtDieSides1.TabIndex = 13;
+            this.TxtDieSides1.TabIndex = 7;
             // 
             // TxtNumberOfDice1
             // 
             this.TxtNumberOfDice1.Location = new System.Drawing.Point(148, 59);
             this.TxtNumberOfDice1.Name = "TxtNumberOfDice1";
             this.TxtNumberOfDice1.Size = new System.Drawing.Size(24, 20);
-            this.TxtNumberOfDice1.TabIndex = 12;
+            this.TxtNumberOfDice1.TabIndex = 6;
             // 
             // BtnRollCustom1
             // 
             this.BtnRollCustom1.Location = new System.Drawing.Point(277, 59);
             this.BtnRollCustom1.Name = "BtnRollCustom1";
             this.BtnRollCustom1.Size = new System.Drawing.Size(33, 20);
-            this.BtnRollCustom1.TabIndex = 11;
+            this.BtnRollCustom1.TabIndex = 9;
             this.BtnRollCustom1.Text = "Roll";
             this.BtnRollCustom1.UseVisualStyleBackColor = true;
             this.BtnRollCustom1.Click += new System.EventHandler(this.BtnRollCustom1_Click_1);
@@ -648,7 +649,7 @@
             this.TxtDescription1.Location = new System.Drawing.Point(12, 59);
             this.TxtDescription1.Name = "TxtDescription1";
             this.TxtDescription1.Size = new System.Drawing.Size(126, 20);
-            this.TxtDescription1.TabIndex = 10;
+            this.TxtDescription1.TabIndex = 5;
             // 
             // LblPlus
             // 
@@ -664,7 +665,7 @@
             this.TxtBonus0.Location = new System.Drawing.Point(231, 33);
             this.TxtBonus0.Name = "TxtBonus0";
             this.TxtBonus0.Size = new System.Drawing.Size(29, 20);
-            this.TxtBonus0.TabIndex = 8;
+            this.TxtBonus0.TabIndex = 3;
             // 
             // LblD
             // 
@@ -680,14 +681,14 @@
             this.TxtDieSides0.Location = new System.Drawing.Point(190, 33);
             this.TxtDieSides0.Name = "TxtDieSides0";
             this.TxtDieSides0.Size = new System.Drawing.Size(24, 20);
-            this.TxtDieSides0.TabIndex = 6;
+            this.TxtDieSides0.TabIndex = 2;
             // 
             // TxtNumberOfDice0
             // 
             this.TxtNumberOfDice0.Location = new System.Drawing.Point(148, 33);
             this.TxtNumberOfDice0.Name = "TxtNumberOfDice0";
             this.TxtNumberOfDice0.Size = new System.Drawing.Size(24, 20);
-            this.TxtNumberOfDice0.TabIndex = 5;
+            this.TxtNumberOfDice0.TabIndex = 1;
             // 
             // BtnRollCustom0
             // 
@@ -704,7 +705,7 @@
             this.TxtDescription0.Location = new System.Drawing.Point(12, 33);
             this.TxtDescription0.Name = "TxtDescription0";
             this.TxtDescription0.Size = new System.Drawing.Size(126, 20);
-            this.TxtDescription0.TabIndex = 3;
+            this.TxtDescription0.TabIndex = 0;
             // 
             // LblBonus
             // 
@@ -738,7 +739,7 @@
             this.RbAdvantage.Location = new System.Drawing.Point(2, 20);
             this.RbAdvantage.Name = "RbAdvantage";
             this.RbAdvantage.Size = new System.Drawing.Size(106, 23);
-            this.RbAdvantage.TabIndex = 21;
+            this.RbAdvantage.TabIndex = 2;
             this.RbAdvantage.Text = "Advantage";
             this.RbAdvantage.UseVisualStyleBackColor = true;
             this.RbAdvantage.Click += new System.EventHandler(this.RbAdvantage_Click);
@@ -748,7 +749,7 @@
             this.RbNormal.Location = new System.Drawing.Point(108, 20);
             this.RbNormal.Name = "RbNormal";
             this.RbNormal.Size = new System.Drawing.Size(106, 23);
-            this.RbNormal.TabIndex = 22;
+            this.RbNormal.TabIndex = 3;
             this.RbNormal.Text = "Normal";
             this.RbNormal.UseVisualStyleBackColor = true;
             this.RbNormal.Click += new System.EventHandler(this.RbNormal_Click);
@@ -758,7 +759,7 @@
             this.RbDisadvantage.Location = new System.Drawing.Point(214, 20);
             this.RbDisadvantage.Name = "RbDisadvantage";
             this.RbDisadvantage.Size = new System.Drawing.Size(105, 23);
-            this.RbDisadvantage.TabIndex = 23;
+            this.RbDisadvantage.TabIndex = 4;
             this.RbDisadvantage.Text = "Disadvantage";
             this.RbDisadvantage.UseVisualStyleBackColor = true;
             this.RbDisadvantage.Click += new System.EventHandler(this.RbDisadvantage_Click);
@@ -768,7 +769,7 @@
             this.BtnDarkMode.Location = new System.Drawing.Point(3, 495);
             this.BtnDarkMode.Name = "BtnDarkMode";
             this.BtnDarkMode.Size = new System.Drawing.Size(75, 23);
-            this.BtnDarkMode.TabIndex = 24;
+            this.BtnDarkMode.TabIndex = 12;
             this.BtnDarkMode.Text = "Light Theme";
             this.BtnDarkMode.UseVisualStyleBackColor = true;
             this.BtnDarkMode.Click += new System.EventHandler(this.BtnDarkMode_Click);
@@ -781,9 +782,19 @@
             this.GrpDdbSpells.Location = new System.Drawing.Point(112, 233);
             this.GrpDdbSpells.Name = "GrpDdbSpells";
             this.GrpDdbSpells.Size = new System.Drawing.Size(207, 78);
-            this.GrpDdbSpells.TabIndex = 25;
+            this.GrpDdbSpells.TabIndex = 10;
             this.GrpDdbSpells.TabStop = false;
             this.GrpDdbSpells.Text = "Spells Beta (From Ddb)";
+            // 
+            // CbSpellHigherLevels
+            // 
+            this.CbSpellHigherLevels.AutoSize = true;
+            this.CbSpellHigherLevels.Location = new System.Drawing.Point(109, 52);
+            this.CbSpellHigherLevels.Name = "CbSpellHigherLevels";
+            this.CbSpellHigherLevels.Size = new System.Drawing.Size(91, 17);
+            this.CbSpellHigherLevels.TabIndex = 2;
+            this.CbSpellHigherLevels.Text = "Higher Levels";
+            this.CbSpellHigherLevels.UseVisualStyleBackColor = true;
             // 
             // BtnDdbSpell
             // 
@@ -802,17 +813,6 @@
             this.DdlDdbSpells.Name = "DdlDdbSpells";
             this.DdlDdbSpells.Size = new System.Drawing.Size(193, 21);
             this.DdlDdbSpells.TabIndex = 0;
-            this.DdlDdbSpells.SelectedIndexChanged += new System.EventHandler(this.DdlDdbSpells_SelectedIndexChanged);
-            // 
-            // CbSpellHigherLevels
-            // 
-            this.CbSpellHigherLevels.AutoSize = true;
-            this.CbSpellHigherLevels.Location = new System.Drawing.Point(109, 52);
-            this.CbSpellHigherLevels.Name = "CbSpellHigherLevels";
-            this.CbSpellHigherLevels.Size = new System.Drawing.Size(91, 17);
-            this.CbSpellHigherLevels.TabIndex = 2;
-            this.CbSpellHigherLevels.Text = "Higher Levels";
-            this.CbSpellHigherLevels.UseVisualStyleBackColor = true;
             // 
             // CharacterForm
             // 

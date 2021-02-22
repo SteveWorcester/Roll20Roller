@@ -134,31 +134,34 @@ namespace Roll20Roller.Managers
 
         public void GetSpellCard(Spell spell, bool gmOnly, bool displayHigherLevelsText)
         {
-            var componentTypes = new StringBuilder();
-            spell.ComponentTypes.ForEach(t => componentTypes.Append($"{t} "));
-
-            var template = string.Empty;
-
-            if (gmOnly)
+            if (!spell.Description.Equals("Invalid"))
             {
-                template += _gmWhisper;
+                var componentTypes = new StringBuilder();
+                spell.ComponentTypes.ForEach(t => componentTypes.Append($"{t} "));
+
+                var template = string.Empty;
+
+                if (gmOnly)
+                {
+                    template += _gmWhisper;
+                }
+
+                template += TemplateStartDefaultTemplate($"{spell.Name} - {spell.School} ({spell.Class})")
+                + TemplateGenerateRow("Level", spell.Level.ToString())
+                + TemplateGenerateRow("Casting Time", spell.CastingTime)
+                + TemplateGenerateRow("Range/Area", spell.Range)
+                + TemplateGenerateRow("Components", componentTypes.ToString().Trim())
+                + TemplateGenerateRow("Materials", spell.ComponentMaterials)
+                + TemplateGenerateRow("Duration", spell.Duration)
+                + TemplateGenerateRow("Short Description", spell.Description);
+
+                if (displayHigherLevelsText)
+                {
+                    template += TemplateGenerateRow("Higher Levels", spell.DescriptionHigherLevels);
+                }
+
+                Clipboard.SetText(template);
             }
-
-            template += TemplateStartDefaultTemplate($"{spell.Name} - {spell.School} ({spell.Class})")
-            + TemplateGenerateRow("Level", spell.Level.ToString())
-            + TemplateGenerateRow("Casting Time", spell.CastingTime)
-            + TemplateGenerateRow("Range/Area", spell.Range)
-            + TemplateGenerateRow("Components", componentTypes.ToString().Trim())
-            + TemplateGenerateRow("Materials", spell.ComponentMaterials)
-            + TemplateGenerateRow("Duration", spell.Duration) 
-            + TemplateGenerateRow("Short Description", spell.Description);
-
-            if (displayHigherLevelsText)
-            {
-                template += TemplateGenerateRow("Higher Levels", spell.DescriptionHigherLevels);
-            }
-
-            Clipboard.SetText(template);
         }
     }
 }

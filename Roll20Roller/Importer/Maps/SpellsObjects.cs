@@ -17,7 +17,7 @@ namespace Roll20Roller.Importer.Maps
 
         // basic content - main spells window
         private IWebElement _basicSpellsParent => _Driver.WaitForElement(By.CssSelector(".ddbc-tab-options__content"));
-        public IReadOnlyCollection<IWebElement> AllSpellNames => _basicSpellsParent.FindElements(By.XPath("./div/div[2]/div[1]/div[2]/div/div[2]/div[1]/span"));
+        public IReadOnlyCollection<IWebElement> AllSpellNames => _basicSpellsParent.FindElements(By.XPath("./div/div[2]/div[1]/div//span[@class=\" ddbc-spell-name\"]"));
         protected IWebElement SpellLineParentByName(string spellName) => AllSpellNames
             .FirstOrDefault(n => n.Text.Contains(spellName))
             .FindElement(By.XPath("./parent::div/parent::div/parent::div"));
@@ -81,5 +81,19 @@ namespace Roll20Roller.Importer.Maps
         }
         private IWebElement _ranged => _detailedSpellsParent.FindElement(By.CssSelector("div.ddbc-property-list__property:nth-child(2) > div:nth-child(2) > span:nth-child(1) > span:nth-child(1)"));
         private IWebElement _touch => _detailedSpellsParent.FindElement(By.CssSelector("div.ddbc-property-list__property:nth-child(2) > div:nth-child(2)"));
+        
+        internal bool HasAvailableSpells()
+        {
+            try
+            {
+                var element = BtnSpellsTabButtonPreClick.Text;
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+
+        }
     }
 }

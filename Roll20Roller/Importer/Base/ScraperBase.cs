@@ -16,7 +16,6 @@ namespace Roll20Roller.Importer.Base
             options.BinaryLocation = GetChromeBinaryLocation();
             options.AddArgument("--headless");
             options.AddArgument("--window-size=1920,1080");
-
             
             service = ChromeDriverService.CreateDefaultService();
             service.SuppressInitialDiagnosticInformation = true;

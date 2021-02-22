@@ -67,7 +67,7 @@ namespace Roll20Roller.Managers
                         if (grpCtrl is CheckBox)
                         {
                             grpCtrl.ForeColor = cbForeColor;
-                            grpCtrl.BackColor = ddlBackColor;
+                            grpCtrl.BackColor = cbBackColor;
                         }
                         if (grpCtrl is TextBox)
                         {

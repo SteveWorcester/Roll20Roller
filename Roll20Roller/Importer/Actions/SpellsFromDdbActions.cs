@@ -42,7 +42,7 @@ namespace Roll20Roller.Importer.Actions
                 {
                     if (!spellsList.Contains(nameElement.Text))
                     {
-                        spellsList.Add(nameElement.GetAttribute("class"));
+                        spellsList.Add(nameElement.Text);
                     }                    
                 }
             }
@@ -69,16 +69,16 @@ namespace Roll20Roller.Importer.Actions
 
         public Spell GetSpellFromDdb(string spellName)
         {
-            if (spellName.Equals(string.Empty) || spellName.Contains("=-"))
+            if (spellName.Equals(string.Empty) || spellName.Contains("==="))
             {
-                return new Spell();
+                return new Spell() { Description = "Invalid" };
             }
 
             SpellLineParentByName(spellName).Click();
 
             if (!Enum.TryParse<CharacterClass>(SelectedSpellClass.Text, out var className))
             {
-                throw new FormatException($"The class {SelectedSpellClass.Text} cannot be parsed in spell description.");
+                className = CharacterClass.None;
             }
 
             var spellSchool = SelectedSpellSchool.Text;

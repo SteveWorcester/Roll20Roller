@@ -116,8 +116,7 @@ namespace Roll20Roller.Forms
 
             #region Spells From Ddb
 
-            if (SpellsManager.SpellcastingClasses.Contains(classes.First().charClass)
-                || SpellsManager.SpellcastingClasses.Contains(classes.Last().charClass))
+            if (_SpellsDdb.HasAvailableSpells())
             {
                 _SpellsDdb.Init(DdlDdbSpells);
             }
@@ -125,7 +124,8 @@ namespace Roll20Roller.Forms
             {
                 DdlDdbSpells.Enabled = false;
                 BtnDdbSpell.Enabled = false;
-                BtnDdbSpell.Text = "Not a Spellcaster!";
+                CbSpellHigherLevels.Enabled = false;
+                BtnDdbSpell.Text = "No Spells!";
             }
 
             #endregion
@@ -319,11 +319,6 @@ namespace Roll20Roller.Forms
             this.TopMost = CbTopmost.Checked;
         }
 
-        private void CbGmOnly_CheckedChanged(object sender, EventArgs e)
-        {
-            GmOnly = CbGmOnly.Checked;
-        }
-
         private void BtnDarkMode_Click(object sender, EventArgs e)
         {
             selectedAdvantage = Advantage.Normal;
@@ -335,10 +330,6 @@ namespace Roll20Roller.Forms
         #endregion
 
         #region Spells from Ddb
-        private void DdlDdbSpells_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _SpellsDdb.Init(DdlDdbSpells);
-        }
 
         private void BtnDdbSpell_Click(object sender, EventArgs e)
         {
