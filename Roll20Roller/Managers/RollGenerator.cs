@@ -132,76 +132,36 @@ namespace Roll20Roller.Managers
             Clipboard.SetText(template);
         }
 
-        public void GetSpellCard(Spell spell, bool gmOnly)
+        public void GetSpellCard(Spell spell, bool gmOnly, bool displayHigherLevelsText)
         {
-            if (spell.Class.Equals(CharacterClass.None))
+            if (!spell.Description.Equals("Invalid"))
             {
-                return;
-            }
+                var componentTypes = new StringBuilder();
+                spell.ComponentTypes.ForEach(t => componentTypes.Append($"{t} "));
 
-            var template = string.Empty;
+                var template = string.Empty;
 
-            if (gmOnly)
-            {
-                template += _gmWhisper;
-            }
-
-            template += TemplateStartDefaultTemplate($"{spell.Name} ({spell.Class})")
-            + TemplateGenerateRow("School", spell.School)
-            + TemplateGenerateRow("Level", spell.Level.ToString())
-            + TemplateGenerateRow("Casting Time", spell.CastingTime)
-            + TemplateGenerateRow("Range", spell.Range)
-            + TemplateGenerateRow("Components", spell.Components)
-            + TemplateGenerateRow("Duration", spell.Duration);
-
-            if (spell.Description.Contains("saving throw"))
-            {                
-                var spellCastingAttribute = string.Empty;
-
-                switch (spell.Class)
+                if (gmOnly)
                 {
-                    case CharacterClass.Bard:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Cleric:
-                        spellCastingAttribute = "WIS";
-                        break;
-                    case CharacterClass.Druid:
-                        spellCastingAttribute = "WIS";
-                        break;
-                    case CharacterClass.Paladin:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Ranger:
-                        spellCastingAttribute = "WIS";
-                        break;
-                    case CharacterClass.Sorcerer:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Warlock:
-                        spellCastingAttribute = "CHA";
-                        break;
-                    case CharacterClass.Wizard:
-                        spellCastingAttribute = "INT";
-                        break;
-                    default:
-                        spellCastingAttribute = string.Empty;
-                        break;
-                }
-                if (spellCastingAttribute.Equals(string.Empty))
-                {
-                    throw new Exception($"Spellcasting ability not found for class {spell.Class}");
+                    template += _gmWhisper;
                 }
 
-                var proficiencyBonus = _SavingThrows.GetProficiencyBonus();
-                var statBonus = _SavingThrows.GetStatCheckBonus(spellCastingAttribute);
+                template += TemplateStartDefaultTemplate($"{spell.Name} - {spell.School} ({spell.Class})")
+                + TemplateGenerateRow("Level", spell.Level.ToString())
+                + TemplateGenerateRow("Casting Time", spell.CastingTime)
+                + TemplateGenerateRow("Range/Area", spell.Range)
+                + TemplateGenerateRow("Components", componentTypes.ToString().Trim())
+                + TemplateGenerateRow("Materials", spell.ComponentMaterials)
+                + TemplateGenerateRow("Duration", spell.Duration)
+                + TemplateGenerateRow("Short Description", spell.Description);
 
-                template += TemplateGenerateRow("Saving Throw", $"{8+proficiencyBonus+statBonus} (Not including any magical enhancement)");
+                if (displayHigherLevelsText)
+                {
+                    template += TemplateGenerateRow("Higher Levels", spell.DescriptionHigherLevels);
+                }
+
+                Clipboard.SetText(template);
             }
-
-            template += TemplateGenerateRow("Description", spell.Description);
-
-            Clipboard.SetText(template);
         }
     }
 }
