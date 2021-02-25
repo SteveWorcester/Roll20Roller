@@ -14,7 +14,7 @@ namespace Roll20Roller.Importer.Base
 {
     public static class Wait
     {
-        public static IWebElement WaitForElement(this IWebDriver driver, By by, int timeoutInMs = 30000) // 30 seconds
+        public static IWebElement WaitForElement(this IWebDriver driver, By by, int timeoutInMs = 45000) // 45 seconds
         {
             return new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeoutInMs)).Until((drv) => {
                 try

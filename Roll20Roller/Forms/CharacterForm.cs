@@ -119,6 +119,9 @@ namespace Roll20Roller.Forms
             if (_SpellsDdb.HasAvailableSpells())
             {
                 _SpellsDdb.Init(DdlDdbSpells);
+                LblSpellModifier.Text = _SpellsDdb.SpellBonuses.modifier;
+                LblSpellAttack.Text = _SpellsDdb.SpellBonuses.spellAttack;
+                LblSpellSaveDc.Text = _SpellsDdb.SpellBonuses.saveDc;
             }
             else
             {
@@ -332,7 +335,7 @@ namespace Roll20Roller.Forms
         #region Spells from Ddb
 
         private void BtnDdbSpell_Click(object sender, EventArgs e)
-        {
+        {            
             _Roll.GetSpellCard(_SpellsDdb.GetSpellFromDdb(DdlDdbSpells.Text), GmOnly, CbSpellHigherLevels.Checked);
         }
 

@@ -23,7 +23,12 @@ namespace Roll20Roller.Importer.Maps
             .FindElement(By.XPath("./parent::div/parent::div/parent::div"));
         protected List<IWebElement> SpellLevelGroups => _basicSpellsParent.FindElements(By.XPath("./div")).ToList();
         protected List<IWebElement> SpellNamesByLevel(int level) => SpellLevelGroups[level].FindElements(By.XPath("./div[2]/div[1]/div[2]/div//span[@class=\" ddbc-spell-name\"]")).ToList();
-
+        protected IWebElement _spellBonusParent => _Driver.WaitForElement(By.CssSelector(".ct-spells-level-casting__info"));
+        protected IWebElement SpellModifier => _spellBonusParent.FindElement(By.XPath("./div[1]/div[1]/span/span/span[2]"));
+        protected IWebElement SpellModifierPlusMinus => _spellBonusParent.FindElement(By.XPath("./div[1]/div[1]/span/span/span[1]"));
+        protected IWebElement SpellAttack => _spellBonusParent.FindElement(By.XPath("./div[2]/div[1]/span/span/span[2]"));
+        protected IWebElement SpellAttackPlusMinus => _spellBonusParent.FindElement(By.XPath("./div[2]/div[1]/span/span/span[1]"));
+        protected IWebElement SaveDc => _spellBonusParent.FindElement(By.XPath("./div[3]/div[1]/span"));
 
         // detailed content - side pane
         private IWebElement _detailedSpellsParent => _Driver.WaitForElement(By.CssSelector(".ct-spell-detail"));
