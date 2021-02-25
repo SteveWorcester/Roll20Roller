@@ -20,12 +20,14 @@ namespace Roll20Roller.Managers
             _MainPage = new MainPageActions(charId);
             _Actions = new ActionsActions(charId);
             _SavingThrows = new SavingThrowsActions(charId);
+            _Spells = new SpellsFromDdbActions(charId);
         }
 
         public SkillsActions _Skills;
         public MainPageActions _MainPage;
         public ActionsActions _Actions;
         public SavingThrowsActions _SavingThrows;
+        public SpellsFromDdbActions _Spells;
 
         private string _gmWhisper = "/w gm ";
 
@@ -134,10 +136,12 @@ namespace Roll20Roller.Managers
 
         public void GetSpellCard(Spell spell, bool gmOnly, bool displayHigherLevelsText)
         {
+            Clipboard.Clear();
             if (!spell.Description.Equals("Invalid"))
             {
                 var componentTypes = new StringBuilder();
                 spell.ComponentTypes.ForEach(t => componentTypes.Append($"{t} "));
+                var range = int.TryParse(spell.Range, out _) ? $"{spell.Range} ft." : spell.Range;
 
                 var template = string.Empty;
 
@@ -146,13 +150,17 @@ namespace Roll20Roller.Managers
                     template += _gmWhisper;
                 }
 
-                template += TemplateStartDefaultTemplate($"{spell.Name} - {spell.School} ({spell.Class})")
-                + TemplateGenerateRow("Level", spell.Level.ToString())
-                + TemplateGenerateRow("Casting Time", spell.CastingTime)
-                + TemplateGenerateRow("Range/Area", spell.Range)
-                + TemplateGenerateRow("Components", componentTypes.ToString().Trim())
-                + TemplateGenerateRow("Materials", spell.ComponentMaterials)
+                template += TemplateStartDefaultTemplate(
+                    $"{spell.Name}\n" +
+                    $"Level {spell.Level.ToString()} {spell.School}\n" +
+                    $"{spell.Class}")
+                + TemplateGenerateRow("Casting", spell.CastingTime)
+                + TemplateGenerateRow("Range", range)
+                + TemplateGenerateRow("Components", $"{componentTypes.ToString().Trim()}; {spell.ComponentMaterials}")
                 + TemplateGenerateRow("Duration", spell.Duration)
+                + TemplateGenerateRow("Bonuses", $"Modifier: {_Spells.SpellBonuses.modifier}\n" +
+                                                 $"Spell Attack: {_Spells.SpellBonuses.spellAttack}\n" +
+                                                 $"Save DC: {_Spells.SpellBonuses.saveDc}")                
                 + TemplateGenerateRow("Short Description", spell.Description);
 
                 if (displayHigherLevelsText)

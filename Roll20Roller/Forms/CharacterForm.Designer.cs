@@ -101,6 +101,13 @@
             this.CbSpellHigherLevels = new System.Windows.Forms.CheckBox();
             this.BtnDdbSpell = new System.Windows.Forms.Button();
             this.DdlDdbSpells = new System.Windows.Forms.ComboBox();
+            this.StaticLblSpellModifier = new System.Windows.Forms.Label();
+            this.StaticLblSpellAttack = new System.Windows.Forms.Label();
+            this.StaticLblSpellSaveDc = new System.Windows.Forms.Label();
+            this.LblSpellModifier = new System.Windows.Forms.Label();
+            this.LblSpellAttack = new System.Windows.Forms.Label();
+            this.LblSpellSaveDc = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.GrpAttacks.SuspendLayout();
             this.GrpSavingThrows.SuspendLayout();
             this.GrpSkills.SuspendLayout();
@@ -108,6 +115,7 @@
             this.GrpClassOptions1.SuspendLayout();
             this.GrpCustom.SuspendLayout();
             this.GrpDdbSpells.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblCharacterName
@@ -345,7 +353,7 @@
             // CbGmOnly
             // 
             this.CbGmOnly.AutoSize = true;
-            this.CbGmOnly.Location = new System.Drawing.Point(304, 505);
+            this.CbGmOnly.Location = new System.Drawing.Point(304, 525);
             this.CbGmOnly.Name = "CbGmOnly";
             this.CbGmOnly.Size = new System.Drawing.Size(15, 14);
             this.CbGmOnly.TabIndex = 14;
@@ -356,7 +364,7 @@
             this.GrpClassOptions1.Controls.Add(this.CbRage);
             this.GrpClassOptions1.Location = new System.Drawing.Point(3, 232);
             this.GrpClassOptions1.Name = "GrpClassOptions1";
-            this.GrpClassOptions1.Size = new System.Drawing.Size(103, 79);
+            this.GrpClassOptions1.Size = new System.Drawing.Size(103, 108);
             this.GrpClassOptions1.TabIndex = 9;
             this.GrpClassOptions1.TabStop = false;
             this.GrpClassOptions1.Text = "Class Options";
@@ -374,7 +382,7 @@
             // LblGmOnly
             // 
             this.LblGmOnly.AutoSize = true;
-            this.LblGmOnly.Location = new System.Drawing.Point(218, 505);
+            this.LblGmOnly.Location = new System.Drawing.Point(218, 525);
             this.LblGmOnly.Name = "LblGmOnly";
             this.LblGmOnly.Size = new System.Drawing.Size(86, 13);
             this.LblGmOnly.TabIndex = 13;
@@ -420,7 +428,7 @@
             this.GrpCustom.Controls.Add(this.LblBonus);
             this.GrpCustom.Controls.Add(this.LblDice);
             this.GrpCustom.Controls.Add(this.LblDescription);
-            this.GrpCustom.Location = new System.Drawing.Point(3, 317);
+            this.GrpCustom.Location = new System.Drawing.Point(3, 346);
             this.GrpCustom.Name = "GrpCustom";
             this.GrpCustom.Size = new System.Drawing.Size(316, 164);
             this.GrpCustom.TabIndex = 11;
@@ -766,7 +774,7 @@
             // 
             // BtnDarkMode
             // 
-            this.BtnDarkMode.Location = new System.Drawing.Point(3, 495);
+            this.BtnDarkMode.Location = new System.Drawing.Point(3, 516);
             this.BtnDarkMode.Name = "BtnDarkMode";
             this.BtnDarkMode.Size = new System.Drawing.Size(75, 23);
             this.BtnDarkMode.TabIndex = 12;
@@ -776,15 +784,16 @@
             // 
             // GrpDdbSpells
             // 
+            this.GrpDdbSpells.Controls.Add(this.tableLayoutPanel1);
             this.GrpDdbSpells.Controls.Add(this.CbSpellHigherLevels);
             this.GrpDdbSpells.Controls.Add(this.BtnDdbSpell);
             this.GrpDdbSpells.Controls.Add(this.DdlDdbSpells);
             this.GrpDdbSpells.Location = new System.Drawing.Point(112, 233);
             this.GrpDdbSpells.Name = "GrpDdbSpells";
-            this.GrpDdbSpells.Size = new System.Drawing.Size(207, 78);
+            this.GrpDdbSpells.Size = new System.Drawing.Size(207, 107);
             this.GrpDdbSpells.TabIndex = 10;
             this.GrpDdbSpells.TabStop = false;
-            this.GrpDdbSpells.Text = "Spells Beta (From Ddb)";
+            this.GrpDdbSpells.Text = "Spells";
             // 
             // CbSpellHigherLevels
             // 
@@ -814,11 +823,91 @@
             this.DdlDdbSpells.Size = new System.Drawing.Size(193, 21);
             this.DdlDdbSpells.TabIndex = 0;
             // 
+            // StaticLblSpellModifier
+            // 
+            this.StaticLblSpellModifier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StaticLblSpellModifier.AutoSize = true;
+            this.StaticLblSpellModifier.Location = new System.Drawing.Point(3, 17);
+            this.StaticLblSpellModifier.Name = "StaticLblSpellModifier";
+            this.StaticLblSpellModifier.Size = new System.Drawing.Size(47, 13);
+            this.StaticLblSpellModifier.TabIndex = 3;
+            this.StaticLblSpellModifier.Text = "Damage";
+            // 
+            // StaticLblSpellAttack
+            // 
+            this.StaticLblSpellAttack.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.StaticLblSpellAttack.AutoSize = true;
+            this.StaticLblSpellAttack.Location = new System.Drawing.Point(64, 17);
+            this.StaticLblSpellAttack.Name = "StaticLblSpellAttack";
+            this.StaticLblSpellAttack.Size = new System.Drawing.Size(64, 13);
+            this.StaticLblSpellAttack.TabIndex = 4;
+            this.StaticLblSpellAttack.Text = "Spell Attack";
+            // 
+            // StaticLblSpellSaveDc
+            // 
+            this.StaticLblSpellSaveDc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StaticLblSpellSaveDc.AutoSize = true;
+            this.StaticLblSpellSaveDc.Location = new System.Drawing.Point(140, 17);
+            this.StaticLblSpellSaveDc.Name = "StaticLblSpellSaveDc";
+            this.StaticLblSpellSaveDc.Size = new System.Drawing.Size(50, 13);
+            this.StaticLblSpellSaveDc.TabIndex = 5;
+            this.StaticLblSpellSaveDc.Text = "Save DC";
+            // 
+            // LblSpellModifier
+            // 
+            this.LblSpellModifier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LblSpellModifier.AutoSize = true;
+            this.LblSpellModifier.Location = new System.Drawing.Point(11, 0);
+            this.LblSpellModifier.Name = "LblSpellModifier";
+            this.LblSpellModifier.Size = new System.Drawing.Size(35, 13);
+            this.LblSpellModifier.TabIndex = 6;
+            this.LblSpellModifier.Text = "Mod#";
+            // 
+            // LblSpellAttack
+            // 
+            this.LblSpellAttack.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LblSpellAttack.AutoSize = true;
+            this.LblSpellAttack.Location = new System.Drawing.Point(73, 0);
+            this.LblSpellAttack.Name = "LblSpellAttack";
+            this.LblSpellAttack.Size = new System.Drawing.Size(45, 13);
+            this.LblSpellAttack.TabIndex = 7;
+            this.LblSpellAttack.Text = "Attack#";
+            // 
+            // LblSpellSaveDc
+            // 
+            this.LblSpellSaveDc.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LblSpellSaveDc.AutoSize = true;
+            this.LblSpellSaveDc.Location = new System.Drawing.Point(144, 0);
+            this.LblSpellSaveDc.Name = "LblSpellSaveDc";
+            this.LblSpellSaveDc.Size = new System.Drawing.Size(39, 13);
+            this.LblSpellSaveDc.TabIndex = 8;
+            this.LblSpellSaveDc.Text = "Save#";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.28358F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.71642F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.tableLayoutPanel1.Controls.Add(this.LblSpellSaveDc, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.StaticLblSpellModifier, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.StaticLblSpellSaveDc, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.LblSpellAttack, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.LblSpellModifier, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.StaticLblSpellAttack, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 77);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(193, 30);
+            this.tableLayoutPanel1.TabIndex = 16;
+            // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(322, 525);
+            this.ClientSize = new System.Drawing.Size(324, 542);
             this.Controls.Add(this.GrpDdbSpells);
             this.Controls.Add(this.BtnDarkMode);
             this.Controls.Add(this.RbDisadvantage);
@@ -851,6 +940,8 @@
             this.GrpCustom.PerformLayout();
             this.GrpDdbSpells.ResumeLayout(false);
             this.GrpDdbSpells.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -930,5 +1021,12 @@
         private System.Windows.Forms.Button BtnDdbSpell;
         private System.Windows.Forms.ComboBox DdlDdbSpells;
         private System.Windows.Forms.CheckBox CbSpellHigherLevels;
+        private System.Windows.Forms.Label LblSpellSaveDc;
+        private System.Windows.Forms.Label LblSpellAttack;
+        private System.Windows.Forms.Label LblSpellModifier;
+        private System.Windows.Forms.Label StaticLblSpellSaveDc;
+        private System.Windows.Forms.Label StaticLblSpellAttack;
+        private System.Windows.Forms.Label StaticLblSpellModifier;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

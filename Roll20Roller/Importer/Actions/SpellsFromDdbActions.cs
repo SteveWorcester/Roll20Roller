@@ -67,6 +67,11 @@ namespace Roll20Roller.Importer.Actions
             ddlDdbSpells.SelectedIndex = 1;
         }
 
+        public (string modifier, string spellAttack, string saveDc) SpellBonuses => 
+            (SpellModifierPlusMinus.Text + SpellModifier.Text,
+            SpellAttackPlusMinus.Text + SpellAttack.Text,
+            SaveDc.Text);
+
         public Spell GetSpellFromDdb(string spellName)
         {
             if (spellName.Equals(string.Empty) || spellName.Contains("==="))
