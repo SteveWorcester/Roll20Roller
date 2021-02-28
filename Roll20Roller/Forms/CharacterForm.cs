@@ -119,10 +119,14 @@ namespace Roll20Roller.Forms
             if (_SpellsDdb.HasAvailableSpells())
             {
                 _SpellsDdb.Init(DdlDdbSpells);
-                LblSpellModifier.Text = _SpellsDdb.SpellBonuses.modifier;
-                LblSpellAttack.Text = _SpellsDdb.SpellBonuses.spellAttack;
-                LblSpellSaveDc.Text = _SpellsDdb.SpellBonuses.saveDc;
+                if (_SpellsDdb.HasSpellModifier())
+                {
+                    LblSpellModifier.Text = _SpellsDdb.SpellBonuses.modifier;
+                    LblSpellAttack.Text = _SpellsDdb.SpellBonuses.spellAttack;
+                    LblSpellSaveDc.Text = _SpellsDdb.SpellBonuses.saveDc;
+                }
             }
+
             else
             {
                 DdlDdbSpells.Enabled = false;

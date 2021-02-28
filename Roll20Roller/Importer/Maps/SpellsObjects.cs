@@ -100,5 +100,18 @@ namespace Roll20Roller.Importer.Maps
             }
 
         }
+
+        internal bool HasSpellModifier()
+        {
+            try
+            {
+                var element = _Driver.FindElement(By.XPath("div.ct-spells-level-casting__info-group:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1) > span:nth-child(2)")).Text;
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
     }
 }
