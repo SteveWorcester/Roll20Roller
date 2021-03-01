@@ -67,10 +67,18 @@ namespace Roll20Roller.Importer.Actions
             ddlDdbSpells.SelectedIndex = 1;
         }
 
-        public (string modifier, string spellAttack, string saveDc) SpellBonuses => 
-            (SpellModifierPlusMinus.Text + SpellModifier.Text,
-            SpellAttackPlusMinus.Text + SpellAttack.Text,
-            SaveDc.Text);
+        public (string modifier, string spellAttack, string saveDc) SpellBonuses()
+        {
+            if (HasSpellModifier())
+            {
+                return (
+                    SpellModifierPlusMinus.Text + SpellModifier.Text,
+                    SpellAttackPlusMinus.Text + SpellAttack.Text,
+                    SaveDc.Text);
+            }
+            return ("Unknown", "Unknown", "Unknown");
+        }
+
 
         public Spell GetSpellFromDdb(string spellName)
         {
@@ -116,6 +124,14 @@ namespace Roll20Roller.Importer.Actions
                 Range = SelectedSpellRangeArea.Text,
                 School = spellSchool
             };
+        }
+
+        internal void SelectSpellsTab()
+        {
+            if (HasAvailableSpells())
+            {
+                BtnSpellsTabButtonPreClick.Click();
+            }
         }
     }
 }

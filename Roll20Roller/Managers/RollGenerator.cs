@@ -111,10 +111,13 @@ namespace Roll20Roller.Managers
                 template += TemplateGenerateRow("Versatile", "2-Handed");
             }
 
-            template += TemplateGenerateRow("Advantage", adv.ToString())
-            + TemplateGenerateD20HiddenRoll(adv, toHitBonus, descriptor: "ToHit")
-            + TemplateGenerateRowWithHiddenRollText("Damage", damageRoll)
-            + TemplateGenerateRow("DamageType", damageType);
+            template += TemplateGenerateRow("Advantage", adv.ToString());
+            if (! _Actions.AttackHasSaveDc(attackName))
+            {
+                template += TemplateGenerateD20HiddenRoll(adv, toHitBonus, descriptor: "ToHit");
+            }
+            template += _Actions.AttackHasSaveDc(attackName) ? TemplateGenerateRow("Save DC", damageRoll) : TemplateGenerateRowWithHiddenRollText("Damage", damageRoll);
+            template += TemplateGenerateRow("DamageType", damageType);
 
             Clipboard.SetText(template);
         }
@@ -158,9 +161,9 @@ namespace Roll20Roller.Managers
                 + TemplateGenerateRow("Range", range)
                 + TemplateGenerateRow("Components", $"{componentTypes.ToString().Trim()}; {spell.ComponentMaterials}")
                 + TemplateGenerateRow("Duration", spell.Duration)
-                + TemplateGenerateRow("Bonuses", $"Modifier: {_Spells.SpellBonuses.modifier}\n" +
-                                                 $"Spell Attack: {_Spells.SpellBonuses.spellAttack}\n" +
-                                                 $"Save DC: {_Spells.SpellBonuses.saveDc}")                
+                + TemplateGenerateRow("Bonuses", $"Damage: {_Spells.SpellBonuses().modifier}\n" +
+                                                 $"Spell Attack: {_Spells.SpellBonuses().spellAttack}\n" +
+                                                 $"Save DC: {_Spells.SpellBonuses().saveDc}")                
                 + TemplateGenerateRow("Short Description", spell.Description);
 
                 if (displayHigherLevelsText)

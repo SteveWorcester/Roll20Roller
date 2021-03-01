@@ -98,20 +98,38 @@ namespace Roll20Roller.Importer.Maps
             {
                 return false;
             }
-
         }
 
-        internal bool HasSpellModifier()
+        internal bool IsSpellsTabSelected()
         {
             try
             {
-                var element = _Driver.FindElement(By.XPath("div.ct-spells-level-casting__info-group:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1) > span:nth-child(2)")).Text;
+                var element = BtnSpellsTabButtonPostClick.Text;
                 return true;
             }
             catch (NoSuchElementException)
             {
                 return false;
             }
+        }
+
+        internal bool HasSpellModifier()
+        {
+            if (IsSpellsTabSelected())
+            {
+                try
+                {
+                    System.Threading.Thread.Sleep(50);
+                    // SpellBonusParent with no wait.
+                    var element = _Driver.FindElement(By.CssSelector("div.ct-spells-level-casting__info-group:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1) > span:nth-child(2)")).Text;
+                    return true;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

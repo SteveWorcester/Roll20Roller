@@ -121,9 +121,9 @@ namespace Roll20Roller.Forms
                 _SpellsDdb.Init(DdlDdbSpells);
                 if (_SpellsDdb.HasSpellModifier())
                 {
-                    LblSpellModifier.Text = _SpellsDdb.SpellBonuses.modifier;
-                    LblSpellAttack.Text = _SpellsDdb.SpellBonuses.spellAttack;
-                    LblSpellSaveDc.Text = _SpellsDdb.SpellBonuses.saveDc;
+                    LblSpellModifier.Text = _SpellsDdb.SpellBonuses().modifier;
+                    LblSpellAttack.Text = _SpellsDdb.SpellBonuses().spellAttack;
+                    LblSpellSaveDc.Text = _SpellsDdb.SpellBonuses().saveDc;
                 }
             }
 
@@ -164,11 +164,13 @@ namespace Roll20Roller.Forms
 
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
+            _Actions.SelectActionsTab();
             _Roll.RollAttack(selectedAdvantage, DdlEquippedWeapon.Text, CbVersatile.Checked, GmOnly, CbRage.Checked);
         }
 
         private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
         {
+            _Actions.SelectActionsTab();
             CbVersatile.Checked = false;
             CbVersatile.Enabled = _Actions.IsAttackVersatile(DdlEquippedWeapon.Text);
         }
@@ -339,7 +341,8 @@ namespace Roll20Roller.Forms
         #region Spells from Ddb
 
         private void BtnDdbSpell_Click(object sender, EventArgs e)
-        {            
+        {
+            _SpellsDdb.SelectSpellsTab();
             _Roll.GetSpellCard(_SpellsDdb.GetSpellFromDdb(DdlDdbSpells.Text), GmOnly, CbSpellHigherLevels.Checked);
         }
 
