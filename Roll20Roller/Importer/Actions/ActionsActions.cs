@@ -1,4 +1,5 @@
-﻿using Roll20Roller.Enums;
+﻿using OpenQA.Selenium;
+using Roll20Roller.Enums;
 using Roll20Roller.Importer.Base;
 using Roll20Roller.Importer.Maps;
 using System;
@@ -40,11 +41,19 @@ namespace Roll20Roller.Importer.Actions
         /// <returns>The amount of dice rolled and the sides of dice ex: 2d20</returns>
         public string GetBaseAttackRoll(string attackName)
         {
+            if (AttackHasSaveDc(attackName))
+            {
+                return _attackSaveDc(attackName).Text;
+            }
             return _attackDamageRoll(attackName).Text;
         }
 
         public int GetToHitBonus(string attackName)
         {
+            if (AttackHasSaveDc(attackName))
+            {
+                return 0;
+            }
             var canParse = int.TryParse(_attackToHitBonus(attackName).Text, out var bonus);
             if (!canParse)
             {
@@ -68,10 +77,14 @@ namespace Roll20Roller.Importer.Actions
                 var damageType = _attackDamageType(attackName).GetAttribute("data-original-title");
                 return damageType;
             }
-            catch (Exception)
+            catch (NoSuchElementException)
             {
-                var damageType = _spellAttackDamageType(attackName).GetAttribute("data-original-title");
-                return damageType;
+                if (AttackHasDamageType(attackName))
+                {
+                    var damageType = _spellAttackDamageType(attackName).GetAttribute("data-original-title");
+                    return damageType;
+                }
+                return "None";
             }          
         }
 
@@ -177,6 +190,14 @@ namespace Roll20Roller.Importer.Actions
                 default:
                     break;
             }
+        }
+
+        public void SelectActionsTab()
+        {
+            if (!IsActionsTabSelected())
+            {
+                BtnActionsTabPreClick.Click();
+            }            
         }
 
         #endregion

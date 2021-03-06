@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Roll20Roller.Importer.Base;
+using Roll20Roller.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace Roll20Roller.Importer.Maps
         protected IWebElement SpellLineParentByName(string spellName) => AllSpellNames
             .FirstOrDefault(n => n.Text.Contains(spellName))
             .FindElement(By.XPath("./parent::div/parent::div/parent::div"));
+        protected IWebElement SpellSpecificSaveDcStat(string spellName) => SpellLineParentByName(spellName).FindElement(By.XPath("./div[5]/div/span[1]"));
+        protected IWebElement SpellSpecificSaveDcNumber(string spellName) => SpellLineParentByName(spellName).FindElement(By.XPath("./div[5]/div/span[2]"));
         protected List<IWebElement> SpellLevelGroups => _basicSpellsParent.FindElements(By.XPath("./div")).ToList();
         protected List<IWebElement> SpellNamesByLevel(int level) => SpellLevelGroups[level].FindElements(By.XPath("./div[2]/div[1]/div[2]/div//span[@class=\" ddbc-spell-name\"]")).ToList();
         protected IWebElement _spellBonusParent => _Driver.WaitForElement(By.CssSelector(".ct-spells-level-casting__info"));
@@ -87,7 +90,7 @@ namespace Roll20Roller.Importer.Maps
         private IWebElement _ranged => _detailedSpellsParent.FindElement(By.CssSelector("div.ddbc-property-list__property:nth-child(2) > div:nth-child(2) > span:nth-child(1) > span:nth-child(1)"));
         private IWebElement _touch => _detailedSpellsParent.FindElement(By.CssSelector("div.ddbc-property-list__property:nth-child(2) > div:nth-child(2)"));
         
-        internal bool HasAvailableSpells()
+        public bool HasAvailableSpells()
         {
             try
             {
@@ -98,20 +101,59 @@ namespace Roll20Roller.Importer.Maps
             {
                 return false;
             }
-
         }
 
-        internal bool HasSpellModifier()
+        public bool IsSpellsTabSelected()
         {
             try
             {
-                var element = _Driver.FindElement(By.XPath("div.ct-spells-level-casting__info-group:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1) > span:nth-child(2)")).Text;
+                var element = BtnSpellsTabButtonPostClick.Text;
                 return true;
             }
             catch (NoSuchElementException)
             {
                 return false;
             }
+        }
+
+        public bool HasSpellModifier()
+        {
+            if (IsSpellsTabSelected())
+            {
+                try
+                {
+                    System.Threading.Thread.Sleep(50);
+                    // SpellBonusParent with no wait.
+                    var element = _Driver.FindElement(By.CssSelector("div.ct-spells-level-casting__info-group:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1) > span:nth-child(2)")).Text;
+                    return true;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public bool HasSpellSpecificDc(Spell spell)
+        {
+            if (IsSpellsTabSelected())
+            {
+                try
+                {
+                    // spell-specific hit/dc no wait.
+                    var element = _Driver.FindElement(By.CssSelector(".ddbc-tab-options__content"))
+                        .FindElements(By.XPath("./div/div[2]/div[1]/div//span[@class=\" ddbc-spell-name\"]"))
+                        .FirstOrDefault(n => n.Text.Contains(spell.Name))
+                        .FindElement(By.XPath("./parent::div/parent::div/parent::div/div[5]/div/span")).Text;
+                    return true;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }
