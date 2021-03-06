@@ -67,18 +67,33 @@ namespace Roll20Roller.Importer.Actions
             ddlDdbSpells.SelectedIndex = 1;
         }
 
+        public (string modifier, string spellAttack, string saveDc) SpellSpecificBonuses(Spell spell)
+        {
+            (string tempMod, string tempAttack, string tempDc) bonuses = ("Unknown", "Unknown", "Unknown");
+            if (HasSpellModifier())
+            {
+                bonuses.tempMod = SpellModifierPlusMinus.Text + SpellModifier.Text;
+                bonuses.tempAttack = SpellAttackPlusMinus.Text + SpellAttack.Text;
+                bonuses.tempDc = SaveDc.Text;
+            }
+            if (HasSpellSpecificDc(spell))
+            {
+                bonuses.tempDc = $"{SpellSpecificSaveDcStat(spell.Name).Text} {SpellSpecificSaveDcNumber(spell.Name).Text}";
+            }
+            return bonuses;
+        }
+
         public (string modifier, string spellAttack, string saveDc) SpellBonuses()
         {
             if (HasSpellModifier())
             {
                 return (
-                    SpellModifierPlusMinus.Text + SpellModifier.Text,
-                    SpellAttackPlusMinus.Text + SpellAttack.Text,
+                    SpellModifierPlusMinus.Text + SpellModifier.Text, 
+                    SpellAttackPlusMinus.Text + SpellAttack.Text, 
                     SaveDc.Text);
             }
             return ("Unknown", "Unknown", "Unknown");
         }
-
 
         public Spell GetSpellFromDdb(string spellName)
         {

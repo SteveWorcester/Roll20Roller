@@ -145,6 +145,7 @@ namespace Roll20Roller.Managers
                 var componentTypes = new StringBuilder();
                 spell.ComponentTypes.ForEach(t => componentTypes.Append($"{t} "));
                 var range = int.TryParse(spell.Range, out _) ? $"{spell.Range} ft." : spell.Range;
+                var bonuses = _Spells.HasSpellSpecificDc(spell) ? _Spells.SpellSpecificBonuses(spell) : _Spells.SpellBonuses();
 
                 var template = string.Empty;
 
@@ -161,9 +162,9 @@ namespace Roll20Roller.Managers
                 + TemplateGenerateRow("Range", range)
                 + TemplateGenerateRow("Components", $"{componentTypes.ToString().Trim()}; {spell.ComponentMaterials}")
                 + TemplateGenerateRow("Duration", spell.Duration)
-                + TemplateGenerateRow("Bonuses", $"Damage: {_Spells.SpellBonuses().modifier}\n" +
-                                                 $"Spell Attack: {_Spells.SpellBonuses().spellAttack}\n" +
-                                                 $"Save DC: {_Spells.SpellBonuses().saveDc}")                
+                + TemplateGenerateRow("Bonuses", $"Damage: {bonuses.modifier}\n" +
+                                                 $"Spell Attack: {bonuses.spellAttack}\n" +
+                                                 $"Save DC: {bonuses.saveDc}")                
                 + TemplateGenerateRow("Short Description", spell.Description);
 
                 if (displayHigherLevelsText)

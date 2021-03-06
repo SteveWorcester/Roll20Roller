@@ -24,7 +24,6 @@ namespace Roll20Roller.Forms
         public SpellsFromDdbActions _SpellsDdb;
         
         private Advantage selectedAdvantage = Advantage.Normal;
-        private bool GmOnly = false;
         private string characterName = string.Empty;
 
         public bool IsDebug = bool.Parse(ConfigurationManager.AppSettings["IsDebugMode"]);
@@ -146,7 +145,7 @@ namespace Roll20Roller.Forms
 
         private void BtnSkillRoll_Click(object sender, EventArgs e)
         {
-            _Roll.RollSkill(selectedAdvantage, DdlSkills.Text, GmOnly);          
+            _Roll.RollSkill(selectedAdvantage, DdlSkills.Text, CbGmOnly.Checked);          
         }
 
         #endregion
@@ -155,7 +154,7 @@ namespace Roll20Roller.Forms
 
         private void BtnInitiative_Click(object sender, EventArgs e)
         {
-            _Roll.RollInitiative(selectedAdvantage, GmOnly);
+            _Roll.RollInitiative(selectedAdvantage, CbGmOnly.Checked);
         }
 
         #endregion
@@ -165,7 +164,7 @@ namespace Roll20Roller.Forms
         private void BtnAttack1_Click(object sender, EventArgs e)
         {
             _Actions.SelectActionsTab();
-            _Roll.RollAttack(selectedAdvantage, DdlEquippedWeapon.Text, CbVersatile.Checked, GmOnly, CbRage.Checked);
+            _Roll.RollAttack(selectedAdvantage, DdlEquippedWeapon.Text, CbVersatile.Checked, CbGmOnly.Checked, CbRage.Checked);
         }
 
         private void DdlEquippedWeapon_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,7 +210,7 @@ namespace Roll20Roller.Forms
 
         private void ActivateSavingThrow(string threeLetterAcronym)
         {
-            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, GmOnly, CbStatCheck.Checked);
+            _Roll.RollSavingThrow(selectedAdvantage, threeLetterAcronym, CbGmOnly.Checked, CbStatCheck.Checked);
         }
 
         #endregion
@@ -343,7 +342,7 @@ namespace Roll20Roller.Forms
         private void BtnDdbSpell_Click(object sender, EventArgs e)
         {
             _SpellsDdb.SelectSpellsTab();
-            _Roll.GetSpellCard(_SpellsDdb.GetSpellFromDdb(DdlDdbSpells.Text), GmOnly, CbSpellHigherLevels.Checked);
+            _Roll.GetSpellCard(_SpellsDdb.GetSpellFromDdb(DdlDdbSpells.Text), CbGmOnly.Checked, CbSpellHigherLevels.Checked);
         }
 
         #endregion
