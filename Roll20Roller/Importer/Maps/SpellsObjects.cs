@@ -145,7 +145,7 @@ namespace Roll20Roller.Importer.Maps
                     var element = _Driver.FindElement(By.CssSelector(".ddbc-tab-options__content"))
                         .FindElements(By.XPath("./div/div[2]/div[1]/div//span[@class=\" ddbc-spell-name\"]"))
                         .FirstOrDefault(n => n.Text.Contains(spell.Name))
-                        .FindElement(By.XPath("./parent::div/parent::div/parent::div/div[5]/div/span")).Text;
+                        .FindElement(By.XPath("./parent::div/parent::div/parent::div/div[5]/div/span[2]")).Text;
                     return true;
                 }
                 catch (NoSuchElementException)
